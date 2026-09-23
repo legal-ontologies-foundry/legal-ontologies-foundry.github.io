@@ -1,7 +1,7 @@
 # Legal Ontologies Foundry: website
 
 Source for the Foundry website, published at
-https://legal-ontologies-foundry.github.io/ (or the custom domain, once set).
+https://legal-ontologies-foundry.github.io/ 
 
 - Pages are Markdown files in `docs/`.
 - Each registered ontology is described by `ontology/{id}.md` (YAML front
