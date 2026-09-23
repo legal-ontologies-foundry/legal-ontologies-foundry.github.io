@@ -1,0 +1,5 @@
+# Pinned below MkDocs 2.0, which is backward-incompatible with Material.
+mkdocs>=1.6,<2
+mkdocs-material>=9.7,<10
+pyyaml>=6
+jsonschema>=4.18

@@ -1,0 +1,90 @@
+site_name: Legal Ontologies Foundry
+site_description: A collaborative foundry of interoperable, BFO-grounded legal ontologies.
+site_url: https://legal-ontologies-foundry.github.io/
+repo_url: https://github.com/legal-ontologies-foundry/legal-ontologies-foundry.github.io
+repo_name: legal-ontologies-foundry
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.action.edit
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+
+nav:
+  - Home: index.md
+  - Principles:
+      - principles/index.md
+      - principles/lof-p-001-open.md
+      - principles/lof-p-002-format.md
+      - principles/lof-p-003-bfo.md
+      - principles/lof-p-004-grounding.md
+      - principles/lof-p-005-identifiers.md
+      - principles/lof-p-006-versioning.md
+      - principles/lof-p-007-definitions.md
+      - principles/lof-p-008-scope.md
+      - principles/lof-p-009-orthogonality.md
+      - principles/lof-p-010-jurisdiction.md
+      - principles/lof-p-011-consistency.md
+      - principles/lof-p-012-naming.md
+      - principles/lof-p-013-documentation.md
+      - principles/lof-p-014-maintenance.md
+      - principles/lof-p-015-standards.md
+      - principles/lof-p-016-users.md
+      - principles/lof-p-017-authority.md
+      - principles/lof-p-018-attribution.md
+  - Registry:
+      - registry/index.md
+  - Design Patterns:
+      - Overview: odp/index.md
+      - LOF-ODP-001: odp/odp-001.md
+      - LOF-ODP-002: odp/odp-002.md
+      - LOF-ODP-003: odp/odp-003.md
+      - Pattern template: odp/template.md
+  - Policies:
+      - Identifiers: policy/identifiers.md
+      - Deprecation: policy/deprecation.md
+      - ID ranges: policy/id-ranges.md
+      - Registry metadata: policy/metadata.md
+      - Automated checks: policy/automated-checks.md
+  - Procedures:
+      - New ontology request: sop/new-ontology-request.md
+      - Review: sop/review.md
+      - Release: sop/release.md
+      - Term requests: sop/term-requests.md
+  - About:
+      - Governance: about/governance.md
+      - Working groups: about/working-groups.md
+      - Code of conduct: about/code-of-conduct.md
+      - Citation: about/citation.md
+      - FAQ: about/faq.md
+      - Related initiatives: about/related-initiatives.md
+  - Contributing: contributing.md
