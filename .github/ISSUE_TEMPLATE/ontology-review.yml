@@ -1,0 +1,60 @@
+name: Ontology review
+description: Principle-by-principle review of a candidate ontology (see the review SOP)
+title: "[Review]: "
+labels: ["review"]
+body:
+  - type: input
+    id: ontology
+    attributes:
+      label: Ontology ID
+      description: Registry id, e.g. odp-001
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Release reviewed
+      description: Version number and tag
+    validations:
+      required: true
+  - type: checkboxes
+    id: principles
+    attributes:
+      label: Principles satisfied
+      description: Tick each principle the release satisfies. Explain every unticked box below.
+      options:
+        - label: "LOF-P-001 Open"
+        - label: "LOF-P-002 Common format"
+        - label: "LOF-P-003 Common upper ontology"
+        - label: "LOF-P-004 Explicit grounding of legal entities"
+        - label: "LOF-P-005 Persistent identifiers"
+        - label: "LOF-P-006 Versioning"
+        - label: "LOF-P-007 Textual definitions"
+        - label: "LOF-P-008 Clearly delineated scope"
+        - label: "LOF-P-009 Orthogonality"
+        - label: "LOF-P-010 Jurisdictional transparency"
+        - label: "LOF-P-011 Logical well-formedness"
+        - label: "LOF-P-012 Naming conventions"
+        - label: "LOF-P-013 Documentation"
+        - label: "LOF-P-014 Responsiveness and maintenance"
+        - label: "LOF-P-015 Alignment with existing legal standards"
+        - label: "LOF-P-016 Documented use"
+        - label: "LOF-P-017 Locus of authority"
+        - label: "LOF-P-018 Attribution"
+  - type: textarea
+    id: findings
+    attributes:
+      label: Findings
+      description: For each unmet principle, what is missing and what would fix it
+    validations:
+      required: true
+  - type: dropdown
+    id: recommendation
+    attributes:
+      label: Recommendation
+      options:
+        - Accept
+        - Accept after minor revisions
+        - Revise and resubmit
+    validations:
+      required: true
