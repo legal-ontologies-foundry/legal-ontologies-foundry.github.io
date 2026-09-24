@@ -1,0 +1,28 @@
+name: Principle or policy change
+description: Propose amending a principle or policy
+title: "[Principle]: "
+labels: ["principles"]
+body:
+  - type: input
+    id: which
+    attributes:
+      label: Principle or policy
+      description: e.g. LOF-P-007, or the deprecation policy
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem with the current text
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Effect on existing ontologies
