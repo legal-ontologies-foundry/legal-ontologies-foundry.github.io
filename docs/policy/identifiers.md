@@ -2,7 +2,7 @@
 
 All Foundry identifiers live in the persistent namespace
 `https://w3id.org/lof/`. The redirects are maintained in the
-[w3id.org repository](https://github.com/perma-id/w3id.org/tree/master/lof)
+[w3id.org repository](https://github.com/perma-id/w3id.org/tree/master/ids/lof)
 and generated from the registry, so hosting can change without breaking any
 identifier (LOF-P-005).
 
@@ -10,7 +10,7 @@ identifier (LOF-P-005).
 
 | Kind | Pattern | Example |
 |---|---|---|
-| Foundry home | `https://w3id.org/lof/` | |
+| Foundry home | `https://w3id.org/ids/lof/` | |
 | Full release (latest) | `https://w3id.org/lof/{id}.owl` | `https://w3id.org/ids/lof/odp-001.owl` |
 | Base release (latest) | `https://w3id.org/lof/{id}/{id}-base.owl` | `https://w3id.org/ids/lof/odp-001/odp-001-base.owl` |
 | Specific release | `https://w3id.org/lof/{id}/releases/{version}/{id}.owl` | `https://w3id.org/ids/lof/odp-001/releases/0.1.0/odp-001.owl` |
