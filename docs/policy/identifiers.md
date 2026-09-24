@@ -13,7 +13,7 @@ identifier (LOF-P-005).
 | Foundry home | `https://w3id.org/lof/` | |
 | Full release (latest) | `https://w3id.org/lof/{id}.owl` | `https://w3id.org/lof/odp-001.owl` |
 | Base release (latest) | `https://w3id.org/lof/{id}/{id}-base.owl` | `https://w3id.org/lof/odp-001/odp-001-base.owl` |
-| Specific release | `https://w3id.org//lof/{id}/releases/{version}/{id}.owl` | `https://w3id.org//lof/odp-001/releases/0.1.0/odp-001.owl` |
+| Specific release | `https://w3id.org/lof/{id}/releases/{version}/{id}.owl` | `https://w3id.org/lof/odp-001/releases/0.1.0/odp-001.owl` |
 | Import module | `https://w3id.org/lof/{id}/imports/{file}` | `https://w3id.org/lof/odp-001/imports/bfo_import.owl` |
 | Term | `https://w3id.org/lof/{PREFIX}_{7 digits}` | `https://w3id.org/lof/ODP001_0001000` |
 | Issue tracker | `https://w3id.org/lof/{id}/tracker` | |
