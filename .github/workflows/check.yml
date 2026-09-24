@@ -1,0 +1,17 @@
+name: check
+on:
+  pull_request:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+      - run: pip install -r requirements.txt
+      - name: Validate registry against schema
+        run: python scripts/build_registry.py
+      - name: Build site (fails on broken links or nav errors)
+        run: mkdocs build --strict
