@@ -1,0 +1,75 @@
+name: New ontology request
+description: Propose a new ontology or design pattern for the Foundry (see the new ontology request SOP)
+title: "[New ontology]: "
+labels: ["new-ontology"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please check the registry first to make sure the scope is not already covered (LOF-P-009).
+  - type: input
+    id: title
+    attributes:
+      label: Title
+    validations:
+      required: true
+  - type: input
+    id: id
+    attributes:
+      label: Requested id
+      description: Lower case, e.g. legal-roles
+    validations:
+      required: true
+  - type: input
+    id: prefix
+    attributes:
+      label: Requested prefix
+      description: Upper case, for term IRIs, e.g. LEGROLE
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope statement (LOF-P-008)
+      description: What the ontology covers, and what it excludes
+    validations:
+      required: true
+  - type: textarea
+    id: cqs
+    attributes:
+      label: Competency questions (LOF-P-008)
+    validations:
+      required: true
+  - type: input
+    id: jurisdictions
+    attributes:
+      label: Jurisdictions or legal traditions in scope (LOF-P-010)
+      description: e.g. general; common-law; US; EU
+    validations:
+      required: true
+  - type: textarea
+    id: grounding
+    attributes:
+      label: Anticipated BFO grounding (LOF-P-004)
+      description: The main legal classes and the BFO categories you expect to place them under
+  - type: textarea
+    id: overlap
+    attributes:
+      label: Overlap and alignment (LOF-P-009, LOF-P-015)
+      description: Related Foundry ontologies, OBO or CCO ontologies, and legal standards
+  - type: textarea
+    id: use
+    attributes:
+      label: Intended use (LOF-P-016)
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: Contact person, email, and GitHub handle (LOF-P-017)
+    validations:
+      required: true
+  - type: input
+    id: repo
+    attributes:
+      label: Existing repository, if any
