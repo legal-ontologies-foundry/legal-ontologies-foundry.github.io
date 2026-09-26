@@ -68,6 +68,7 @@ nav:
       - LOF-ODP-001: odp/odp-001.md
       - LOF-ODP-002: odp/odp-002.md
       - LOF-ODP-003: odp/odp-003.md
+      - LOF-ODP-004: odp/odp-004.md
       - Pattern template: odp/template.md
   - Policies:
       - Identifiers: policy/identifiers.md
