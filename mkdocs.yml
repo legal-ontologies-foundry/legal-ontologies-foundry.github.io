@@ -82,6 +82,9 @@ nav:
       - Review: sop/review.md
       - Release: sop/release.md
       - Term requests: sop/term-requests.md
+  - Literature:
+      - literature/index.md
+      - Adolf Reinach: literature/reinach.md
   - About:
       - Governance: about/governance.md
       - Working groups: about/working-groups.md
