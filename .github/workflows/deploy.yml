@@ -1,31 +1,36 @@
-   name: deploy
-   on:
-     push:
-       branches: [main]
-     workflow_dispatch:
-   permissions:
-     contents: write
-   concurrency:
+name: deploy
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'   # hourly, so the Activity pages stay current
+permissions:
+  contents: write
+  issues: read
+  pull-requests: read
+  discussions: read
+concurrency:
   group: deploy
   cancel-in-progress: false
 jobs:
-     deploy:
-       runs-on: ubuntu-latest
-       steps:
-         - uses: actions/checkout@v4
-         - uses: actions/setup-python@v5
-           with:
-             python-version: 3.x
-         - run: pip install -r requirements.txt
-         - name: Validate registry and generate pages and w3id redirects
-           run: python scripts/build_registry.py
-         - name: Publish w3id .htaccess for the w3id.org pull request
-           uses: actions/upload-artifact@v4
-           with:
-             name: w3id-lof
-             path: build/w3id/lof/
-             include-hidden-files: true
-         - name: Generate Activity pages from issues, pull requests, and Discussions
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+      - run: pip install -r requirements.txt
+      - name: Validate registry and generate pages and w3id redirects
+        run: python scripts/build_registry.py
+      - name: Publish w3id .htaccess for the w3id.org pull request
+        uses: actions/upload-artifact@v4
+        with:
+          name: w3id-lof
+          path: build/w3id/lof/
+          include-hidden-files: true
+      - name: Generate Activity pages from issues, pull requests, and Discussions
         run: python scripts/build_activity.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
