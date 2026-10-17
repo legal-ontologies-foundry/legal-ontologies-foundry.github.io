@@ -16,6 +16,26 @@ combined without translation loss.
     Proposed changes are welcome as pull requests or in
     [Discussions](https://github.com/legal-ontologies-foundry/legal-ontologies-foundry.github.io/discussions).
 
+!!! tip "Get involved"
+    The Foundry is open to anyone working on law, ontology, or legal
+    information systems, and we especially welcome input before the founding
+    coordinators' next meeting. Four ways to start, none needing any
+    commitment:
+
+    1. **Review a design pattern.** Read one of the [four draft
+       patterns](odp/index.md) and comment at the foot of its page or in
+       [Discussions](https://github.com/legal-ontologies-foundry/legal-ontologies-foundry.github.io/discussions).
+    2. **Tell us about an existing legal ontology** that should be in the
+       registry, or a vocabulary we should align with.
+    3. **Bring a use case.** A worked example from your jurisdiction or
+       practice is one of the most useful things anyone can contribute.
+    4. **Pick up a starter task.** Issues labeled
+       [good first issue](https://github.com/legal-ontologies-foundry/legal-ontologies-foundry.github.io/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+       are small and self-contained.
+
+    New to GitHub? Comments at the foot of each page need only a free GitHub
+    account. See [Contributing](contributing.md) for more.
+
 ## Why a foundry
 
 Legal information systems, from court records and statutory databases to
@@ -37,6 +57,7 @@ cover a well-delimited domain.
 | Propose a new ontology | [New ontology request](sop/new-ontology-request.md) |
 | Request a term | [Term requests](sop/term-requests.md) |
 | Use LOF identifiers | [Identifier policy](policy/identifiers.md) |
+| Make a first contribution | [Get involved](#get-involved), [Contributing](contributing.md) |
 | Learn how the Foundry is run | [Governance](about/governance.md) |
 
 ## Founding coordinators
