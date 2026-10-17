@@ -39,8 +39,10 @@ combined without translation loss.
     [Activity](activity/index.md) pages: open proposals, discussions, the
     decision log, and members, refreshed every hour.
 
-    New to GitHub? Comments at the foot of each page need only a free GitHub
-    account. See [Contributing](contributing.md) for more.
+    No GitHub account? You can do all of this through a simple form: see
+    [Take part without GitHub](activity/participate.md).
+
+    Comments at the foot of each page need only a free GitHub account. See [Contributing](contributing.md) for more.
 
 ## Why a foundry
 
