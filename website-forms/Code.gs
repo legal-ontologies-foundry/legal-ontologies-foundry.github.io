@@ -601,6 +601,12 @@ function encodePath_(p) { return p.split('/').map(encodeURIComponent).join('/');
 function owner_() { return REPO.split('/')[0]; }
 function name_() { return REPO.split('/')[1]; }
 
+/** Run after changing the app's permissions on GitHub, so the next call picks them up. */
+function resetToken() {
+  CacheService.getScriptCache().remove('gh_token');
+  Logger.log('Cleared. The next call signs in again with the app\'s current permissions.');
+}
+
 /** Optional: run from the editor to check the bot can reach the repository. */
 function testConnection() {
   var r = gh_('GET', '/repos/' + REPO);
