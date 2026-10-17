@@ -1,0 +1,21 @@
+# Foundry members. Listed on the website's Members page.
+# Add yourself through the website's Participate form, or by a pull request.
+# A GitHub account is optional.
+#
+# Fields: name (required), affiliation, role, github (optional), joined (YYYY-MM).
+# Roles: founding coordinator, coordinator, member.
+
+- name: David R. Koepsell
+  affiliation: Texas A&M University
+  role: founding coordinator
+  github: dkoepsell
+  joined: 2026-09
+- name: William Mandrick
+  affiliation: CUBRC
+  role: founding coordinator
+  github: williammandrick-cmd
+  joined: 2026-09
+- name: Barry Smith
+  affiliation: University at Buffalo
+  role: founding coordinator
+  joined: 2026-09
