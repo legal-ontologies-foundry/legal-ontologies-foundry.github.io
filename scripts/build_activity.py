@@ -164,6 +164,27 @@ def page_proposals(issues, pulls, err):
     return s
 
 
+SITE = "https://legal-ontologies-foundry.github.io/"
+
+
+def page_title(path):
+    """Title of the site page that a page-comment thread belongs to.
+
+    Comments left at the foot of a site page are stored as Discussions whose
+    title is the page's path (for example 'odp/odp-001/').
+    """
+    if not re.fullmatch(r"[\w./-]*/", path):
+        return None
+    stem = path.strip("/")
+    for f in (ROOT / "docs" / f"{stem}.md", ROOT / "docs" / stem / "index.md"):
+        if f.is_file():
+            for line in f.read_text().splitlines():
+                if line.startswith("# "):
+                    return line[2:].strip()
+            return stem.rsplit("/", 1)[-1].replace("-", " ").capitalize()
+    return None
+
+
 def page_discussions(items, err):
     s = header("Discussions",
                "Recent conversations in the Foundry, newest activity first. " + PARTICIPATE)
@@ -173,8 +194,14 @@ def page_discussions(items, err):
         return s + "No discussions yet. Start one through the participation page.\n"
     for d in items:
         n = d["comments"]["totalCount"]
-        s += (f"## {html.escape(d['title'])} {{ #discussion-{d['number']} }}\n\n"
-              f"**{who(d['author'])}** in *{d['category']['name']}* · started {day(d['createdAt'])} · "
+        page = page_title(d["title"])
+        if page:
+            title = f"Comments on the page: {page}"
+            where = f"on the page [{html.escape(page)}]({SITE}{d['title'].lstrip('/')})"
+        else:
+            title, where = d["title"], f"in *{d['category']['name']}*"
+        s += (f"## {html.escape(title)} {{ #discussion-{d['number']} }}\n\n"
+              f"**{who(d['author'])}** {where} · started {day(d['createdAt'])} · "
               f"{n} repl{'ies' if n != 1 else 'y'} · last activity {day(d['updatedAt'])} · "
               f"[view and reply on GitHub]({d['url']})\n\n"
               f"{safe(d['body'])}\n\n")
