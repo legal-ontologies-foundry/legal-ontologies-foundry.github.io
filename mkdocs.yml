@@ -44,6 +44,7 @@ nav:
   - Home: index.md
   - Activity:
       - activity/index.md
+      - Take part without GitHub: activity/participate.md
       - Open proposals: activity/proposals.md
       - Discussions: activity/discussions.md
       - Decision log: activity/decisions.md

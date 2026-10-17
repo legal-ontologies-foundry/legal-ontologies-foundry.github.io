@@ -26,6 +26,7 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "docs" / "activity"
 MEMBERS = ROOT / "community" / "members.yml"
+FORMS = ROOT / "community" / "forms.yml"
 REPO = os.environ.get("GITHUB_REPOSITORY", "legal-ontologies-foundry/legal-ontologies-foundry.github.io")
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
 API = "https://api.github.com"
@@ -129,7 +130,35 @@ def notice(what, err):
 
 
 PARTICIPATE = ("You do not need a GitHub account to take part: see "
-               "[how to participate](../contributing.md). Links to GitHub open the full record.")
+               "[how to participate](participate.md). Links to GitHub open the full record.")
+
+
+def load_forms():
+    try:
+        f = yaml.safe_load(FORMS.read_text()) or {}
+        return f if f.get("form_url") and f.get("prefill") and f.get("actions") else None
+    except FileNotFoundError:
+        return None
+
+
+FORM = load_forms()
+
+
+def form_link(action, item_url=None):
+    """Link to the participation form, opened at the right section (and item, for comments)."""
+    if not FORM:
+        return None
+    from urllib.parse import quote
+    url = f"{FORM['form_url']}?usp=pp_url&{FORM['prefill']['action']}={quote(FORM['actions'][action])}"
+    if item_url:
+        url += f"&{FORM['prefill']['link']}={quote(item_url)}"
+    return url
+
+
+def reply_links(item_url, verb="comment"):
+    own = form_link("comment", item_url)
+    gh = f"[{verb} on GitHub]({item_url})"
+    return f"[{verb} without GitHub]({own}) · {gh}" if own else f"[view and {verb} on GitHub]({item_url})"
 
 
 # ---------------------------------------------------------------- pages
@@ -149,7 +178,7 @@ def page_proposals(issues, pulls, err):
         status = "draft, still being prepared" if p.get("draft") else "ready for review"
         s += (f"### {html.escape(p['title'])} {{ #change-{p['number']} }}\n\n"
               f"Proposed by **{who(p['user'])}** on {day(p['created_at'])} · {status} · "
-              f"[view and comment on GitHub]({p['html_url']})\n\n"
+              f"{reply_links(p['html_url'])}\n\n"
               f"{excerpt(p.get('body'))}\n\n"
               f'??? note "Full description"\n{indent(safe(p.get("body")))}\n\n')
     s += f"## Open questions and tasks ({len(open_issues)})\n\n"
@@ -158,7 +187,7 @@ def page_proposals(issues, pulls, err):
         s += (f"### {html.escape(i['title'])} {{ #issue-{i['number']} }}\n\n"
               f"Raised by **{who(i['user'])}** on {day(i['created_at'])} · "
               f"{i['comments']} comment{'s' if i['comments'] != 1 else ''}{tag} · "
-              f"[view and comment on GitHub]({i['html_url']})\n\n"
+              f"{reply_links(i['html_url'])}\n\n"
               f"{excerpt(i.get('body'))}\n\n"
               f'??? note "Full text"\n{indent(safe(i.get("body")))}\n\n')
     return s
@@ -203,7 +232,7 @@ def page_discussions(items, err):
         s += (f"## {html.escape(title)} {{ #discussion-{d['number']} }}\n\n"
               f"**{who(d['author'])}** {where} · started {day(d['createdAt'])} · "
               f"{n} repl{'ies' if n != 1 else 'y'} · last activity {day(d['updatedAt'])} · "
-              f"[view and reply on GitHub]({d['url']})\n\n"
+              f"{reply_links(d['url'], 'reply')}\n\n"
               f"{safe(d['body'])}\n\n")
         for c in d["comments"]["nodes"]:
             s += f'??? quote "{who(c["author"])}, {day(c["createdAt"])}"\n{indent(safe(c["body"]))}\n\n'
@@ -256,6 +285,69 @@ def page_members():
     return s
 
 
+def page_participate():
+    s = header("Take part without GitHub",
+               "Everything in the Foundry happens in the open on GitHub, but you do not need a GitHub "
+               "account, or to know how GitHub works, to take part. Use the form below and the Foundry's "
+               "bot posts your contribution for you, under your name, marked *via website*.")
+    rows = [
+        ("ask", "Ask a question or make a suggestion",
+         "Questions, ideas, an ontology for the registry, a worked example, a governance proposal, or a problem with the site.",
+         "an open question on [Open proposals](proposals.md)"),
+        ("comment", "Comment on a proposal or discussion",
+         "Use the *comment without GitHub* links on [Open proposals](proposals.md) and [Discussions](discussions.md); "
+         "they open the form with the item already filled in.",
+         "a comment on that item"),
+        ("discuss", "Start a discussion", "An open-ended conversation, an idea to float, or a question for the community.",
+         "a new thread on [Discussions](discussions.md)"),
+        ("edit", "Propose an edit to a page",
+         "Paste the page's link, the exact text to change, and your replacement.",
+         "a proposed change for a coordinator to review, listed on [Open proposals](proposals.md)"),
+        ("join", "Join the Foundry", "Tell us who you are and what you work on.",
+         "your name on [Members](members.md), once a coordinator confirms"),
+    ]
+    if FORM:
+        s += "| I want to | What to send | It becomes |\n|---|---|---|\n"
+        for key, label, what, becomes in rows:
+            s += f"| **[{label}]({form_link(key)})** | {what} | {becomes} |\n"
+    else:
+        s += ('!!! info "The form is being set up"\n'
+              "    The participation form will be linked here shortly. Meanwhile you can take part on "
+              "[GitHub](" + GH + "), or by commenting at the foot of any page.\n\n")
+        s += "When the form is ready you will be able to:\n\n"
+        for _, label, what, _b in rows:
+            s += f"- **{label}.** {what}\n"
+    s += """
+## How it works
+
+1. Fill in the form. It asks for your name, your email address, and what you want to say.
+2. We email you a confirmation link. **Nothing is posted until you click it.** This keeps out spam
+   and makes sure no one posts in your name.
+3. The Foundry's bot posts your contribution on GitHub, marked *via website*, with your name and
+   affiliation. You get a link to it, and it appears on these Activity pages within the hour.
+4. Coordinators and members reply on GitHub; replies show on these pages too. To answer them,
+   use the *comment without GitHub* link next to the item.
+
+Proposed edits and new members are not adopted automatically: a coordinator reviews and decides, and
+the outcome is recorded in the [decision log](decisions.md). See [Governance](../about/governance.md).
+
+## Privacy
+
+Your **name, affiliation, and what you write** are published on the Foundry's GitHub and website.
+Your **email address is never published.** It is used only to confirm that the submission is yours
+and to tell you where it was posted, and it is kept in a private log seen only by the coordinators.
+To have a contribution removed, or your details deleted from the log, write to a coordinator.
+
+You may submit up to five contributions a day. All contributions are covered by the
+[code of conduct](../about/code-of-conduct.md) and the Foundry's open licenses.
+
+## Prefer GitHub?
+
+If you have a GitHub account, you can also work there directly: see [Contributing](../contributing.md).
+"""
+    return s
+
+
 def page_index(issues, pulls, disc, err_rest, err_disc):
     s = header("Foundry activity",
                "What is happening in the Foundry, readable without a GitHub account. These pages are "
@@ -269,6 +361,7 @@ def page_index(issues, pulls, disc, err_rest, err_disc):
         adopted = sum(1 for p in pulls if p.get("merged_at"))
     nd = "?" if err_disc else len(disc)
     s += ("| Page | What it shows | Now |\n|---|---|---|\n"
+          "| [Take part without GitHub](participate.md) | Ask, comment, discuss, propose edits, or join, through a simple form | |\n"
           f"| [Open proposals](proposals.md) | Proposed changes and open questions, open for comment | {open_prs} changes, {open_issues} questions |\n"
           f"| [Discussions](discussions.md) | Conversations, with replies | {nd} recent |\n"
           f"| [Decision log](decisions.md) | Changes adopted and questions closed | {adopted} changes adopted |\n"
@@ -295,6 +388,7 @@ def main():
         "discussions.md": page_discussions(disc, err_disc),
         "decisions.md": page_decisions(issues, pulls, err_rest),
         "members.md": page_members(),
+        "participate.md": page_participate(),
     }
     for name, text in pages.items():
         (OUT / name).write_text(text)
