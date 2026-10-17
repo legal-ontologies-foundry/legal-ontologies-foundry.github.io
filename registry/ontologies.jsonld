@@ -1,0 +1,201 @@
+{
+  "@context": {
+    "@vocab": "https://w3id.org/lof/registry/",
+    "id": "@id",
+    "title": "http://purl.org/dc/terms/title",
+    "description": "http://purl.org/dc/terms/description",
+    "repository": {
+      "@id": "http://usefulinc.com/ns/doap#repository",
+      "@type": "@id"
+    }
+  },
+  "ontologies": [
+    {
+      "id": "https://w3id.org/lof/odp-001.owl",
+      "preferred_prefix": "ODP001",
+      "title": "LOF-ODP-001: Legal Act and Legal Document",
+      "description": "Distinguishes legal acts, the legal content they establish, and the documents that carry that content.",
+      "domain": "legal ontology design pattern",
+      "jurisdictions": [
+        "general"
+      ],
+      "status": "draft",
+      "activity_status": "active",
+      "repository": "https://github.com/legal-ontologies-foundry/lof-odp-001",
+      "tracker": "https://github.com/legal-ontologies-foundry/lof-odp-001/issues",
+      "license": {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "contact": {
+        "label": "David R. Koepsell",
+        "email": "drkoepsell@tamu.edu",
+        "github": "dkoepsell"
+      },
+      "dependencies": [
+        {
+          "id": "bfo"
+        }
+      ],
+      "usages": [],
+      "publications": [],
+      "products": [
+        {
+          "title": "Full release",
+          "iri": "https://w3id.org/lof/odp-001.owl"
+        },
+        {
+          "title": "Base release",
+          "iri": "https://w3id.org/lof/odp-001/odp-001-base.owl"
+        }
+      ],
+      "term_iri_prefix": "https://w3id.org/lof/ODP001_",
+      "registry_id": "odp-001"
+    },
+    {
+      "id": "https://w3id.org/lof/odp-002.owl",
+      "preferred_prefix": "ODP002",
+      "title": "LOF-ODP-002: Legal Role Conferral",
+      "description": "Legal roles, and the legal acts that confer and terminate them.",
+      "domain": "legal ontology design pattern",
+      "jurisdictions": [
+        "general"
+      ],
+      "status": "draft",
+      "activity_status": "active",
+      "repository": "https://github.com/legal-ontologies-foundry/lof-odp-002",
+      "tracker": "https://github.com/legal-ontologies-foundry/lof-odp-002/issues",
+      "license": {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "contact": {
+        "label": "David R. Koepsell",
+        "email": "drkoepsell@tamu.edu",
+        "github": "dkoepsell"
+      },
+      "dependencies": [
+        {
+          "id": "bfo"
+        },
+        {
+          "id": "odp-001"
+        }
+      ],
+      "usages": [],
+      "publications": [],
+      "products": [
+        {
+          "title": "Full release",
+          "iri": "https://w3id.org/lof/odp-002.owl"
+        },
+        {
+          "title": "Base release",
+          "iri": "https://w3id.org/lof/odp-002/odp-002-base.owl"
+        }
+      ],
+      "term_iri_prefix": "https://w3id.org/lof/ODP002_",
+      "registry_id": "odp-002"
+    },
+    {
+      "id": "https://w3id.org/lof/odp-003.owl",
+      "preferred_prefix": "ODP003",
+      "title": "LOF-ODP-003: Correlative Deontic Positions",
+      "description": "Hohfeld's eight legal positions, their correlatives, holders, and grounding in legal content.",
+      "domain": "legal ontology design pattern",
+      "jurisdictions": [
+        "general"
+      ],
+      "status": "draft",
+      "activity_status": "active",
+      "repository": "https://github.com/legal-ontologies-foundry/lof-odp-003",
+      "tracker": "https://github.com/legal-ontologies-foundry/lof-odp-003/issues",
+      "license": {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "contact": {
+        "label": "David R. Koepsell",
+        "email": "drkoepsell@tamu.edu",
+        "github": "dkoepsell"
+      },
+      "dependencies": [
+        {
+          "id": "bfo"
+        },
+        {
+          "id": "odp-001"
+        }
+      ],
+      "usages": [],
+      "publications": [],
+      "products": [
+        {
+          "title": "Full release",
+          "iri": "https://w3id.org/lof/odp-003.owl"
+        },
+        {
+          "title": "Base release",
+          "iri": "https://w3id.org/lof/odp-003/odp-003-base.owl"
+        }
+      ],
+      "term_iri_prefix": "https://w3id.org/lof/ODP003_",
+      "registry_id": "odp-003"
+    },
+    {
+      "id": "https://w3id.org/lof/odp-004.owl",
+      "preferred_prefix": "ODP004",
+      "title": "LOF-ODP-004: Minimum Legal Chain",
+      "description": "Connects the authority, norm, role, trigger, act, target, effect, and remedy through which a legal position comes to exist.",
+      "domain": "legal ontology design pattern",
+      "jurisdictions": [
+        "general"
+      ],
+      "status": "draft",
+      "activity_status": "active",
+      "repository": "https://github.com/legal-ontologies-foundry/lof-odp-004",
+      "tracker": "https://github.com/legal-ontologies-foundry/lof-odp-004/issues",
+      "license": {
+        "label": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "contact": {
+        "label": "David R. Koepsell",
+        "email": "drkoepsell@tamu.edu",
+        "github": "dkoepsell"
+      },
+      "dependencies": [
+        {
+          "id": "bfo"
+        },
+        {
+          "id": "odp-001"
+        },
+        {
+          "id": "odp-002"
+        },
+        {
+          "id": "odp-003"
+        }
+      ],
+      "usages": [
+        {
+          "description": "Planned: chain-closure validation of Minimum Legal Chain annotations of federal appellate opinions (SEAL Lab, Texas A&M)."
+        }
+      ],
+      "publications": [],
+      "products": [
+        {
+          "title": "Full release",
+          "iri": "https://w3id.org/lof/odp-004.owl"
+        },
+        {
+          "title": "Base release",
+          "iri": "https://w3id.org/lof/odp-004/odp-004-base.owl"
+        }
+      ],
+      "term_iri_prefix": "https://w3id.org/lof/ODP004_",
+      "registry_id": "odp-004"
+    }
+  ]
+}
