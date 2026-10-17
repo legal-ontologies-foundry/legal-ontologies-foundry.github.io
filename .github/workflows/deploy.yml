@@ -5,7 +5,10 @@
      workflow_dispatch:
    permissions:
      contents: write
-   jobs:
+   concurrency:
+  group: deploy
+  cancel-in-progress: false
+jobs:
      deploy:
        runs-on: ubuntu-latest
        steps:
@@ -22,4 +25,8 @@
              name: w3id-lof
              path: build/w3id/lof/
              include-hidden-files: true
-         - run: mkdocs gh-deploy --force
+         - name: Generate Activity pages from issues, pull requests, and Discussions
+        run: python scripts/build_activity.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: mkdocs gh-deploy --force

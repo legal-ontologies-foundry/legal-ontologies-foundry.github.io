@@ -42,6 +42,12 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - Activity:
+      - activity/index.md
+      - Open proposals: activity/proposals.md
+      - Discussions: activity/discussions.md
+      - Decision log: activity/decisions.md
+      - Members: activity/members.md
   - Principles:
       - principles/index.md
       - principles/lof-p-001-open.md

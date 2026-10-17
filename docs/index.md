@@ -16,6 +16,8 @@ combined without translation loss.
     Proposed changes are welcome as pull requests or in
     [Discussions](https://github.com/legal-ontologies-foundry/legal-ontologies-foundry.github.io/discussions).
 
+<a id="get-involved"></a>
+
 !!! tip "Get involved"
     The Foundry is open to anyone working on law, ontology, or legal
     information systems, and we especially welcome input before the founding
@@ -32,6 +34,10 @@ combined without translation loss.
     4. **Pick up a starter task.** Issues labeled
        [good first issue](https://github.com/legal-ontologies-foundry/legal-ontologies-foundry.github.io/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
        are small and self-contained.
+
+    To see what is under discussion right now, without GitHub, read the
+    [Activity](activity/index.md) pages: open proposals, discussions, the
+    decision log, and members, refreshed every hour.
 
     New to GitHub? Comments at the foot of each page need only a free GitHub
     account. See [Contributing](contributing.md) for more.
