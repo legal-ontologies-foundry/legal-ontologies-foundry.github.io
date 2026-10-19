@@ -279,9 +279,12 @@ function doGet(e) {
     return page_({ title: 'Legal Ontologies Foundry', html: '<p><a href="' + SITE + '">Go to the Foundry website</a>.</p>' });
   } catch (err) {
     console.error(err && err.stack || err);
+    var what = q.confirm ? 'Your submission could not be posted just now. You do not need to submit it again: ' +
+               'try this link again in a few minutes, or reply to the confirmation email.'
+             : 'This page could not be loaded just now. Please try again in a few minutes.';
     return page_({ title: 'Something went wrong',
-      html: '<p>Your submission could not be posted just now. The coordinators have been notified and will post it ' +
-            'or contact you. You do not need to submit it again.</p>' });
+      html: '<p>' + what + '</p><p style="color:#666;font-size:.9em">Details for the coordinators: ' +
+            esc_(String(err && err.message || err)).slice(0, 300) + '</p>' });
   }
 }
 
