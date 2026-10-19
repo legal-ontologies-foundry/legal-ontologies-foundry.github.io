@@ -209,7 +209,9 @@ def section_decisions(rules, members, items):
             v = t["by_voter"].get(m["name"])
             who = html.escape(m["name"]) + (" (committee)" if m.get("committee") else "")
             s += f"| {who} | {VOTE_LABELS[v['vote']] if v else 'not yet voted'} | {('on ' + v['via']) if v else ''} |\n"
-        s += f"\n{reply_links(p['html_url'])}\n\n"
+        vote = FORM and FORM.get("webapp_url")
+        s += ("\n" + (f"**Voting members:** [vote on this proposal]({FORM['webapp_url']}?vote) · " if vote else "")
+              + f"{reply_links(p['html_url'])}\n\n")
     return s
 
 
@@ -442,6 +444,10 @@ def page_participate():
         s += "| I want to | What to send | It becomes |\n|---|---|---|\n"
         for key, label, what, becomes in rows:
             s += f"| **[{label}]({form_link(key)})** | {what} | {becomes} |\n"
+        if FORM.get("webapp_url"):
+            s += (f"| **[Vote on a proposal]({FORM['webapp_url']}?vote)** (voting members) | "
+                  "Your email address; we send you a personal ballot link for each proposal open for decision | "
+                  "your vote, posted on the proposal and counted under [Open for decision](proposals.md) |\n")
     else:
         s += ('!!! info "The form is being set up"\n'
               "    The participation form will be linked here shortly. Meanwhile you can take part on "

@@ -4,7 +4,20 @@ on:
     branches: [main]
   workflow_dispatch:
   schedule:
-    - cron: '17 * * * *'   # hourly, so the Activity pages stay current
+    - cron: '17 * * * *'   # hourly fallback; GitHub may run scheduled jobs less often
+  # Refresh the Activity pages whenever something happens, so they are current within minutes.
+  issues:
+    types: [opened, edited, closed, reopened, labeled, unlabeled]
+  issue_comment:
+    types: [created, edited]
+  pull_request_target:
+    types: [opened, edited, closed, reopened, labeled, unlabeled, ready_for_review, converted_to_draft]
+  pull_request_review:
+    types: [submitted, dismissed]
+  discussion:
+    types: [created, edited, answered]
+  discussion_comment:
+    types: [created, edited]
 permissions:
   contents: write
   issues: read
@@ -18,6 +31,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main          # always build the published site, never a proposal's code
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
