@@ -15,6 +15,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 import html
 import json
+import math
 import os
 import re
 import sys
@@ -27,6 +28,7 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "docs" / "activity"
 MEMBERS = ROOT / "community" / "members.yml"
 FORMS = ROOT / "community" / "forms.yml"
+RULES = ROOT / "community" / "decision-rules.json"
 REPO = os.environ.get("GITHUB_REPOSITORY", "legal-ontologies-foundry/legal-ontologies-foundry.github.io")
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
 API = "https://api.github.com"
@@ -82,6 +84,133 @@ def discussions():
     if "errors" in data:
         raise RuntimeError(data["errors"][0].get("message", "GraphQL error"))
     return data["data"]["repository"]["discussions"]["nodes"]
+
+
+# ---------------------------------------------------------------- decisions
+
+VOTE_LABELS = {"approve": "Approve", "object": "Object", "abstain": "Abstain"}
+
+
+def load_members():
+    try:
+        return yaml.safe_load(MEMBERS.read_text()) or []
+    except FileNotFoundError:
+        return []
+
+
+def load_rules():
+    try:
+        return json.loads(RULES.read_text())
+    except FileNotFoundError:
+        return None
+
+
+def kind_of(pr, rules):
+    if not rules or pr.get("draft") or pr["state"] != "open":
+        return None
+    names = {l["name"] for l in pr.get("labels", [])}
+    kinds = [k for k, r in rules["kinds"].items() if r["label"] in names]
+    return "substantive" if "substantive" in kinds else (kinds[0] if kinds else None)
+
+
+def parse_time(ts):
+    return datetime.fromisoformat(ts.replace("Z", "+00:00"))
+
+
+def collect_votes(n, rules, members):
+    """Website ballots (bot comments with a lof-vote marker) and GitHub reviews by voting members."""
+    by_login = {str(m["github"]).lower(): m["name"] for m in members if m.get("github")}
+    votes = []
+    for r in rest_all(f"/repos/{REPO}/pulls/{n}/reviews"):
+        who = by_login.get(((r.get("user") or {}).get("login") or "").lower())
+        v = {"APPROVED": "approve", "CHANGES_REQUESTED": "object"}.get(r["state"])
+        if who and v:
+            votes.append({"voter": who, "vote": v, "at": r["submitted_at"], "via": "GitHub"})
+    for c in rest_all(f"/repos/{REPO}/issues/{n}/comments"):
+        app = (c.get("performed_via_github_app") or {}).get("slug")
+        if app != rules["bot"] and (c.get("user") or {}).get("login") != rules["bot"] + "[bot]":
+            continue
+        m = re.search(r"<!-- lof-vote (\{.*?\}) -->", c.get("body") or "")
+        if m:
+            v = json.loads(m.group(1))
+            votes.append({"voter": v["voter"], "vote": v["vote"], "at": c["created_at"], "via": "website"})
+    return votes
+
+
+def label_time(n, label):
+    at = None
+    for e in rest_all(f"/repos/{REPO}/issues/{n}/events"):
+        if e.get("event") == "labeled" and (e.get("label") or {}).get("name") == label:
+            at = parse_time(e["created_at"])
+    return at
+
+
+def tally(rules, kind, members, votes, opened, now):
+    """Apply a rule. Kept identical to tally_() in website-forms/Voting.gs."""
+    rule = rules["kinds"][kind]
+    voting = [m["name"] for m in members if m.get("voting")]
+    committee = [m["name"] for m in members if m.get("committee") and m.get("voting")]
+    by_voter = {}
+    for v in sorted(votes, key=lambda v: parse_time(v["at"])):
+        if v["voter"] in voting and v["vote"] in VOTE_LABELS:
+            by_voter[v["voter"]] = v
+    lst = lambda k: [n for n in voting if n in by_voter and by_voter[n]["vote"] == k]
+    approve, obj, abstain = lst("approve"), lst("object"), lst("abstain")
+    committee_yes = [n for n in committee if n in approve]
+    days_open = (now - opened).total_seconds() / 86400
+    days_left = max(0, math.ceil(rule["comment_days"] - days_open))
+    waiting = []
+    if days_open < rule["comment_days"]:
+        waiting.append(f"comment period: {days_left} day{'' if days_left == 1 else 's'} left")
+    if rule.get("committee") == "all":
+        missing = [n for n in committee if n not in committee_yes]
+        if not committee or missing:
+            waiting.append("approval from " + (", ".join(missing) or "the Operations Committee"))
+    elif not committee_yes:
+        waiting.append("approval from an Operations Committee member")
+    if rule.get("objection_blocks") and obj:
+        waiting.append("objection from " + ", ".join(obj))
+    if rule.get("majority") and len(approve) <= len(obj):
+        waiting.append("a majority of votes cast to approve")
+    return {"passed": not waiting, "waiting": waiting, "days_left": days_left,
+            "status": ("Waiting for " + "; ".join(waiting) + ".") if waiting else "Passed; it will be adopted at the next check.",
+            "by_voter": by_voter, "approve": approve, "object": obj, "abstain": abstain}
+
+
+def decisions_in_progress(pulls):
+    rules, members = load_rules(), load_members()
+    out = []
+    for p in pulls:
+        kind = kind_of(p, rules)
+        if not kind:
+            continue
+        label = rules["kinds"][kind]["label"]
+        opened = label_time(p["number"], label) or parse_time(p["created_at"])
+        t = tally(rules, kind, members, collect_votes(p["number"], rules, members), opened, NOW)
+        out.append((p, kind, opened, t))
+    return rules, members, out
+
+
+def section_decisions(rules, members, items):
+    if not items:
+        return ""
+    voting = [m for m in members if m.get("voting")]
+    s = (f"## Open for decision ({len(items)})\n\n"
+         "These proposals are being decided now. Voting members vote with a personal ballot link "
+         "emailed to them, or on GitHub; the count below is updated every hour. "
+         "See [Governance](../about/governance.md).\n\n")
+    for p, kind, opened, t in items:
+        rule = rules["kinds"][kind]
+        s += (f"### {html.escape(p['title'])} {{ #decision-{p['number']} }}\n\n"
+              f"**{kind.capitalize()} change**, open for decision since {day(opened.isoformat())}. {rule['summary']}\n\n"
+              f"**Status:** {t['status']}\n\n"
+              "| Voting member | Vote | How |\n|---|---|---|\n")
+        for m in voting:
+            v = t["by_voter"].get(m["name"])
+            who = html.escape(m["name"]) + (" (committee)" if m.get("committee") else "")
+            s += f"| {who} | {VOTE_LABELS[v['vote']] if v else 'not yet voted'} | {('on ' + v['via']) if v else ''} |\n"
+        s += f"\n{reply_links(p['html_url'])}\n\n"
+    return s
 
 
 # ---------------------------------------------------------------- formatting
@@ -163,7 +292,7 @@ def reply_links(item_url, verb="comment"):
 
 # ---------------------------------------------------------------- pages
 
-def page_proposals(issues, pulls, err):
+def page_proposals(issues, pulls, err, decisions=None):
     s = header("Open proposals and questions",
                "Everything currently open for comment in the Foundry: proposed changes to the "
                "site and the ontologies, and open questions and tasks. " + PARTICIPATE)
@@ -171,6 +300,8 @@ def page_proposals(issues, pulls, err):
         return s + notice("Proposals", err)
     open_prs = [p for p in pulls if p["state"] == "open"]
     open_issues = [i for i in issues if i["state"] == "open" and "pull_request" not in i]
+    if decisions:
+        s += section_decisions(*decisions)
     s += f"## Proposed changes ({len(open_prs)})\n\n"
     s += ("A proposed change is a set of edits awaiting review. Drafts are still being prepared; "
           "the others are ready for decision.\n\n") if open_prs else "There are no proposed changes open right now.\n\n"
@@ -275,13 +406,14 @@ def page_members():
         members = yaml.safe_load(MEMBERS.read_text()) or []
     except FileNotFoundError:
         members = []
-    order = {"founding coordinator": 0, "coordinator": 1, "member": 2}
-    s += "| Name | Affiliation | Role | Since |\n|---|---|---|---|\n"
+    order = {"founding coordinator": 0, "coordinator": 1, "working group lead": 2, "member": 3}
+    s += "| Name | Affiliation | Role | Votes on proposals | Since |\n|---|---|---|---|---|\n"
     for m in sorted(members, key=lambda m: (order.get(m.get("role", "member"), 3), m["name"])):
         name = html.escape(m["name"])
         if m.get("github"):
             name = f"[{name}](https://github.com/{m['github']})"
-        s += f"| {name} | {html.escape(m.get('affiliation', ''))} | {m.get('role', 'member')} | {m.get('joined', '')} |\n"
+        votes = "yes, Operations Committee" if m.get("committee") and m.get("voting") else ("yes" if m.get("voting") else "")
+        s += f"| {name} | {html.escape(m.get('affiliation', ''))} | {m.get('role', 'member')} | {votes} | {m.get('joined', '')} |\n"
     return s
 
 
@@ -361,6 +493,7 @@ def page_index(issues, pulls, disc, err_rest, err_disc):
         adopted = sum(1 for p in pulls if p.get("merged_at"))
     nd = "?" if err_disc else len(disc)
     s += ("| Page | What it shows | Now |\n|---|---|---|\n"
+          f"| [Open for decision](proposals.md) | Proposals being voted on, with the count so far | {sum(1 for p in pulls if kind_of(p, load_rules()))} |\n"
           "| [Take part without GitHub](participate.md) | Ask, comment, discuss, propose edits, or join, through a simple form | |\n"
           f"| [Open proposals](proposals.md) | Proposed changes and open questions, open for comment | {open_prs} changes, {open_issues} questions |\n"
           f"| [Discussions](discussions.md) | Conversations, with replies | {nd} recent |\n"
@@ -373,9 +506,11 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     issues = pulls = disc = []
     err_rest = err_disc = None
+    decisions = None
     try:
         issues = rest_all(f"/repos/{REPO}/issues?state=all")
         pulls = rest_all(f"/repos/{REPO}/pulls?state=all")
+        decisions = decisions_in_progress(pulls)
     except (urllib.error.URLError, OSError, ValueError) as e:
         err_rest = getattr(e, "reason", None) or str(e)
     try:
@@ -384,7 +519,7 @@ def main():
         err_disc = getattr(e, "reason", None) or str(e)
     pages = {
         "index.md": page_index(issues, pulls, disc, err_rest, err_disc),
-        "proposals.md": page_proposals(issues, pulls, err_rest),
+        "proposals.md": page_proposals(issues, pulls, err_rest, decisions),
         "discussions.md": page_discussions(disc, err_disc),
         "decisions.md": page_decisions(issues, pulls, err_rest),
         "members.md": page_members(),
