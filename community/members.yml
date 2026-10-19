@@ -2,20 +2,30 @@
 # Add yourself through the website's Participate form, or by a pull request.
 # A GitHub account is optional.
 #
-# Fields: name (required), affiliation, role, github (optional), joined (YYYY-MM).
-# Roles: founding coordinator, coordinator, member.
+# Fields: name (required), affiliation, role, github (optional), joined (YYYY-MM),
+#   committee: true   for Operations Committee members,
+#   voting: true      for voting members (the committee and working group leads).
+# Roles: founding coordinator, coordinator, working group lead, member.
+# Voting members vote on proposals through personal ballot links emailed to them
+# (see website-forms/README.md), or by approving the pull request on GitHub.
 
 - name: David R. Koepsell
   affiliation: Texas A&M University
   role: founding coordinator
+  committee: true
+  voting: true
   github: dkoepsell
   joined: 2026-09
 - name: William Mandrick
   affiliation: CUBRC
   role: founding coordinator
+  committee: true
+  voting: true
   github: williammandrick-cmd
   joined: 2026-09
 - name: Barry Smith
   affiliation: University at Buffalo
   role: founding coordinator
+  committee: true
+  voting: true
   joined: 2026-09

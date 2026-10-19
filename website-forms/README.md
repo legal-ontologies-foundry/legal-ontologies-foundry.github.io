@@ -51,6 +51,38 @@ repository.
 
 To check the connection alone at any time, run **testConnection**.
 
+## Voting on proposals
+
+[`Voting.gs`](Voting.gs) lets voting members decide proposals from a personal ballot link, without GitHub.
+
+**Opening a decision.** A coordinator adds the label `decision: routine` or `decision: substantive` to a
+pull request that is ready (not a draft). Within 15 minutes each voting member is emailed a ballot link.
+The ballot page shows the proposal, the rule, and the count so far, with Approve, Object, and Abstain
+buttons and a box for reasons. Each vote is posted on the pull request under the voter's name.
+
+**Counting.** Votes cast with a ballot and approvals or "changes requested" reviews given on GitHub by
+voting members both count; a member's latest vote is the one that counts. The rules are in
+[`community/decision-rules.json`](../community/decision-rules.json); the website shows the count under
+*Open for decision* on the Open proposals page.
+
+**Adopting.** When the rule is satisfied, the bot merges the pull request, records the decision on it,
+and emails the voters. Set `"auto_merge": false` in the rules file to have it stop at recording the
+result instead. If the change conflicts with other changes, the bot says so and waits for a coordinator.
+
+**Who votes.** Members marked `voting: true` in `community/members.yml`; Operations Committee members are
+also marked `committee: true`. To add a voter, add those markers (by pull request) and their email address
+in the private log's `voters` tab.
+
+**Setup, once.**
+
+1. In the Apps Script project, replace `Code.gs` with the new version, and add a second script file
+   (**+** next to *Files*, then **Script**) named `Voting`, containing [`Voting.gs`](Voting.gs). Save.
+2. Choose **setupVoting** in the toolbar and click **Run**. It adds `voters` and `ballots` tabs to the
+   private log and starts the 15-minute check.
+3. In the `voters` tab, fill in each voting member's email address.
+4. **Deploy > Manage deployments > Edit (pencil) > Version: New version > Deploy**, so the web app serves
+   ballot pages.
+
 ## Running it
 
 - **Private log.** Every submission is a row in the spreadsheet *LOF website submissions (private log)*,

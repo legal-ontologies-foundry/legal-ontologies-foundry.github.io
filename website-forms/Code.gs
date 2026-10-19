@@ -72,11 +72,21 @@ var PRIVACY =
 
 function props() { return PropertiesService.getScriptProperties(); }
 
+/**
+ * Any public function in an Apps Script web app can be called from its pages, so admin
+ * functions check that they are being run from the editor by the project's owner.
+ */
+function ownerOnly_() {
+  var active = Session.getActiveUser().getEmail();
+  if (!active || active !== Session.getEffectiveUser().getEmail()) throw new Error('Only the project owner can run this.');
+}
+
 
 // ======================================================================== setup
 
 /** Run once from the editor. Safe to run again: it reuses what already exists. */
 function setup() {
+  ownerOnly_();
   var p = props();
   if (!p.getProperty('GITHUB_APP_ID') || !p.getProperty('GITHUB_APP_KEY')) {
     throw new Error('First set the Script properties GITHUB_APP_ID and GITHUB_APP_KEY (see README).');
@@ -263,6 +273,7 @@ function doGet(e) {
   var q = e.parameter || {};
   try {
     if (q.confirm) return page_(confirm_(q.confirm));
+    if (q.ballot) return page_(ballotPage_(q.ballot));
     if (q.approve && q.key === props().getProperty('REVIEW_KEY')) return page_(approve_(q.approve));
     return page_({ title: 'Legal Ontologies Foundry', html: '<p><a href="' + SITE + '">Go to the Foundry website</a>.</p>' });
   } catch (err) {
@@ -332,7 +343,7 @@ function done_(url) {
 
 function page_(p) {
   return HtmlService.createHtmlOutput(
-    '<div style="font-family:system-ui,sans-serif;max-width:40rem;margin:3rem auto;padding:0 1rem;line-height:1.5">' +
+    '<base target="_top"><div style="font-family:system-ui,sans-serif;max-width:40rem;margin:3rem auto;padding:0 1rem;line-height:1.5">' +
     '<p style="color:#3f51b5;font-weight:600">Legal Ontologies Foundry</p><h1 style="font-weight:400">' + esc_(p.title) + '</h1>' +
     p.html + '</div>').setTitle(p.title);
 }
@@ -603,6 +614,7 @@ function name_() { return REPO.split('/')[1]; }
 
 /** Run after changing the app's permissions on GitHub, so the next call picks them up. */
 function resetToken() {
+  ownerOnly_();
   CacheService.getScriptCache().remove('gh_token');
   Logger.log('Cleared. The next call signs in again with the app\'s current permissions.');
 }
