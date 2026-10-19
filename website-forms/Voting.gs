@@ -109,19 +109,82 @@ function sendBallots_(pr, kind, opened, ctx) {
     var token = Utilities.getUuid();
     sh.appendRow([token, pr.number, m.name, email, new Date(), '', '', '', '']);
     rows.push([token, pr.number, m.name]);
-    var link = webAppUrl_() + '?ballot=' + token;
-    mail_(email, 'Your vote: ' + pr.title,
-      '<p>Dear ' + esc_(m.name) + ',</p>' +
-      '<p>A proposal is open for decision in the Legal Ontologies Foundry:</p>' +
-      '<p style="font-size:1.1em"><b>' + esc_(pr.title) + '</b> (#' + pr.number + ')</p>' +
-      '<p>' + esc_(rule.summary) + '</p>' +
-      (rule.comment_days ? '<p>The comment period runs until <b>' + fmtDate_(closes) + '</b>.</p>' : '') +
-      '<p><a href="' + link + '" style="background:#3f51b5;color:#fff;padding:.6em 1.2em;border-radius:4px;text-decoration:none">Read and vote</a></p>' +
-      '<p>This link is your personal ballot: please do not forward it. You can change your vote until the decision ' +
-      'is made. Your vote and any reasons you give are posted publicly on the proposal.</p>' +
-      '<p style="color:#666">You can also vote on GitHub by approving the pull request or requesting changes: ' +
-      '<a href="' + pr.html_url + '">' + pr.html_url + '</a></p>');
+    ballotMail_(m.name, email, pr, rule, closes, token);
   });
+}
+
+function ballotMail_(name, email, pr, rule, closes, token) {
+  var link = webAppUrl_() + '?ballot=' + token;
+  mail_(email, 'Your vote: ' + pr.title,
+    '<p>Dear ' + esc_(name) + ',</p>' +
+    '<p>A proposal is open for decision in the Legal Ontologies Foundry:</p>' +
+    '<p style="font-size:1.1em"><b>' + esc_(pr.title) + '</b> (#' + pr.number + ')</p>' +
+    '<p>' + esc_(rule.summary) + '</p>' +
+    (rule.comment_days ? '<p>The comment period runs until <b>' + fmtDate_(closes) + '</b>.</p>' : '') +
+    '<p><a href="' + link + '" style="background:#3f51b5;color:#fff;padding:.6em 1.2em;border-radius:4px;text-decoration:none">Read and vote</a></p>' +
+    '<p>This link is your personal ballot: please do not forward it. You can change your vote until the decision ' +
+    'is made. Your vote and any reasons you give are posted publicly on the proposal.</p>' +
+    '<p style="color:#666">You can also vote on GitHub by approving the pull request or requesting changes: ' +
+    '<a href="' + pr.html_url + '">' + pr.html_url + '</a></p>');
+}
+
+/** The "vote" page linked from the website: voting members ask for their ballot links by email. */
+function votePage_() {
+  var ctx = context_();
+  var open = gh_('GET', '/repos/' + REPO + '/pulls?state=open&per_page=100').filter(function (pr) { return kindOf_(pr, ctx.rules); });
+  var list = open.length
+    ? '<ul>' + open.map(function (pr) {
+        return '<li><a href="' + esc_(pr.html_url) + '">' + esc_(pr.title) + '</a> (#' + pr.number + ', ' + kindOf_(pr, ctx.rules) + ')</li>';
+      }).join('') + '</ul>'
+    : '<p>No proposals are open for decision right now.</p>';
+  return { title: 'Vote on proposals',
+    html: '<p>Proposals open for decision:</p>' + list +
+      '<p>Voting members vote with a personal ballot link sent by email. Enter the address the Foundry has for you, ' +
+      'and we will email your ballot links for every open proposal.</p>' +
+      '<p><input id="e" type="email" placeholder="you@example.org" style="font:inherit;padding:.4em;width:20em;max-width:100%"> ' +
+      '<button id="b" onclick="go()" style="font:inherit;padding:.4em 1em">Email my ballots</button></p><p id="m"></p>' +
+      '<p style="color:#666">Only voting members receive ballots. See the <a href="' + SITE + 'about/governance/">Governance</a> ' +
+      'page and the <a href="' + SITE + 'activity/members/">Members</a> page.</p>' +
+      '<script>function go(){var b=document.getElementById("b");b.disabled=true;document.getElementById("m").textContent="Sending...";' +
+      'google.script.run.withSuccessHandler(function(t){document.getElementById("m").textContent=t;})' +
+      '.withFailureHandler(function(e){b.disabled=false;document.getElementById("m").textContent="Sorry, that did not work: "+e.message;})' +
+      '.requestBallots(document.getElementById("e").value);}</script>' };
+}
+
+/** Called from the vote page. Says the same thing whether or not the address is a voter's. */
+function requestBallots(email) {
+  var reply = 'If that address belongs to a voting member, their ballot links are on the way. Check your inbox (and spam folder) in a minute or two.';
+  email = String(email || '').trim().toLowerCase();
+  if (!/^[^@\s]+@[^@\s]+$/.test(email)) return 'Please enter an email address.';
+  var cache = CacheService.getScriptCache(), key = 'req_' + email;
+  var count = Number(cache.get(key) || 0);
+  if (count >= 3) return reply;
+  cache.put(key, String(count + 1), 3600);
+  var emails = voterEmails_(), name = null;
+  Object.keys(emails).forEach(function (n) { if (emails[n].toLowerCase() === email) name = n; });
+  if (!name) return reply;
+  var lock = LockService.getScriptLock();
+  lock.waitLock(30000);
+  try {
+    var ctx = context_();
+    if (!ctx.members.some(function (m) { return m.name === name && m.voting; })) return reply;
+    var sh = sheet_('ballots');
+    var rows = sh.getDataRange().getValues();
+    gh_('GET', '/repos/' + REPO + '/pulls?state=open&per_page=100').forEach(function (pr) {
+      var kind = kindOf_(pr, ctx.rules);
+      if (!kind) return;
+      var rule = ctx.rules.kinds[kind];
+      var opened = labelTime_(pr.number, rule.label) || new Date(pr.created_at);
+      var closes = new Date(opened.getTime() + rule.comment_days * 864e5);
+      var row = rows.filter(function (r) { return Number(r[1]) === pr.number && r[2] === name; })[0];
+      var token = row ? row[0] : Utilities.getUuid();
+      if (!row) sh.appendRow([token, pr.number, name, emails[name], new Date(), '', '', '', '']);
+      ballotMail_(name, emails[name], pr, rule, closes, token);
+    });
+  } finally {
+    lock.releaseLock();
+  }
+  return reply;
 }
 
 function ballotRow_(token) {

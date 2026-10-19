@@ -274,6 +274,7 @@ function doGet(e) {
   try {
     if (q.confirm) return page_(confirm_(q.confirm));
     if (q.ballot) return page_(ballotPage_(q.ballot));
+    if ('vote' in q) return page_(votePage_());
     if (q.approve && q.key === props().getProperty('REVIEW_KEY')) return page_(approve_(q.approve));
     return page_({ title: 'Legal Ontologies Foundry', html: '<p><a href="' + SITE + '">Go to the Foundry website</a>.</p>' });
   } catch (err) {
