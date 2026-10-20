@@ -1,5 +1,6 @@
 # Written by setup() in the Apps Script project (website-forms/Code.gs). Edit only if the form changes.
 form_url: "https://docs.google.com/forms/d/e/1FAIpQLSffXDWiC9mr0Pg1s0MK2Z2RWWb2ODmdSciyAFTQhzcUljrWIg/viewform"
+webapp_url: "https://script.google.com/macros/s/AKfycbzwJ1MMQrWib4EWdcRlevoiZ8cpBwik76zitPfYUc75U6ZLRoyq1ogeckijrJ2-uDl0/exec"
 prefill:
   action: "entry.210019273"
   link: "entry.1489400469"

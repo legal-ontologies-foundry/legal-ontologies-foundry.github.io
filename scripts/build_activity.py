@@ -210,7 +210,7 @@ def section_decisions(rules, members, items):
             who = html.escape(m["name"]) + (" (committee)" if m.get("committee") else "")
             s += f"| {who} | {VOTE_LABELS[v['vote']] if v else 'not yet voted'} | {('on ' + v['via']) if v else ''} |\n"
         vote = FORM and FORM.get("webapp_url")
-        s += ("\n" + (f"**Voting members:** [vote on this proposal]({FORM['webapp_url']}?vote) · " if vote else "")
+        s += ("\n" + (f"**Voting members:** [vote on this proposal]({FORM['webapp_url']}?vote=open) · " if vote else "")
               + f"{reply_links(p['html_url'])}\n\n")
     return s
 
@@ -445,7 +445,7 @@ def page_participate():
         for key, label, what, becomes in rows:
             s += f"| **[{label}]({form_link(key)})** | {what} | {becomes} |\n"
         if FORM.get("webapp_url"):
-            s += (f"| **[Vote on a proposal]({FORM['webapp_url']}?vote)** (voting members) | "
+            s += (f"| **[Vote on a proposal]({FORM['webapp_url']}?vote=open)** (voting members) | "
                   "Your email address; we send you a personal ballot link for each proposal open for decision | "
                   "your vote, posted on the proposal and counted under [Open for decision](proposals.md) |\n")
     else:
