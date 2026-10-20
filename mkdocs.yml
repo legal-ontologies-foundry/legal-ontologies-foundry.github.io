@@ -45,6 +45,7 @@ nav:
   - Activity:
       - activity/index.md
       - Take part without GitHub: activity/participate.md
+      - Sign in (voting members): activity/signin.md
       - Open proposals: activity/proposals.md
       - Discussions: activity/discussions.md
       - Decision log: activity/decisions.md
@@ -100,3 +101,8 @@ nav:
       - FAQ: about/faq.md
       - Related initiatives: about/related-initiatives.md
   - Contributing: contributing.md
+
+extra_javascript:
+  - javascripts/lof-members.js
+extra_css:
+  - stylesheets/lof-members.css
