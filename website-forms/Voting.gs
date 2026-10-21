@@ -232,33 +232,172 @@ function ballotPage_(token) {
 
 /** Called from the ballot page. */
 function castVote(token, choice, reasons) {
-  if (!VOTE_LABELS[choice]) throw new Error('Unknown choice');
   var b = ballotRow_(token);
   if (!b) throw new Error('This ballot link is not valid.');
+  var r = recordVote_(b.values[2], Number(b.values[1]), choice, reasons, 'a personal ballot');
+  return 'Thank you. Your vote, <b>' + VOTE_LABELS[choice] + '</b>, is recorded: <a href="' + esc_(r.url) +
+         '" target="_top">see it on the proposal</a>.';
+}
+
+/** Post a vote on the pull request, note it in the ballots tab, and adopt the proposal if this vote decides it. */
+function recordVote_(voter, n, choice, reasons, how) {
+  if (!VOTE_LABELS[choice]) throw new Error('Unknown choice.');
   var lock = LockService.getScriptLock();
   lock.waitLock(30000);
   try {
-    var n = Number(b.values[1]), voter = b.values[2];
     var ctx = context_();
     var member = ctx.members.filter(function (m) { return m.name === voter && m.voting; })[0];
     if (!member) throw new Error('You are not currently listed as a voting member.');
     var pr = gh_('GET', '/repos/' + REPO + '/pulls/' + n);
-    if (!kindOf_(pr, ctx.rules)) throw new Error('This proposal is no longer open for decision.');
-    var changed = !!b.values[5];
+    var kind = kindOf_(pr, ctx.rules);
+    if (!kind) throw new Error('This proposal is no longer open for decision.');
+    var opened = labelTime_(n, ctx.rules.kinds[kind].label) || new Date(pr.created_at);
+    var before = tally_(ctx.rules, kind, ctx.members, votes_(n, ctx), opened, new Date());
+    var changed = !!before.byVoter[voter];
     var role = member.committee ? 'Operations Committee' : 'voting member';
-    var body = '**Vote: ' + VOTE_LABELS[choice] + '** by **' + voter + '** (' + role + '), cast with a personal ballot ' +
-      'through the [Foundry website](' + SITE + 'activity/participate/).' +
+    var body = '**Vote: ' + VOTE_LABELS[choice] + '** by **' + voter + '** (' + role + '), cast with ' + how +
+      ' on the [Foundry website](' + SITE + 'activity/proposals/).' +
       (reasons && String(reasons).trim() ? '\n\n' + tidy_(String(reasons).slice(0, 4000)) : '') +
       (changed ? '\n\n*This replaces ' + voter + '\'s earlier vote.*' : '') +
       '\n\n<!-- lof-vote ' + JSON.stringify({ voter: voter, vote: choice }) + ' -->';
     var c = gh_('POST', '/repos/' + REPO + '/issues/' + n + '/comments', { body: body });
-    b.sheet.getRange(b.row, 6, 1, 4).setValues([[choice, String(reasons || '').slice(0, 4000), new Date(), c.html_url]]);
+    var sh = sheet_('ballots');
+    var rows = sh.getDataRange().getValues();
+    var at = -1;
+    rows.forEach(function (r, i) { if (i && Number(r[1]) === n && r[2] === voter) at = i; });
+    var rec = [choice, String(reasons || '').slice(0, 4000), new Date(), c.html_url];
+    if (at > 0) sh.getRange(at + 1, 6, 1, 4).setValues([rec]);
+    else sh.appendRow([Utilities.getUuid(), n, voter, voterEmails_()[voter] || '', ''].concat(rec));
     processPr_(pr, ctx);       // adopt at once if this vote decides it
-    return 'Thank you. Your vote, <b>' + VOTE_LABELS[choice] + '</b>, is recorded: <a href="' + esc_(c.html_url) +
-           '" target="_top">see it on the proposal</a>.';
+    return { url: c.html_url };
   } finally {
     lock.releaseLock();
   }
+}
+
+
+// ======================================================================== signing in on the website
+
+/**
+ * The website (a static site) talks to this web app with POST requests whose body is JSON:
+ *   { api: 'login',  email }            -> emails a one-time sign-in link to a voting member
+ *   { api: 'redeem', code }             -> exchanges that link's code for a session token
+ *   { api: 'me',     session }          -> who is signed in, and their vote on each open decision
+ *   { api: 'vote',   session, pr, choice, reasons }
+ *   { api: 'logout', session }
+ * Sessions last SESSION_DAYS; sign-in links last 30 minutes and work once.
+ * Only hashes of codes and tokens are stored, in the private "sessions" tab.
+ */
+var SESSION_DAYS = 60;
+
+function doPost(e) {
+  var out;
+  try {
+    var q = JSON.parse((e.postData && e.postData.contents) || '{}');
+    var fn = { login: apiLogin_, redeem: apiRedeem_, me: apiMe_, vote: apiVote_, logout: apiLogout_ }[q.api];
+    if (!fn) throw new Error('Unknown request.');
+    out = fn(q);
+  } catch (err) {
+    console.error(err && err.stack || err);
+    out = { error: String(err && err.message || err).slice(0, 300) };
+  }
+  return ContentService.createTextOutput(JSON.stringify(out)).setMimeType(ContentService.MimeType.JSON);
+}
+
+function apiLogin_(q) {
+  var reply = { ok: true, message: 'If that address belongs to a voting member, a sign-in link is on its way. ' +
+    'Check your inbox (and spam folder); the link works once, for 30 minutes.' };
+  var email = String(q.email || '').trim().toLowerCase();
+  if (!/^[^@\s]+@[^@\s]+$/.test(email)) return { error: 'Please enter an email address.' };
+  var cache = CacheService.getScriptCache(), key = 'login_' + email;
+  var count = Number(cache.get(key) || 0);
+  if (count >= 5) return reply;
+  cache.put(key, String(count + 1), 3600);
+  var emails = voterEmails_(), name = null;
+  Object.keys(emails).forEach(function (n) { if (emails[n].toLowerCase() === email) name = n; });
+  if (!name) return reply;
+  var code = Utilities.getUuid() + Utilities.getUuid().slice(0, 8);
+  sessions_().appendRow([hash_(code), 'link', name, new Date(), new Date(Date.now() + 30 * 6e4), '']);
+  var link = SITE + 'activity/signin/?code=' + encodeURIComponent(code);
+  mail_(emails[name], 'Sign in to the Legal Ontologies Foundry',
+    '<p>Dear ' + esc_(name) + ',</p><p><a href="' + link + '" style="background:#3f51b5;color:#fff;padding:.6em 1.2em;' +
+    'border-radius:4px;text-decoration:none">Sign in to the Foundry website</a></p>' +
+    '<p>The link works once, for 30 minutes. You stay signed in on that browser for ' + SESSION_DAYS + ' days, or until ' +
+    'you sign out. If you did not ask to sign in, ignore this email.</p>');
+  return reply;
+}
+
+function apiRedeem_(q) {
+  var row = findSession_(q.code, 'link');
+  if (!row || row.values[5]) return { error: 'This sign-in link has already been used or is not valid. Please ask for a new one.' };
+  if (new Date(row.values[4]) < new Date()) return { error: 'This sign-in link has expired. Please ask for a new one.' };
+  row.sheet.getRange(row.row, 6).setValue(new Date());           // used
+  var token = Utilities.getUuid() + Utilities.getUuid();
+  sessions_().appendRow([hash_(token), 'session', row.values[2], new Date(), new Date(Date.now() + SESSION_DAYS * 864e5), '']);
+  return { session: token, name: row.values[2] };
+}
+
+function apiMe_(q) {
+  var who = sessionUser_(q.session);
+  if (!who) return { signedIn: false };
+  var ctx = context_();
+  var m = ctx.members.filter(function (x) { return x.name === who; })[0] || {};
+  var decisions = [];
+  gh_('GET', '/repos/' + REPO + '/pulls?state=open&per_page=100').forEach(function (pr) {
+    var kind = kindOf_(pr, ctx.rules);
+    if (!kind) return;
+    var opened = labelTime_(pr.number, ctx.rules.kinds[kind].label) || new Date(pr.created_at);
+    var t = tally_(ctx.rules, kind, ctx.members, votes_(pr.number, ctx), opened, new Date());
+    var mine = t.byVoter[who];
+    decisions.push({ pr: pr.number, title: pr.title, url: pr.html_url, kind: kind, status: t.status,
+      myVote: mine ? mine.vote : null, via: mine ? mine.via : null });
+  });
+  return { signedIn: true, name: who, voting: !!m.voting, committee: !!m.committee, decisions: decisions };
+}
+
+function apiVote_(q) {
+  var who = sessionUser_(q.session);
+  if (!who) return { error: 'Please sign in again.' };
+  var r = recordVote_(who, Number(q.pr), String(q.choice), q.reasons, 'a signed-in vote');
+  return { ok: true, url: r.url, me: apiMe_(q) };
+}
+
+function apiLogout_(q) {
+  var row = findSession_(q.session, 'session');
+  if (row) row.sheet.getRange(row.row, 5).setValue(new Date());     // expire now
+  return { ok: true };
+}
+
+function sessionUser_(token) {
+  var row = findSession_(token, 'session');
+  if (!row || new Date(row.values[4]) < new Date()) return null;
+  var name = row.values[2];
+  return members_().some(function (m) { return m.name === name && m.voting; }) ? name : null;
+}
+
+function findSession_(secret, type) {
+  if (!secret) return null;
+  var sh = sessions_();
+  var hit = sh.getRange('A:A').createTextFinder(hash_(String(secret))).matchEntireCell(true).findNext();
+  if (!hit) return null;
+  var values = sh.getRange(hit.getRow(), 1, 1, 6).getValues()[0];
+  return values[1] === type ? { sheet: sh, row: hit.getRow(), values: values } : null;
+}
+
+function sessions_() {
+  var ss = SpreadsheetApp.openById(props().getProperty('LOG_SHEET_ID'));
+  var sh = ss.getSheetByName('sessions');
+  if (!sh) {
+    sh = ss.insertSheet('sessions');
+    sh.appendRow(['hash', 'type', 'member', 'created', 'expires', 'used']);
+    sh.setFrozenRows(1);
+  }
+  return sh;
+}
+
+function hash_(s) {
+  return Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, String(s), Utilities.Charset.UTF_8)
+    .map(function (b) { return ('0' + (b & 255).toString(16)).slice(-2); }).join('');
 }
 
 

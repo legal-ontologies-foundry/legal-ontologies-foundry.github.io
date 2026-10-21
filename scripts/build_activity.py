@@ -196,8 +196,8 @@ def section_decisions(rules, members, items):
         return ""
     voting = [m for m in members if m.get("voting")]
     s = (f"## Open for decision ({len(items)})\n\n"
-         "These proposals are being decided now. Voting members vote with a personal ballot link "
-         "emailed to them, or on GitHub; the count below is updated every hour. "
+         "These proposals are being decided now. Voting members can [sign in](signin.md) and vote below, "
+         "use the ballot link emailed to them, or vote on GitHub. The count is updated within minutes of each vote. "
          "See [Governance](../about/governance.md).\n\n")
     for p, kind, opened, t in items:
         rule = rules["kinds"][kind]
@@ -209,9 +209,12 @@ def section_decisions(rules, members, items):
             v = t["by_voter"].get(m["name"])
             who = html.escape(m["name"]) + (" (committee)" if m.get("committee") else "")
             s += f"| {who} | {VOTE_LABELS[v['vote']] if v else 'not yet voted'} | {('on ' + v['via']) if v else ''} |\n"
-        vote = FORM and FORM.get("webapp_url")
-        s += ("\n" + (f"**Voting members:** [vote on this proposal]({FORM['webapp_url']}?vote=open) · " if vote else "")
-              + f"{reply_links(p['html_url'])}\n\n")
+        s += (f'\n??? note "Read the full proposal"\n{indent(safe(p.get("body")))}\n\n'
+              f"    [See the exact changes]({p['html_url']}/files)\n\n")
+        w = webapp()
+        if w:
+            s += f'<div class="lof-vote" data-pr="{p["number"]}" data-lof-webapp="{html.escape(w)}"></div>\n\n'
+        s += f"{reply_links(p['html_url'])}\n\n"
     return s
 
 
@@ -251,7 +254,16 @@ def labels(item):
 
 def header(title, intro):
     stamp = NOW.strftime("%d %B %Y, %H:%M UTC").lstrip("0")
-    return f"{GENERATED}\n# {title}\n\n{intro}\n\n*Updated {stamp}.*\n\n"
+    return f"{GENERATED}\n# {title}\n\n{userbar()}{intro}\n\n*Updated {stamp}.*\n\n"
+
+
+def webapp():
+    return (FORM or {}).get("webapp_url") if "FORM" in globals() else None
+
+
+def userbar():
+    w = webapp()
+    return f'<div class="lof-userbar" data-lof-webapp="{html.escape(w)}"></div>\n\n' if w else ""
 
 
 def notice(what, err):
@@ -445,8 +457,8 @@ def page_participate():
         for key, label, what, becomes in rows:
             s += f"| **[{label}]({form_link(key)})** | {what} | {becomes} |\n"
         if FORM.get("webapp_url"):
-            s += (f"| **[Vote on a proposal]({FORM['webapp_url']}?vote=open)** (voting members) | "
-                  "Your email address; we send you a personal ballot link for each proposal open for decision | "
+            s += ("| **[Vote on a proposal](signin.md)** (voting members) | "
+                  "Sign in with your email address, then read and vote on each proposal open for decision | "
                   "your vote, posted on the proposal and counted under [Open for decision](proposals.md) |\n")
     else:
         s += ('!!! info "The form is being set up"\n'
@@ -482,6 +494,29 @@ You may submit up to five contributions a day. All contributions are covered by 
 ## Prefer GitHub?
 
 If you have a GitHub account, you can also work there directly: see [Contributing](../contributing.md).
+"""
+    return s
+
+
+def page_signin():
+    s = header("Sign in", "Voting members sign in here to read and vote on proposals open for decision, "
+               "directly on this website.")
+    w = webapp()
+    if not w:
+        return s + "Signing in is not available yet.\n"
+    s += f'<div id="lof-signin" data-lof-webapp="{html.escape(w)}"></div>\n\n'
+    s += """## How signing in works
+
+Enter the email address the Foundry has for you, and we email you a sign-in link. It works once, for
+30 minutes. You then stay signed in on that browser for 60 days, or until you sign out. There is no
+password to remember.
+
+Once signed in, each proposal under [Open for decision](proposals.md) shows your current vote and
+Approve, Object, and Abstain buttons. Your vote, and any reasons you give, are posted publicly on the
+proposal under your name, and count exactly as a vote on GitHub or with an emailed ballot does.
+
+Only [voting members](members.md) can sign in for now. Everyone else can take part
+[without signing in](participate.md).
 """
     return s
 
@@ -530,6 +565,7 @@ def main():
         "decisions.md": page_decisions(issues, pulls, err_rest),
         "members.md": page_members(),
         "participate.md": page_participate(),
+        "signin.md": page_signin(),
     }
     for name, text in pages.items():
         (OUT / name).write_text(text)

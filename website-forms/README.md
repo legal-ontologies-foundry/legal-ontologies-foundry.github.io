@@ -60,6 +60,12 @@ pull request that is ready (not a draft). Within 15 minutes each voting member i
 The ballot page shows the proposal, the rule, and the count so far, with Approve, Object, and Abstain
 buttons and a box for reasons. Each vote is posted on the pull request under the voter's name.
 
+**Signing in on the website.** Voting members can also sign in on the website (*Activity > Sign in*)
+with their email address: they get a one-time link, then stay signed in on that browser for 60 days.
+Signed in, each proposal under *Open for decision* shows the full text, their current vote, and
+Approve / Object / Abstain buttons. Sign-ins are kept, as hashes only, in the private log's
+`sessions` tab (created automatically). The site talks to the web app through `doPost` in `Voting.gs`.
+
 **Counting.** Votes cast with a ballot and approvals or "changes requested" reviews given on GitHub by
 voting members both count; a member's latest vote is the one that counts. The rules are in
 [`community/decision-rules.json`](../community/decision-rules.json); the website shows the count under
