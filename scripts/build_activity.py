@@ -491,11 +491,20 @@ To have a contribution removed, or your details deleted from the log, write to a
 You may submit up to five contributions a day. All contributions are covered by the
 [code of conduct](../about/code-of-conduct.md) and the Foundry's open licenses.
 
-## Prefer GitHub?
+## Weekly digest
+
+Members are sent a weekly email summarizing the Foundry's activity, with links. Anyone can subscribe:
+
+""" + subscribe_box() + """## Prefer GitHub?
 
 If you have a GitHub account, you can also work there directly: see [Contributing](../contributing.md).
 """
     return s
+
+
+def subscribe_box():
+    w = webapp()
+    return f'<div class="lof-subscribe lof-vote" data-lof-webapp="{html.escape(w)}"></div>\n\n' if w else ""
 
 
 def page_signin():
@@ -540,6 +549,7 @@ def page_index(issues, pulls, disc, err_rest, err_disc):
           f"| [Discussions](discussions.md) | Conversations, with replies | {nd} recent |\n"
           f"| [Decision log](decisions.md) | Changes adopted and questions closed | {adopted} changes adopted |\n"
           f"| [Members](members.md) | Who takes part | |\n")
+    s += "\n" + subscribe_box()
     return s
 
 

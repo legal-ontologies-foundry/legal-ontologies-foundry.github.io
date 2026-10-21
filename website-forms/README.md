@@ -89,6 +89,29 @@ in the private log's `voters` tab.
 4. **Deploy > Manage deployments > Edit (pencil) > Version: New version > Deploy**, so the web app serves
    ballot pages.
 
+## Weekly digest
+
+[`Digest.gs`](Digest.gs) emails subscribers a weekly summary of the Foundry's activity, with links:
+proposals open for decision (with a reminder to voting members who have not yet voted), decisions made,
+new proposals, questions and discussions, conversations with new replies, questions resolved, and new
+members. Weeks with no activity are skipped. It goes out on Monday mornings, in the project's time zone.
+
+**Who receives it.** Voting members, people who join through the website (added automatically), and
+anyone who subscribes on the website (after confirming by email). Subscribers are kept in the private
+log's `subscribers` tab; every digest has an unsubscribe link.
+
+**Setup, once.**
+
+1. Add a script file named `Digest` containing [`Digest.gs`](Digest.gs), and update `Code.gs` and
+   `Voting.gs` to their latest versions. Save.
+2. Run **setupDigest**. It creates the `subscribers` tab, adds the voting members and website joiners,
+   and schedules the Monday digest.
+3. Run **previewDigest** to email yourself this week's digest.
+4. **Deploy > Manage deployments > Edit > Version: New version > Deploy.**
+
+A free Gmail account can send about 100 emails a day, which bounds the number of subscribers
+the digest can reach.
+
 ## Running it
 
 - **Private log.** Every submission is a row in the spreadsheet *LOF website submissions (private log)*,
