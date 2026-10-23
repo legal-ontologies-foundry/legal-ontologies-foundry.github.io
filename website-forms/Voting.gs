@@ -294,7 +294,8 @@ function doPost(e) {
   var out;
   try {
     var q = JSON.parse((e.postData && e.postData.contents) || '{}');
-    var fn = { login: apiLogin_, redeem: apiRedeem_, me: apiMe_, vote: apiVote_, logout: apiLogout_ }[q.api];
+    var fn = { login: apiLogin_, redeem: apiRedeem_, me: apiMe_, vote: apiVote_, logout: apiLogout_,
+      subscribe: typeof apiSubscribe_ === 'function' ? apiSubscribe_ : null }[q.api];
     if (!fn) throw new Error('Unknown request.');
     out = fn(q);
   } catch (err) {

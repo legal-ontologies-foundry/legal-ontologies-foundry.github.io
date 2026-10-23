@@ -98,6 +98,22 @@
     };
   }
 
+  // ---------------------------------------------------------------- the weekly digest sign-up
+  document.querySelectorAll('.lof-subscribe').forEach(function (box) {
+    box.innerHTML = '<p><b>Weekly digest.</b> One email a week with everything new: proposals, decisions, ' +
+      'questions and conversations, with links. Skipped in quiet weeks.</p>' +
+      '<p><input type="text" class="lof-input lof-sub-name" placeholder="Your name (optional)" style="max-width:14em"> ' +
+      '<input type="email" class="lof-input lof-sub-email" placeholder="you@example.org" style="max-width:18em"> ' +
+      '<button class="md-button md-button--primary lof-sub-go">Subscribe</button></p><p class="lof-sub-msg"></p>';
+    box.querySelector('.lof-sub-go').onclick = function () {
+      var b = this, msg = box.querySelector('.lof-sub-msg');
+      b.disabled = true; msg.textContent = 'Sending...';
+      api({ api: 'subscribe', email: box.querySelector('.lof-sub-email').value, name: box.querySelector('.lof-sub-name').value })
+        .then(function (r) { msg.textContent = r.message; })
+        .catch(function (e) { msg.textContent = e.message; b.disabled = false; });
+    };
+  });
+
   // ---------------------------------------------------------------- voting panels on proposals
   var panels = document.querySelectorAll('.lof-vote[data-pr]');
   if (!panels.length) return;

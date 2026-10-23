@@ -274,6 +274,8 @@ function doGet(e) {
   try {
     if (q.confirm) return page_(confirm_(q.confirm));
     if (q.ballot) return page_(ballotPage_(q.ballot));
+    if (q.subscribe) return page_(subscriptionPage_(q.subscribe, false));
+    if (q.unsubscribe) return page_(subscriptionPage_(q.unsubscribe, true));
     if (q.vote !== undefined || /(^|&)vote(=|&|$)/.test(e.queryString || '')) return page_(votePage_());
     if (q.approve && q.key === props().getProperty('REVIEW_KEY')) return page_(approve_(q.approve));
     return page_({ title: 'Legal Ontologies Foundry', html: '<p><a href="' + SITE + '">Go to the Foundry website</a>.</p>' });
@@ -331,6 +333,9 @@ function publish_(row) {
     if (fresh.values[6] === 'posted') return done_(fresh.values[7]);
     var url = post_(fresh.values[4], JSON.parse(fresh.values[5]));
     setStatus_(fresh, 'posted', url);
+    if (fresh.values[4] === 'join' && typeof addSubscriber_ === 'function') {
+      try { addSubscriber_(fresh.values[2], fresh.values[3], 'member', true); } catch (err) { console.error(err); }
+    }
     return done_(url);
   } finally {
     lock.releaseLock();
