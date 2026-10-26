@@ -323,16 +323,22 @@ function apiLogin_(q) {
   mail_(emails[name], 'Sign in to the Legal Ontologies Foundry',
     '<p>Dear ' + esc_(name) + ',</p><p><a href="' + link + '" style="background:#3f51b5;color:#fff;padding:.6em 1.2em;' +
     'border-radius:4px;text-decoration:none">Sign in to the Foundry website</a></p>' +
-    '<p>The link works once, for 30 minutes. You stay signed in on that browser for ' + SESSION_DAYS + ' days, or until ' +
+    '<p>The link works for 30 minutes. You stay signed in on that browser for ' + SESSION_DAYS + ' days, or until ' +
     'you sign out. If you did not ask to sign in, ignore this email.</p>');
   return reply;
 }
 
+var LINK_USES = 3;   // a sign-in link works this many times within its 30 minutes
+
 function apiRedeem_(q) {
   var row = findSession_(q.code, 'link');
-  if (!row || row.values[5]) return { error: 'This sign-in link has already been used or is not valid. Please ask for a new one.' };
-  if (new Date(row.values[4]) < new Date()) return { error: 'This sign-in link has expired. Please ask for a new one.' };
-  row.sheet.getRange(row.row, 6).setValue(new Date());           // used
+  if (!row) return { error: 'This sign-in link is not valid. Please ask for a new one below.' };
+  if (new Date(row.values[4]) < new Date()) return { error: 'This sign-in link has expired. Please ask for a new one below.' };
+  // Column F counts uses. Email security scanners may open a link before the reader does, so a
+  // link works a few times within its window rather than once. (Older rows hold a date: one use.)
+  var used = row.values[5] instanceof Date ? 1 : Number(row.values[5] || 0);
+  if (used >= LINK_USES) return { error: 'This sign-in link has already been used. Please ask for a new one below.' };
+  row.sheet.getRange(row.row, 6).setValue(used + 1);
   var token = Utilities.getUuid() + Utilities.getUuid();
   sessions_().appendRow([hash_(token), 'session', row.values[2], new Date(), new Date(Date.now() + SESSION_DAYS * 864e5), '']);
   return { session: token, name: row.values[2] };
