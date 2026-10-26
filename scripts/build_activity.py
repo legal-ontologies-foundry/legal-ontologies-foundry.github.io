@@ -516,8 +516,7 @@ def page_signin():
     s += f'<div id="lof-signin" data-lof-webapp="{html.escape(w)}"></div>\n\n'
     s += """## How signing in works
 
-Enter the email address the Foundry has for you, and we email you a sign-in link. It works once, for
-30 minutes. You then stay signed in on that browser for 60 days, or until you sign out. There is no
+Enter the email address the Foundry has for you, and we email you a sign-in link. It works for 30 minutes. You then stay signed in on that browser for 60 days, or until you sign out. There is no
 password to remember.
 
 Once signed in, each proposal under [Open for decision](proposals.md) shows your current vote and

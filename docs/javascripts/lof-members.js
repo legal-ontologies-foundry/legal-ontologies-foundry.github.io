@@ -64,13 +64,25 @@
   if (box) {
     var code = new URLSearchParams(location.search).get('code');
     if (code) {
-      box.textContent = 'Signing you in...';
-      api({ api: 'redeem', code: code }).then(function (r) {
-        set(KEY, r.session);
-        history.replaceState(null, '', location.pathname);
-        box.innerHTML = '<p>Welcome, <b>' + esc(r.name) + '</b>. You are signed in on this browser.</p>' +
-          '<p><a class="md-button md-button--primary" href="' + SITE + 'activity/proposals/#open-for-decision">Go to proposals open for decision</a></p>';
-      }).catch(function (e) { box.innerHTML = '<p>' + esc(e.message) + '</p>'; showForm(); });
+      // Wait for a click: email security scanners (such as Microsoft Safe Links) open links and run
+      // their scripts before the reader does, and would otherwise use up the sign-in link.
+      box.innerHTML = '<p>Click to finish signing in on this browser.</p>' +
+        '<p><button id="lof-redeem" class="md-button md-button--primary">Complete sign-in</button></p><p id="lof-msg"></p>';
+      document.getElementById('lof-redeem').onclick = function () {
+        var b = this, msg = document.getElementById('lof-msg');
+        b.disabled = true; msg.textContent = 'Signing you in...';
+        api({ api: 'redeem', code: code }).then(function (r) {
+          set(KEY, r.session);
+          if (get(KEY) !== r.session) throw new Error('This browser is blocking site storage, so it cannot keep you signed in. ' +
+            'Allow site data for legal-ontologies-foundry.github.io, or use the ballot link in your email instead.');
+          history.replaceState(null, '', location.pathname);
+          box.innerHTML = '<p>Welcome, <b>' + esc(r.name) + '</b>. You are signed in on this browser.</p>' +
+            '<p><a class="md-button md-button--primary" href="' + SITE + 'activity/proposals/#open-for-decision">Go to proposals open for decision</a></p>';
+        }).catch(function (e) {
+          box.innerHTML = '<p>' + esc(e.message) + '</p>';
+          showForm();
+        });
+      };
     } else if (get(KEY)) {
       me().then(function (m) {
         if (!m.signedIn) return showForm();
