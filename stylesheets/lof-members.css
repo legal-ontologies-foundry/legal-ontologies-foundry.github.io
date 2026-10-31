@@ -1,0 +1,8 @@
+.lof-userbar { font-size: .75rem; padding: .5em .8em; margin: 0 0 1em; border-radius: .2rem;
+  background: var(--md-code-bg-color); color: var(--md-default-fg-color--light); }
+.lof-vote { border: 1px solid var(--md-primary-fg-color); border-radius: .2rem; padding: .2em 1em; margin: 1em 0 1.5em; }
+.lof-input { width: 100%; max-width: 32em; font: inherit; padding: .4em; box-sizing: border-box;
+  border: 1px solid var(--md-default-fg-color--lighter); border-radius: .2rem;
+  background: var(--md-default-bg-color); color: var(--md-default-fg-color); }
+.lof-status { color: var(--md-default-fg-color--light); }
+.lof-buttons .md-button { margin: 0 .4em .4em 0; }
