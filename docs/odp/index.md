@@ -6,7 +6,7 @@ expected to use Foundry patterns where they apply, or to document why they
 depart from them (see principle
 [LOF-P-004](../principles/lof-p-004-grounding.md)).
 
-The first four patterns build on one another:
+The patterns build on one another:
 
 | Pattern | Title | Depends on | Status |
 |---|---|---|---|
@@ -14,7 +14,9 @@ The first four patterns build on one another:
 | [LOF-ODP-002](odp-002.md) | Legal Role Conferral | ODP-001 | draft |
 | [LOF-ODP-003](odp-003.md) | Correlative Deontic Positions | ODP-001 | draft, placement decision open |
 | [LOF-ODP-004](odp-004.md) | Minimum Legal Chain | ODP-001, 002, 003 | draft, placement-neutral |
+| [LOF-ODP-005](odp-005.md) | Legal Time and Versions | ODP-001, 003, 004 | draft, placement-neutral |
+| [LOF-ODP-006](odp-006.md) | Relations between Norms | ODP-001, 003 | draft, placement-neutral |
 
-A worked example, a residential lease, runs through all four.
+A worked example, a residential lease, runs through the first four. ODP-005 and 006 are worked on the General Data Protection Regulation and the legislation around it.
 
 New patterns follow the [pattern template](template.md).
