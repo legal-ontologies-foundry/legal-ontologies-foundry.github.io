@@ -88,6 +88,8 @@ def build(md):
                     continue
                 if dcol is not None:
                     dom, rng = _clean(r[dcol]), _clean(r[rcol])
+                    if not dom:          # blank domain: nothing to draw from, skip the row
+                        continue
                     rng = "entity" if rng in ("(any)", "any", "") else rng
                     rels.append((_clean(r[0]), dom, rng))
                 else:
@@ -107,6 +109,7 @@ def build(md):
     ids, lines, ext = {}, ["flowchart BT"], set()
 
     def node(name):
+        name = name.replace('"', "'") or "entity"   # Mermaid rejects empty or quoted labels
         if name not in ids:
             ids[name] = f"n{len(ids)}"
             shape = f'["{name}"]' if name in classes else f'("{name}")'
