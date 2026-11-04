@@ -110,6 +110,8 @@ def kind_of(pr, rules):
         return None
     names = {l["name"] for l in pr.get("labels", [])}
     kinds = [k for k, r in rules["kinds"].items() if r["label"] in names]
+    if "principle" in kinds:
+        return "principle"
     return "substantive" if "substantive" in kinds else (kinds[0] if kinds else None)
 
 
@@ -145,23 +147,62 @@ def label_time(n, label):
     return at
 
 
+def electorate(rule, members):
+    """Who votes under a rule: every member for principles, otherwise the voting members."""
+    return [m["name"] for m in members if rule.get("electorate") == "members" or m.get("voting")]
+
+
 def tally(rules, kind, members, votes, opened, now):
     """Apply a rule. Kept identical to tally_() in website-forms/Voting.gs."""
     rule = rules["kinds"][kind]
-    voting = [m["name"] for m in members if m.get("voting")]
+    elect = electorate(rule, members)
     committee = [m["name"] for m in members if m.get("committee") and m.get("voting")]
     by_voter = {}
     for v in sorted(votes, key=lambda v: parse_time(v["at"])):
-        if v["voter"] in voting and v["vote"] in VOTE_LABELS:
+        if v["voter"] in elect and v["vote"] in VOTE_LABELS:
             by_voter[v["voter"]] = v
-    lst = lambda k: [n for n in voting if n in by_voter and by_voter[n]["vote"] == k]
+    lst = lambda k: [n for n in elect if n in by_voter and by_voter[n]["vote"] == k]
     approve, obj, abstain = lst("approve"), lst("object"), lst("abstain")
-    committee_yes = [n for n in committee if n in approve]
     days_open = (now - opened).total_seconds() / 86400
-    days_left = max(0, math.ceil(rule["comment_days"] - days_open))
+    left = lambda until: max(0, math.ceil(until - days_open))
+    days = lambda n: f"{n} day{'' if n == 1 else 's'}"
+    out = {"by_voter": by_voter, "approve": approve, "object": obj, "abstain": abstain,
+           "electorate": elect, "failed": False}
+
+    if rule.get("default_adoption"):
+        c, end = rule["comment_days"], rule["comment_days"] + rule["vote_days"]
+        cast = len(approve) + len(obj) + len(abstain)
+        if days_open < c:
+            out.update(phase="comment", days_left=left(c))
+            out["waiting"] = [f"public comment period: {days(out['days_left'])} left"]
+            out["status"] = (f"Open for public comment: {days(out['days_left'])} left. "
+                             + (f"A member has objected ({', '.join(obj)}), so members will vote when the comment period ends."
+                                if obj else "Adopted by default unless a member objects."))
+        elif not obj:
+            out.update(phase="adopted by default", days_left=0, waiting=[],
+                       status="No member objected during the comment period: adopted by default.")
+        elif days_open < end:
+            out.update(phase="member vote", days_left=left(end))
+            out["waiting"] = [f"member vote: {days(out['days_left'])} left"]
+            out["status"] = (f"A member objected, so members are voting: {days(out['days_left'])} left. So far {len(approve)} "
+                             f"approve, {len(obj)} object, {len(abstain)} abstain ({rule['quorum']} votes needed).")
+        else:
+            waiting = []
+            if cast < rule["quorum"]:
+                waiting.append(f"a quorum: {cast} of {rule['quorum']} votes were cast")
+            if len(approve) <= len(obj):
+                waiting.append("a majority of votes cast to approve")
+            out.update(phase="vote closed", days_left=0, waiting=waiting, failed=bool(waiting))
+            out["status"] = (("Not adopted: the member vote did not reach " + ", nor ".join(waiting) + ".") if waiting
+                             else f"Members voted to adopt it ({len(approve)} approve, {len(obj)} object).")
+        out["passed"] = not out["failed"] and not out["waiting"]
+        return out
+
+    committee_yes = [n for n in committee if n in approve]
     waiting = []
+    out["days_left"] = left(rule["comment_days"])
     if days_open < rule["comment_days"]:
-        waiting.append(f"comment period: {days_left} day{'' if days_left == 1 else 's'} left")
+        waiting.append(f"comment period: {days(out['days_left'])} left")
     if rule.get("committee") == "all":
         missing = [n for n in committee if n not in committee_yes]
         if not committee or missing:
@@ -172,9 +213,9 @@ def tally(rules, kind, members, votes, opened, now):
         waiting.append("objection from " + ", ".join(obj))
     if rule.get("majority") and len(approve) <= len(obj):
         waiting.append("a majority of votes cast to approve")
-    return {"passed": not waiting, "waiting": waiting, "days_left": days_left,
-            "status": ("Waiting for " + "; ".join(waiting) + ".") if waiting else "Passed; it will be adopted at the next check.",
-            "by_voter": by_voter, "approve": approve, "object": obj, "abstain": abstain}
+    out.update(waiting=waiting, passed=not waiting, phase="decision",
+               status=("Waiting for " + "; ".join(waiting) + ".") if waiting else "Passed; it will be adopted at the next check.")
+    return out
 
 
 def decisions_in_progress(pulls):
@@ -194,21 +235,26 @@ def decisions_in_progress(pulls):
 def section_decisions(rules, members, items):
     if not items:
         return ""
-    voting = [m for m in members if m.get("voting")]
     s = (f"## Open for decision ({len(items)})\n\n"
-         "These proposals are being decided now. Voting members can [sign in](signin.md) and vote below, "
-         "use the ballot link emailed to them, or vote on GitHub. The count is updated within minutes of each vote. "
-         "See [Governance](../about/governance.md).\n\n")
+         "These proposals are being decided now. Members who can vote on a proposal can [sign in](signin.md) and vote "
+         "below, use the ballot link emailed to them, or vote on GitHub. **Anyone can comment**, with or without a GitHub "
+         "account. The count is updated within minutes of each vote. See [Governance](../about/governance.md).\n\n")
     for p, kind, opened, t in items:
         rule = rules["kinds"][kind]
+        what = "Principle" if kind == "principle" else f"{kind.capitalize()} change"
         s += (f"### {html.escape(p['title'])} {{ #decision-{p['number']} }}\n\n"
-              f"**{kind.capitalize()} change**, open for decision since {day(opened.isoformat())}. {rule['summary']}\n\n"
-              f"**Status:** {t['status']}\n\n"
-              "| Voting member | Vote | How |\n|---|---|---|\n")
-        for m in voting:
-            v = t["by_voter"].get(m["name"])
-            who = html.escape(m["name"]) + (" (committee)" if m.get("committee") else "")
-            s += f"| {who} | {VOTE_LABELS[v['vote']] if v else 'not yet voted'} | {('on ' + v['via']) if v else ''} |\n"
+              f"**{what}**, open for decision since {day(opened.isoformat())}. {rule['summary']}\n\n"
+              f"**Status:** {t['status']}\n\n")
+        elect = [m for m in members if m["name"] in t["electorate"]]
+        if rule.get("default_adoption"):
+            s += (f"Any of the {len(elect)} members can object; until one does, no vote is needed. "
+                  f"Objections so far: {', '.join(t['object']) or 'none'}.\n\n")
+        else:
+            s += "| Voting member | Vote | How |\n|---|---|---|\n"
+            for m in elect:
+                v = t["by_voter"].get(m["name"])
+                who = html.escape(m["name"]) + (" (committee)" if m.get("committee") else "")
+                s += f"| {who} | {VOTE_LABELS[v['vote']] if v else 'not yet voted'} | {('on ' + v['via']) if v else ''} |\n"
         s += (f'\n??? note "Read the full proposal"\n{indent(safe(p.get("body")))}\n\n'
               f"    [See the exact changes]({p['html_url']}/files)\n\n")
         w = webapp()
@@ -508,7 +554,7 @@ def subscribe_box():
 
 
 def page_signin():
-    s = header("Sign in", "Voting members sign in here to read and vote on proposals open for decision, "
+    s = header("Sign in", "Foundry members sign in here to read and vote on proposals open for decision, "
                "directly on this website.")
     w = webapp()
     if not w:
@@ -523,8 +569,9 @@ Once signed in, each proposal under [Open for decision](proposals.md) shows your
 Approve, Object, and Abstain buttons. Your vote, and any reasons you give, are posted publicly on the
 proposal under your name, and count exactly as a vote on GitHub or with an emailed ballot does.
 
-Only [voting members](members.md) can sign in for now. Everyone else can take part
-[without signing in](participate.md).
+Any [member](members.md) whose email address the Foundry has can sign in. All members vote on
+**principles**; [voting members](members.md) also vote on other proposals. Everyone else can comment and
+take part [without signing in](participate.md).
 """
     return s
 

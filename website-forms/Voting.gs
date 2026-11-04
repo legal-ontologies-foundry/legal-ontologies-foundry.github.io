@@ -71,7 +71,8 @@ function kindOf_(pr, rules) {
   if (pr.draft || pr.state !== 'open') return null;
   var names = (pr.labels || []).map(function (l) { return l.name; });
   var kinds = Object.keys(rules.kinds).filter(function (k) { return names.indexOf(rules.kinds[k].label) >= 0; });
-  // If both labels are present, the stricter rule applies.
+  // A principle label decides the procedure; otherwise, if both labels are present, the stricter rule applies.
+  if (kinds.indexOf('principle') >= 0) return 'principle';
   return kinds.indexOf('substantive') >= 0 ? 'substantive' : kinds[0] || null;
 }
 
@@ -82,6 +83,7 @@ function processPr_(pr, ctx) {
   sendBallots_(pr, kind, opened, ctx);
   var t = tally_(ctx.rules, kind, ctx.members, votes_(pr.number, ctx), opened, new Date());
   if (t.passed && ctx.rules.auto_merge) adopt_(pr, kind, t, ctx);
+  else if (t.failed && ctx.rules.kinds[kind].close_on_failure) decline_(pr, kind, t, ctx);
 }
 
 function labelTime_(n, label) {
@@ -98,10 +100,11 @@ function labelTime_(n, label) {
 function sendBallots_(pr, kind, opened, ctx) {
   var sh = sheet_('ballots');
   var rows = sh.getDataRange().getValues();
-  var emails = voterEmails_();
+  var emails = memberEmails_();
   var rule = ctx.rules.kinds[kind];
   var closes = new Date(opened.getTime() + rule.comment_days * 864e5);
-  ctx.members.filter(function (m) { return m.voting; }).forEach(function (m) {
+  var elect = electorate_(rule, ctx.members);
+  ctx.members.filter(function (m) { return elect.indexOf(m.name) >= 0; }).forEach(function (m) {
     var email = emails[m.name];
     if (!email) return;
     var sent = rows.some(function (r) { return Number(r[1]) === pr.number && r[2] === m.name; });
@@ -153,27 +156,28 @@ function votePage_() {
 
 /** Called from the vote page. Says the same thing whether or not the address is a voter's. */
 function requestBallots(email) {
-  var reply = 'If that address belongs to a voting member, their ballot links are on the way. Check your inbox (and spam folder) in a minute or two.';
+  var reply = 'If that address belongs to a member who can vote on an open proposal, their ballot links are on the way. Check your inbox (and spam folder) in a minute or two.';
   email = String(email || '').trim().toLowerCase();
   if (!/^[^@\s]+@[^@\s]+$/.test(email)) return 'Please enter an email address.';
   var cache = CacheService.getScriptCache(), key = 'req_' + email;
   var count = Number(cache.get(key) || 0);
   if (count >= 3) return reply;
   cache.put(key, String(count + 1), 3600);
-  var emails = voterEmails_(), name = null;
+  var emails = memberEmails_(), name = null;
   Object.keys(emails).forEach(function (n) { if (emails[n].toLowerCase() === email) name = n; });
   if (!name) return reply;
   var lock = LockService.getScriptLock();
   lock.waitLock(30000);
   try {
     var ctx = context_();
-    if (!ctx.members.some(function (m) { return m.name === name && m.voting; })) return reply;
+    if (!ctx.members.some(function (m) { return m.name === name; })) return reply;
     var sh = sheet_('ballots');
     var rows = sh.getDataRange().getValues();
     gh_('GET', '/repos/' + REPO + '/pulls?state=open&per_page=100').forEach(function (pr) {
       var kind = kindOf_(pr, ctx.rules);
       if (!kind) return;
       var rule = ctx.rules.kinds[kind];
+      if (electorate_(rule, ctx.members).indexOf(name) < 0) return;
       var opened = labelTime_(pr.number, rule.label) || new Date(pr.created_at);
       var closes = new Date(opened.getTime() + rule.comment_days * 864e5);
       var row = rows.filter(function (r) { return Number(r[1]) === pr.number && r[2] === name; })[0];
@@ -246,15 +250,18 @@ function recordVote_(voter, n, choice, reasons, how) {
   lock.waitLock(30000);
   try {
     var ctx = context_();
-    var member = ctx.members.filter(function (m) { return m.name === voter && m.voting; })[0];
-    if (!member) throw new Error('You are not currently listed as a voting member.');
+    var member = ctx.members.filter(function (m) { return m.name === voter; })[0];
+    if (!member) throw new Error('You are not currently listed as a member.');
     var pr = gh_('GET', '/repos/' + REPO + '/pulls/' + n);
     var kind = kindOf_(pr, ctx.rules);
     if (!kind) throw new Error('This proposal is no longer open for decision.');
+    if (electorate_(ctx.rules.kinds[kind], ctx.members).indexOf(voter) < 0) {
+      throw new Error('Only voting members vote on this kind of proposal. You can still comment on it.');
+    }
     var opened = labelTime_(n, ctx.rules.kinds[kind].label) || new Date(pr.created_at);
     var before = tally_(ctx.rules, kind, ctx.members, votes_(n, ctx), opened, new Date());
     var changed = !!before.byVoter[voter];
-    var role = member.committee ? 'Operations Committee' : 'voting member';
+    var role = member.committee ? 'Operations Committee' : member.voting ? 'voting member' : 'member';
     var body = '**Vote: ' + VOTE_LABELS[choice] + '** by **' + voter + '** (' + role + '), cast with ' + how +
       ' on the [Foundry website](' + SITE + 'activity/proposals/).' +
       (reasons && String(reasons).trim() ? '\n\n' + tidy_(String(reasons).slice(0, 4000)) : '') +
@@ -267,7 +274,7 @@ function recordVote_(voter, n, choice, reasons, how) {
     rows.forEach(function (r, i) { if (i && Number(r[1]) === n && r[2] === voter) at = i; });
     var rec = [choice, String(reasons || '').slice(0, 4000), new Date(), c.html_url];
     if (at > 0) sh.getRange(at + 1, 6, 1, 4).setValues([rec]);
-    else sh.appendRow([Utilities.getUuid(), n, voter, voterEmails_()[voter] || '', ''].concat(rec));
+    else sh.appendRow([Utilities.getUuid(), n, voter, memberEmails_()[voter] || '', ''].concat(rec));
     processPr_(pr, ctx);       // adopt at once if this vote decides it
     return { url: c.html_url };
   } finally {
@@ -306,7 +313,7 @@ function doPost(e) {
 }
 
 function apiLogin_(q) {
-  var reply = { ok: true, message: 'If that address belongs to a voting member, a sign-in link is on its way. ' +
+  var reply = { ok: true, message: 'If that address belongs to a Foundry member, a sign-in link is on its way. ' +
     'Check your inbox (and spam folder); the link works once, for 30 minutes.' };
   var email = String(q.email || '').trim().toLowerCase();
   if (!/^[^@\s]+@[^@\s]+$/.test(email)) return { error: 'Please enter an email address.' };
@@ -314,9 +321,9 @@ function apiLogin_(q) {
   var count = Number(cache.get(key) || 0);
   if (count >= 5) return reply;
   cache.put(key, String(count + 1), 3600);
-  var emails = voterEmails_(), name = null;
+  var emails = memberEmails_(), name = null;
   Object.keys(emails).forEach(function (n) { if (emails[n].toLowerCase() === email) name = n; });
-  if (!name) return reply;
+  if (!name || !members_().some(function (m) { return m.name === name; })) return reply;
   var code = Utilities.getUuid() + Utilities.getUuid().slice(0, 8);
   sessions_().appendRow([hash_(code), 'link', name, new Date(), new Date(Date.now() + 30 * 6e4), '']);
   var link = SITE + 'activity/signin/?code=' + encodeURIComponent(code);
@@ -356,8 +363,8 @@ function apiMe_(q) {
     var opened = labelTime_(pr.number, ctx.rules.kinds[kind].label) || new Date(pr.created_at);
     var t = tally_(ctx.rules, kind, ctx.members, votes_(pr.number, ctx), opened, new Date());
     var mine = t.byVoter[who];
-    decisions.push({ pr: pr.number, title: pr.title, url: pr.html_url, kind: kind, status: t.status,
-      myVote: mine ? mine.vote : null, via: mine ? mine.via : null });
+    decisions.push({ pr: pr.number, title: pr.title, url: pr.html_url, kind: kind, status: t.status, phase: t.phase,
+      eligible: t.electorate.indexOf(who) >= 0, myVote: mine ? mine.vote : null, via: mine ? mine.via : null });
   });
   return { signedIn: true, name: who, voting: !!m.voting, committee: !!m.committee, decisions: decisions };
 }
@@ -379,7 +386,7 @@ function sessionUser_(token) {
   var row = findSession_(token, 'session');
   if (!row || new Date(row.values[4]) < new Date()) return null;
   var name = row.values[2];
-  return members_().some(function (m) { return m.name === name && m.voting; }) ? name : null;
+  return members_().some(function (m) { return m.name === name; }) ? name : null;
 }
 
 function findSession_(secret, type) {
@@ -441,19 +448,53 @@ function isBot_(c, rules) {
  */
 function tally_(rules, kind, members, votes, opened, now) {
   var rule = rules.kinds[kind];
-  var voting = members.filter(function (m) { return m.voting; }).map(function (m) { return m.name; });
+  var electorate = electorate_(rule, members);
   var committee = members.filter(function (m) { return m.committee && m.voting; }).map(function (m) { return m.name; });
   var byVoter = {};
   votes.slice().sort(function (a, b) { return new Date(a.at) - new Date(b.at); }).forEach(function (v) {
-    if (voting.indexOf(v.voter) >= 0 && VOTE_LABELS[v.vote]) byVoter[v.voter] = v;
+    if (electorate.indexOf(v.voter) >= 0 && VOTE_LABELS[v.vote]) byVoter[v.voter] = v;
   });
-  var list = function (k) { return voting.filter(function (n) { return byVoter[n] && byVoter[n].vote === k; }); };
+  var list = function (k) { return electorate.filter(function (n) { return byVoter[n] && byVoter[n].vote === k; }); };
   var approve = list('approve'), object = list('object'), abstain = list('abstain');
-  var committeeYes = committee.filter(function (n) { return approve.indexOf(n) >= 0; });
   var daysOpen = (now - opened) / 864e5;
-  var daysLeft = Math.max(0, Math.ceil(rule.comment_days - daysOpen));
+  var left = function (until) { return Math.max(0, Math.ceil(until - daysOpen)); };
+  var days = function (n) { return n + ' day' + (n === 1 ? '' : 's'); };
+  var out = { byVoter: byVoter, approve: approve, object: object, abstain: abstain, electorate: electorate, failed: false };
+
+  if (rule.default_adoption) {
+    // Public comment; adopted by default unless a member objects, in which case members vote.
+    var c = rule.comment_days, end = rule.comment_days + rule.vote_days, cast = approve.length + object.length + abstain.length;
+    if (daysOpen < c) {
+      out.phase = 'comment'; out.daysLeft = left(c);
+      out.waiting = ['public comment period: ' + days(out.daysLeft) + ' left'];
+      out.status = 'Open for public comment: ' + days(out.daysLeft) + ' left. ' + (object.length
+        ? 'A member has objected (' + object.join(', ') + '), so members will vote when the comment period ends.'
+        : 'Adopted by default unless a member objects.');
+    } else if (!object.length) {
+      out.phase = 'adopted by default'; out.daysLeft = 0; out.waiting = [];
+      out.status = 'No member objected during the comment period: adopted by default.';
+    } else if (daysOpen < end) {
+      out.phase = 'member vote'; out.daysLeft = left(end);
+      out.waiting = ['member vote: ' + days(out.daysLeft) + ' left'];
+      out.status = 'A member objected, so members are voting: ' + days(out.daysLeft) + ' left. So far ' + approve.length +
+        ' approve, ' + object.length + ' object, ' + abstain.length + ' abstain (' + rule.quorum + ' votes needed).';
+    } else {
+      out.phase = 'vote closed'; out.daysLeft = 0;
+      out.waiting = [];
+      if (cast < rule.quorum) out.waiting.push('a quorum: ' + cast + ' of ' + rule.quorum + ' votes were cast');
+      if (approve.length <= object.length) out.waiting.push('a majority of votes cast to approve');
+      out.failed = out.waiting.length > 0;
+      out.status = out.failed ? 'Not adopted: the member vote did not reach ' + out.waiting.join(', nor ') + '.'
+                              : 'Members voted to adopt it (' + approve.length + ' approve, ' + object.length + ' object).';
+    }
+    out.passed = !out.failed && out.waiting.length === 0;
+    return out;
+  }
+
+  var committeeYes = committee.filter(function (n) { return approve.indexOf(n) >= 0; });
   var waiting = [];
-  if (daysOpen < rule.comment_days) waiting.push('comment period: ' + daysLeft + ' day' + (daysLeft === 1 ? '' : 's') + ' left');
+  out.daysLeft = left(rule.comment_days);
+  if (daysOpen < rule.comment_days) waiting.push('comment period: ' + days(out.daysLeft) + ' left');
   if (rule.committee === 'all') {
     var missing = committee.filter(function (n) { return committeeYes.indexOf(n) < 0; });
     if (!committee.length || missing.length) waiting.push('approval from ' + (missing.join(', ') || 'the Operations Committee'));
@@ -462,11 +503,14 @@ function tally_(rules, kind, members, votes, opened, now) {
   }
   if (rule.objection_blocks && object.length) waiting.push('objection from ' + object.join(', '));
   if (rule.majority && approve.length <= object.length) waiting.push('a majority of votes cast to approve');
-  return {
-    passed: waiting.length === 0, waiting: waiting, daysLeft: daysLeft,
-    status: waiting.length ? 'Waiting for ' + waiting.join('; ') + '.' : 'Passed.',
-    byVoter: byVoter, approve: approve, object: object, abstain: abstain
-  };
+  out.waiting = waiting; out.passed = waiting.length === 0; out.phase = 'decision';
+  out.status = waiting.length ? 'Waiting for ' + waiting.join('; ') + '.' : 'Passed.';
+  return out;
+}
+
+/** Who votes under a rule: every member for principles, otherwise the voting members. */
+function electorate_(rule, members) {
+  return members.filter(function (m) { return rule.electorate === 'members' || m.voting; }).map(function (m) { return m.name; });
 }
 
 
@@ -492,17 +536,37 @@ function adopt_(pr, kind, t, ctx) {
     merge_method: 'merge',
     sha: full.head.sha,
     commit_title: 'Adopt: ' + pr.title + ' (#' + pr.number + ')',
-    commit_message: 'Adopted as a ' + kind + ' change under the Governance page. ' + record
+    commit_message: 'Adopted as a ' + kind + ' change under the Governance page. ' +
+      (t.phase === 'adopted by default' ? 'Adopted by default: no member objected during the comment period.' : record)
   });
+  var how = t.phase === 'adopted by default' ? 'No member objected during the public comment period, so it is adopted by default.' : record;
   gh_('POST', '/repos/' + REPO + '/issues/' + pr.number + '/comments', { body:
-    '**Adopted** as a ' + kind + ' change. ' + ctx.rules.kinds[kind].summary + '\n\n' + record +
+    '**Adopted** as a ' + kind + ' change. ' + ctx.rules.kinds[kind].summary + '\n\n' + how +
     '\n\nMerged automatically by the Foundry bot. The decision is recorded in the [decision log](' + SITE + 'activity/decisions/).' });
-  var emails = voterEmails_();
-  ctx.members.filter(function (m) { return m.voting && emails[m.name]; }).forEach(function (m) {
-    mail_(emails[m.name], 'Adopted: ' + pr.title,
-      '<p>The proposal <a href="' + pr.html_url + '"><b>' + esc_(pr.title) + '</b></a> has been adopted as a ' + kind +
-      ' change and merged.</p><p>' + esc_(record) + '</p>');
-  });
+  notifyElectorate_(pr, kind, ctx, 'Adopted: ' + pr.title,
+    '<p>The proposal <a href="' + pr.html_url + '"><b>' + esc_(pr.title) + '</b></a> has been adopted as a ' + kind +
+    ' change and merged.</p><p>' + esc_(how) + '</p>');
+}
+
+/** A proposal whose vote has closed without passing: record the result and close it. */
+function decline_(pr, kind, t, ctx) {
+  var full = gh_('GET', '/repos/' + REPO + '/pulls/' + pr.number);
+  if (full.state !== 'open') return;
+  var record = 'Approve: ' + (t.approve.join(', ') || 'none') + '. Object: ' + (t.object.join(', ') || 'none') +
+               '. Abstain: ' + (t.abstain.join(', ') || 'none') + '.';
+  gh_('POST', '/repos/' + REPO + '/issues/' + pr.number + '/comments', { body:
+    '**Not adopted.** ' + t.status.replace(/^Not adopted: (\w)/, function (_, c) { return c.toUpperCase(); }) + '\n\n' + record + '\n\nClosed automatically by the Foundry bot. A revised proposal can ' +
+    'be opened at any time. The decision is recorded in the [decision log](' + SITE + 'activity/decisions/).' });
+  gh_('PATCH', '/repos/' + REPO + '/pulls/' + pr.number, { state: 'closed' });
+  notifyElectorate_(pr, kind, ctx, 'Not adopted: ' + pr.title,
+    '<p>The proposal <a href="' + pr.html_url + '"><b>' + esc_(pr.title) + '</b></a> was not adopted. ' + esc_(t.status) +
+    '</p><p>' + esc_(record) + '</p>');
+}
+
+function notifyElectorate_(pr, kind, ctx, subject, html) {
+  var emails = memberEmails_();
+  var elect = electorate_(ctx.rules.kinds[kind], ctx.members);
+  elect.forEach(function (name) { if (emails[name]) mail_(emails[name], subject, html); });
 }
 
 
@@ -525,6 +589,23 @@ function members_() {
     else if (v === 'false') v = false;
     cur[m[2]] = v;
   });
+  return out;
+}
+
+/**
+ * Addresses of all members: the voters tab first, then members recorded in the subscribers tab
+ * (people who joined through the website). Keyed by the name used in community/members.yml.
+ */
+function memberEmails_() {
+  var out = {};
+  var sub = sheet_('subscribers');
+  if (sub) {
+    sub.getDataRange().getValues().slice(1).forEach(function (r) {
+      if (r[1] && /@/.test(r[0]) && /member/.test(String(r[2]))) out[String(r[1]).trim()] = String(r[0]).trim();
+    });
+  }
+  var v = voterEmails_();
+  Object.keys(v).forEach(function (n) { out[n] = v[n]; });
   return out;
 }
 

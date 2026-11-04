@@ -75,6 +75,13 @@ voting members both count; a member's latest vote is the one that counts. The ru
 and emails the voters. Set `"auto_merge": false` in the rules file to have it stop at recording the
 result instead. If the change conflicts with other changes, the bot says so and waits for a coordinator.
 
+**Principles.** A pull request labeled `decision: principle` follows the procedure on the *Adopting
+principles* page: 14 days of public comment, adopted by default unless a member objects; if one does,
+members vote for 14 more days (majority, quorum of 5). Ballots, sign-in, and notices then go to **all
+members** whose address the Foundry has: the `voters` tab, plus members recorded in the `subscribers` tab
+by the digest (people who joined through the website). A failed vote closes the pull request with the
+result recorded.
+
 **Who votes.** Members marked `voting: true` in `community/members.yml`; Operations Committee members are
 also marked `committee: true`. To add a voter, add those markers (by pull request) and their email address
 in the private log's `voters` tab.
