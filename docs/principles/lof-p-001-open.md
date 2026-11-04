@@ -5,7 +5,7 @@
 
 ## Summary
 
-The ontology is openly available and may be used by all without constraint other than attribution.
+The ontology is released under the Creative Commons Attribution 4.0 license (CC BY 4.0), so that anyone may use it without constraint other than attribution.
 
 ## Purpose
 
@@ -13,7 +13,7 @@ Legal ontologies are infrastructure for courts, agencies, researchers, and devel
 
 ## Recommendations and requirements
 
-1. The ontology is released under CC BY 4.0 or CC0 1.0.
+1. Every Foundry ontology is released under **CC BY 4.0** (`https://creativecommons.org/licenses/by/4.0/`), the current version of the Creative Commons Attribution license. Attribution is what makes contributions creditable and citable (LOF-P-018).
 2. The license is declared in the ontology header with `dcterms:license` whose value is the license IRI.
 3. The same license is recorded in the ontology's registry metadata.
 
@@ -27,7 +27,7 @@ The header of every file generated from the LOF ontology template declares CC BY
 
 ## Criteria for review
 
-The ontology header and the registry entry declare the same permitted license. Content derived from sources with incompatible licenses (for example, proprietary legal databases) is not included.
+The ontology header and the registry entry both declare CC BY 4.0. Content derived from sources with incompatible licenses (for example, proprietary legal databases) is not included.
 
 **Automated check:** ROBOT report check `missing_ontology_license`; registry schema validation of `license`.
 

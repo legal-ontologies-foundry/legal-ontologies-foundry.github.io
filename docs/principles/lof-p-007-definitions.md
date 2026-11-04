@@ -16,6 +16,7 @@ In law, the meaning of a term is often the point in dispute. Definitions make th
 1. Every class and relation in the ontology's namespace has exactly one English definition, recorded with `skos:definition` or `IAO:0000115`.
 2. Class definitions take genus and differentia form where possible: "An *X* is a *Y* that *Z*", where *Y* is the asserted parent.
 3. Definitions do not use the term being defined, and cite a source (statute, case, treatise) with `dcterms:source` where one exists.
+4. **Textual and logical definitions agree.** Where a class also has a logical definition (an equivalence axiom, or subclass axioms giving necessary conditions), the textual definition states the same conditions in words, and the logical definition formalizes them: the genus is the same class in both, and each condition in one appears in the other. Conditions that OWL cannot express (for example, about time or about what an agent intends) are stated in the textual definition and noted in an `rdfs:comment` beginning "Not expressed in OWL:". The textual definition records the intended meaning; if the two diverge, the axioms are corrected to match it, or the term is redefined as a new term (LOF-P-005).
 
 ## Implementation
 
@@ -27,7 +28,7 @@ Add the definition when the term is created. Protégé's annotation panel suppor
 
 ## Criteria for review
 
-Definitions are present, match the asserted parent, and are intelligible to a legal expert.
+Definitions are present, match the asserted parent, agree with the logical definition where there is one, and are intelligible to a legal expert.
 
 **Automated check:** SPARQL check `missing-definition-violation`.
 

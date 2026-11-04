@@ -5,7 +5,7 @@
 
 ## Summary
 
-Contributors to the ontology are credited, and it can be cited.
+Contributors to the ontology are credited, and the ontology, each of its releases, and the contributions to it can be cited.
 
 ## Purpose
 
@@ -15,7 +15,8 @@ Ontology development is scholarly work. Credit sustains contributions, and citab
 
 1. The ontology header lists creators with `dcterms:creator` and contributors with `dcterms:contributor`, using ORCID IRIs where available.
 2. Term-level contributions may be recorded with `dcterms:contributor` on the term.
-3. The README gives a preferred citation.
+3. The README gives a preferred citation of the ontology, naming its creators, title, version, and version IRI (LOF-P-006), so that each **release** can be cited exactly. A DOI for each release (for example, through Zenodo) is recommended.
+4. **Contributions** are citable through the release that contains them: a term's `dcterms:contributor` records who contributed it, and the term's IRI and the release's version IRI identify it, so a contribution can be cited as "term, contributor, ontology, version". The repository history records the same contributions in detail.
 
 ## Implementation
 
@@ -27,7 +28,7 @@ Add ORCID IRIs to the header when onboarding each new contributor.
 
 ## Criteria for review
 
-Creators are listed, and a citation is given.
+Creators are listed, contributors are credited where they contributed terms, and a citation of the current release is given.
 
 **Automated check:** None. Manual review.
 
