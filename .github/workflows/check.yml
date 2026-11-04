@@ -11,6 +11,8 @@ jobs:
         with:
           python-version: 3.x
       - run: pip install -r requirements.txt
+      - name: Test the registry status check
+        run: python util/tests/test_registry_status.py
       - name: Validate registry against schema
         run: python scripts/build_registry.py
       - name: Generate Activity pages (falls back to a notice if GitHub is unreachable)
