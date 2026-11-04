@@ -46,6 +46,7 @@ markdown_extensions:
 
 hooks:
   - hooks/odp_diagrams.py
+  - hooks/principle_status.py
 
 nav:
   - Home: index.md
