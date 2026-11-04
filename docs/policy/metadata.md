@@ -35,6 +35,7 @@ build generates:
 | `dependencies` | no | List of `id`s: registry ids or `bfo`, `ro`, `iao`, `cco`. |
 | `usages` | no | List of `description` and optional `url` (LOF-P-016). |
 | `publications` | no | List of `id` (DOI or URL) and `title`. |
+| `release` | for candidate and accepted | `version` (x.y.z) and `tag` of the release submitted for review. |
 | `review` | no | `date` and `issue` URL of the review that set the status. |
 | `replaced_by` | no | For deprecated ontologies, the successor's `id`. |
 
