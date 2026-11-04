@@ -3,3 +3,5 @@ docs/registry/
 docs/ontologies/
 build/
 site/
+__pycache__/
+*.pyc
