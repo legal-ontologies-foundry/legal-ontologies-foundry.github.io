@@ -13,5 +13,7 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Validate registry against schema
         run: python scripts/build_registry.py
+      - name: Generate Activity pages (falls back to a notice if GitHub is unreachable)
+        run: python scripts/build_activity.py
       - name: Build site (fails on broken links or nav errors)
         run: mkdocs build --strict

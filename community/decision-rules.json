@@ -1,0 +1,21 @@
+{
+  "_about": "How proposals are decided. Read by the website (scripts/build_activity.py) and the voting bot (website-forms/Voting.gs). Changing this file is a substantive change under the Governance page.",
+  "bot": "lof-website-bot",
+  "auto_merge": true,
+  "kinds": {
+    "routine": {
+      "label": "decision: routine",
+      "summary": "Routine change: adopted once one Operations Committee member approves and no voting member objects.",
+      "comment_days": 0,
+      "committee": "one",
+      "objection_blocks": true
+    },
+    "substantive": {
+      "label": "decision: substantive",
+      "summary": "Substantive change: adopted after a comment period of at least 14 days, once every Operations Committee member approves and a majority of the voting members who vote approve.",
+      "comment_days": 14,
+      "committee": "all",
+      "majority": true
+    }
+  }
+}
