@@ -191,6 +191,31 @@ def decisions_in_progress(pulls):
     return rules, members, out
 
 
+PRINCIPLE_STATUS = ROOT / "build" / "principle-decisions.json"
+
+
+def write_principle_status(pulls, decisions):
+    """Record which open proposals change which principle pages, for hooks/principle_status.py."""
+    by_number = {p["number"]: (kind, t) for p, kind, opened, t in (decisions[2] if decisions else [])}
+    rules = decisions[0] if decisions else None
+    out = {}
+    for p in pulls:
+        if p["state"] != "open":
+            continue
+        files = [f["filename"] for f in rest_all(f"/repos/{REPO}/pulls/{p['number']}/files")]
+        pages = [f.split("/")[-1] for f in files if f.startswith("docs/principles/lof-p-")]
+        if not pages:
+            continue
+        kind, t = by_number.get(p["number"], (None, None))
+        entry = {"number": p["number"], "title": p["title"], "url": p["html_url"], "draft": bool(p.get("draft")),
+                 "kind": kind, "status": t["status"] if t else None,
+                 "summary": rules["kinds"][kind]["summary"] if (rules and kind) else None}
+        for page in pages:
+            out.setdefault(page, []).append(entry)
+    PRINCIPLE_STATUS.parent.mkdir(parents=True, exist_ok=True)
+    PRINCIPLE_STATUS.write_text(json.dumps(out, indent=1))
+
+
 def section_decisions(rules, members, items):
     if not items:
         return ""
@@ -561,6 +586,7 @@ def main():
         issues = rest_all(f"/repos/{REPO}/issues?state=all")
         pulls = rest_all(f"/repos/{REPO}/pulls?state=all")
         decisions = decisions_in_progress(pulls)
+        write_principle_status(pulls, decisions)
     except (urllib.error.URLError, OSError, ValueError) as e:
         err_rest = getattr(e, "reason", None) or str(e)
     try:
