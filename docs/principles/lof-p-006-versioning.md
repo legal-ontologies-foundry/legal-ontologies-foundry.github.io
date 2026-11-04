@@ -1,7 +1,8 @@
 # LOF-P-006: Versioning
 
-!!! warning "Draft for ratification"
-    Part of the founding draft of the [LOF principles](index.md).
+!!! success "Adopted"
+    Adopted by the members after public comment, as part of the founding set of
+    [LOF principles](index.md). The decision is recorded in the [decision log](../activity/decisions.md).
 
 ## Summary
 
