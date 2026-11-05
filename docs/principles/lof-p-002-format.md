@@ -16,6 +16,7 @@ A common format lets member ontologies import one another and lets the same tool
 1. A release file `lof-{id}.owl` is published at the root of the ontology repository, serialized as RDF/XML or Turtle.
 2. A base file `lof-{id}-base.owl`, containing only the ontology's own axioms, is also published.
 3. Other serializations may be offered, but the OWL release is authoritative.
+4. A new release is made whenever the ontology changes in a way its users should see (new or changed terms, definitions, or axioms), and **at least once every 12 months** while the ontology is active. An ontology with no release in 12 months is recorded as `inactive` ([metadata policy](../policy/metadata.md)).
 
 ## Implementation
 
@@ -27,7 +28,7 @@ Run `make release VERSION=x.y.z` in `src/ontology/`. The template Makefile produ
 
 ## Criteria for review
 
-Both release files exist, parse without error, and resolve through their persistent IRIs.
+Both release files exist, parse without error, and resolve through their persistent IRIs. The latest release is no more than 12 months old, or the ontology is recorded as inactive.
 
 **Automated check:** CI parse and merge with ROBOT on every push.
 
