@@ -16,6 +16,17 @@
       "comment_days": 14,
       "committee": "all",
       "majority": true
+    },
+    "principle": {
+      "label": "decision: principle",
+      "summary": "Principle: open for public comment for 14 days, and adopted by default unless a member objects. If a member objects, members vote for 14 more days: adopted if more members approve than object, with at least 5 votes cast.",
+      "electorate": "members",
+      "comment_days": 14,
+      "default_adoption": true,
+      "vote_days": 14,
+      "quorum": 5,
+      "majority": true,
+      "close_on_failure": true
     }
   }
 }
