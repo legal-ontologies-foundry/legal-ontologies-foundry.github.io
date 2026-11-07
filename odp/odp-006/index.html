@@ -1,0 +1,3620 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A collaborative foundry of interoperable, BFO-grounded legal ontologies.">
+      
+      
+      
+        <link rel="canonical" href="https://legal-ontologies-foundry.github.io/odp/odp-006/">
+      
+      
+        <link rel="prev" href="../odp-005/">
+      
+      
+        <link rel="next" href="../template/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>LOF-ODP-006 - Legal Ontologies Foundry</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/lof-members.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lof-odp-006-relations-between-norms" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Legal Ontologies Foundry" class="md-header__button md-logo" aria-label="Legal Ontologies Foundry" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Legal Ontologies Foundry
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              LOF-ODP-006
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/legal-ontologies-foundry/legal-ontologies-foundry.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    legal-ontologies-foundry
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../activity/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Activity
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../principles/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Principles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../registry/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Registry
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Design Patterns
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../policy/identifiers/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Policies
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../sop/new-ontology-request/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Procedures
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../literature/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Literature
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../about/governance/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  About
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../contributing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Legal Ontologies Foundry" class="md-nav__button md-logo" aria-label="Legal Ontologies Foundry" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Legal Ontologies Foundry
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/legal-ontologies-foundry/legal-ontologies-foundry.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    legal-ontologies-foundry
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../activity/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Activity
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Activity
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../activity/participate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Take part without GitHub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../activity/signin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sign in (voting members)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../activity/proposals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Open proposals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../activity/discussions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Discussions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../activity/decisions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decision log
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../activity/members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../principles/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Principles
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Principles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-001-open/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-001: Open
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-002-format/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-002: Common format
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-003-bfo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-003: Common upper ontology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-004-grounding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-004: Explicit grounding of legal entities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-005-identifiers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-005: Persistent identifiers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-006-versioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-006: Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-007-definitions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-007: Textual definitions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-008-scope/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-008: Clearly delineated scope
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-009-orthogonality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-009: Orthogonality
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-010-jurisdiction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-010: Jurisdictional transparency
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-011-consistency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-011: Logical well-formedness
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-012-naming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-012: Naming conventions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-013-documentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-013: Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-014-maintenance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-014: Responsiveness and maintenance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-015-standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-015: Alignment with existing legal standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-016-users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-016: Documented use
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-017-authority/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-017: Locus of authority
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-018-attribution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-018: Attribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../registry/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registry
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Registry
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design Patterns
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design Patterns
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../odp-001/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-ODP-001
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../odp-002/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-ODP-002
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../odp-003/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-ODP-003
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../odp-004/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-ODP-004
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../odp-005/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-ODP-005
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-ODP-006
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-ODP-006
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#intent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#competency-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Competency questions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solution
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#axioms-manchester-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Axioms (Manchester syntax)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grounding-rationale-lof-p-004" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grounding rationale (LOF-P-004)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alignment-with-legal-standards-lof-p-015" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alignment with legal standards (LOF-P-015)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences-and-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences and limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relation-to-a-structural-ontology-of-the-law" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relation to A Structural Ontology of the Law
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-questions-for-the-founding-coordinators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open questions for the founding coordinators
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related patterns
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pattern template
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Policies
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Policies
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../policy/identifiers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identifiers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../policy/deprecation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deprecation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../policy/id-ranges/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ID ranges
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../policy/metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registry metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../policy/automated-checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automated checks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Procedures
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Procedures
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sop/new-ontology-request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New ontology request
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sop/review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Review
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sop/release/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sop/term-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Term requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sop/tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Literature
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Literature
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/reinach/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adolf Reinach
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/governance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/working-groups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working groups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/code-of-conduct/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code of conduct
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/citation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Citation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/related-initiatives/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Related initiatives
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#intent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#competency-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Competency questions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solution
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#axioms-manchester-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Axioms (Manchester syntax)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grounding-rationale-lof-p-004" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grounding rationale (LOF-P-004)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alignment-with-legal-standards-lof-p-015" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alignment with legal standards (LOF-P-015)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences-and-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences and limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relation-to-a-structural-ontology-of-the-law" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relation to A Structural Ontology of the Law
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-questions-for-the-founding-coordinators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open questions for the founding coordinators
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related patterns
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/legal-ontologies-foundry/legal-ontologies-foundry.github.io/edit/main/docs/odp/odp-006.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="lof-odp-006-relations-between-norms">LOF-ODP-006: Relations between Norms<a class="headerlink" href="#lof-odp-006-relations-between-norms" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Identifier</strong></td>
+<td>LOF-ODP-006</td>
+</tr>
+<tr>
+<td><strong>IRI</strong></td>
+<td><a href="https://w3id.org/lof/odp-006.owl">https://w3id.org/lof/odp-006.owl</a></td>
+</tr>
+<tr>
+<td><strong>Repository</strong></td>
+<td><a href="https://github.com/legal-ontologies-foundry/lof-odp-006">https://github.com/legal-ontologies-foundry/lof-odp-006</a></td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>draft</td>
+</tr>
+<tr>
+<td><strong>Version</strong></td>
+<td>0.1.0</td>
+</tr>
+<tr>
+<td><strong>Depends on</strong></td>
+<td><a href="../odp-001/">LOF-ODP-001</a>, <a href="../odp-003/">LOF-ODP-003</a></td>
+</tr>
+<tr>
+<td><strong>Drafted by</strong></td>
+<td>David R. Koepsell</td>
+</tr>
+<tr>
+<td><strong>For review by</strong></td>
+<td>William Mandrick, Barry Smith</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Draft for review</p>
+<p>First draft, prepared for discussion by the founding coordinators.
+Open questions are listed at the end.</p>
+</div>
+<h2 id="intent">Intent<a class="headerlink" href="#intent" title="Permanent link">&para;</a></h2>
+<p>Legal content rarely stands alone. A national statute fills in what a
+regulation leaves open; a research exemption, permitted by the regulation
+itself, removes cases from a right of access; a specific consent rule displaces a general legal basis; a municipal
+ordinance collides with a regulation of higher rank. To answer what the law
+requires of someone, one has to know which content bears on which, which
+items conflict, and which prevails, on what ground, and on whose authority.</p>
+<p>This pattern provides those relations. It treats conflict as a relation
+between the legal positions two items of content ground, which is where
+incompatibility actually lies, and infers conflict between the content from
+it. It treats a statement that one item prevails over another as an entity in
+its own right, because it has three parts that matter (which prevails, which
+yields, on what ground) and a source whose authority may differ: a conflict
+rule in the legislation, a court's holding, or guidance with no legal force.
+The pattern keeps those apart: any determination makes one content <em>held to
+prevail over</em> another, but only a determination that is itself legal content
+makes it <em>prevail over</em> it. And it keeps open the cases the law leaves open: a
+conflict that nothing resolves, and one on which authorities disagree, are
+reported, not hidden.</p>
+<h2 id="competency-questions">Competency questions<a class="headerlink" href="#competency-questions" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Which provisions particularize, derogate from, or create exceptions to
+   which, and under what content was the act containing them enacted?</li>
+<li>Which items of legal content conflict, through which positions, held by
+   whom?</li>
+<li>For each determination, which content prevails, on what ground, according
+   to whom, and does the determination have legal force?</li>
+<li>What is the status of each conflict: settled with legal force, held only by
+   readings without force, contested, or unresolved?</li>
+</ol>
+<p>All four are answered by SPARQL (<code>src/sparql/</code>); unresolved, contested, and
+unauthoritatively resolved conflicts are also reported by the SHACL shapes
+(<code>src/shapes/</code>).</p>
+<h2 id="solution">Solution<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h2>
+<h3 id="diagram">Diagram<a class="headerlink" href="#diagram" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>flowchart BT
+  n0["priority principle"]
+  n1["precedence determination"]
+  n2["authoritative precedence determination"]
+  n3("generically dependent continuant")
+  n0 --&gt;|is a| n3
+  n1 --&gt;|is a| n3
+  n2 --&gt;|is a| n1
+  n4("legal content")
+  n4 -. particularizes .-&gt; n4
+  n4 -. derogates from .-&gt; n4
+  n4 -. substitutes for .-&gt; n4
+  n4 -. creates exception to .-&gt; n4
+  n5("legal position")
+  n5 -. conflicts with .-&gt; n5
+  n4 -. content conflicts with .-&gt; n4
+  n1 -. favours .-&gt; n4
+  n1 -. disfavours .-&gt; n4
+  n1 -. on the ground of .-&gt; n0
+  n4 -. held to prevail over .-&gt; n4
+  n1 -. stated in .-&gt; n3
+  n2 -. authoritatively favours .-&gt; n4
+  n2 -. authoritatively disfavours .-&gt; n4
+  n4 -. prevails over .-&gt; n4
+  n2 -. authoritative self-link .-&gt; n2
+  classDef ext stroke-dasharray: 4 3,opacity:0.8
+  class n3,n4,n5 ext</code></pre>
+<p><em>Solid boxes are this pattern's classes; dashed boxes are classes from BFO or other patterns. Solid arrows mean <strong>is a</strong>; dotted arrows are relations, from domain to range. Drawn automatically from the tables below, so it always matches them.</em></p>
+<h3 id="classes">Classes<a class="headerlink" href="#classes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>IRI</th>
+<th>BFO parent</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>priority principle</td>
+<td><code>ODP006_0001000</code></td>
+<td>generically dependent continuant</td>
+<td>A generically dependent continuant that states, on some ground such as rank, specificity, or time, which of two conflicting items of legal content prevails.</td>
+</tr>
+<tr>
+<td>precedence determination</td>
+<td><code>ODP006_0001001</code></td>
+<td>generically dependent continuant</td>
+<td>A generically dependent continuant that states that one item of legal content prevails over another where they conflict.</td>
+</tr>
+<tr>
+<td>authoritative precedence determination</td>
+<td><code>ODP006_0001002</code></td>
+<td>precedence determination (defined)</td>
+<td>A precedence determination that is itself legal content.</td>
+</tr>
+</tbody>
+</table>
+<p>Four priority principles are provided as individuals: <strong>lex superior</strong>
+(<code>ODP006_0001500</code>), <strong>lex specialis</strong> (<code>ODP006_0001501</code>), <strong>lex posterior</strong>
+(<code>ODP006_0001502</code>), and <strong>primacy of an overriding legal order</strong>
+(<code>ODP006_0001503</code>). The last covers any regime in which the content of one
+legal order prevails over conflicting content of another: European Union law
+over national law (Case 6/64 <em>Costa v ENEL</em>), federal law over state law in the
+United States (Constitution Article VI, clause 2), federal paramountcy in
+Canada, section 109 of the Australian Constitution, and the Charter of the
+United Nations over other treaty obligations (Article 103). It is kept apart
+from lex superior, which ranks content within a single legal order, because it
+relates two orders, and its effect on the yielding content varies by regime:
+set aside in the case under EU law (Case 106/77 <em>Simmenthal</em>), without effect
+or inoperative under US preemption and Canadian paramountcy, invalid to the
+extent of the inconsistency in Australia. The pattern does not fix that effect
+(see open question 1). A regime-specific variant that needs its own identity
+can be added as a further individual with <code>dcterms:coverage</code> naming the regime.
+Lex posterior
+compares the enactments that established the content (ODP-001), not their
+dates of entry into force; where a system uses another date, record the
+choice.</p>
+<h3 id="relations">Relations<a class="headerlink" href="#relations" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>IRI</th>
+<th>Domain</th>
+<th>Range</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>particularizes</td>
+<td><code>ODP006_0001100</code></td>
+<td>legal content</td>
+<td>legal content</td>
+<td>The first makes the second more determinate for some cases, without displacing it.</td>
+</tr>
+<tr>
+<td>derogates from</td>
+<td><code>ODP006_0001101</code></td>
+<td>legal content</td>
+<td>legal content</td>
+<td>The first displaces the second for the cases within its scope.</td>
+</tr>
+<tr>
+<td>substitutes for</td>
+<td><code>ODP006_0001102</code></td>
+<td>legal content</td>
+<td>legal content</td>
+<td>Derogation that provides a different rule for those cases.</td>
+</tr>
+<tr>
+<td>creates exception to</td>
+<td><code>ODP006_0001103</code></td>
+<td>legal content</td>
+<td>legal content</td>
+<td>Derogation that removes cases from the second's scope without providing a rule.</td>
+</tr>
+<tr>
+<td>conflicts with</td>
+<td><code>ODP006_0001104</code></td>
+<td>legal position</td>
+<td>legal position</td>
+<td>Symmetric: compliance with both is impossible, or one permits what the other forbids.</td>
+</tr>
+<tr>
+<td>content conflicts with</td>
+<td><code>ODP006_0001105</code></td>
+<td>legal content</td>
+<td>legal content</td>
+<td>Symmetric: the two ground conflicting positions (inferred).</td>
+</tr>
+<tr>
+<td>favours</td>
+<td><code>ODP006_0001106</code></td>
+<td>precedence determination</td>
+<td>legal content</td>
+<td>The content the determination states prevails.</td>
+</tr>
+<tr>
+<td>disfavours</td>
+<td><code>ODP006_0001107</code></td>
+<td>precedence determination</td>
+<td>legal content</td>
+<td>The content the determination states yields.</td>
+</tr>
+<tr>
+<td>on the ground of</td>
+<td><code>ODP006_0001108</code></td>
+<td>precedence determination</td>
+<td>priority principle</td>
+<td>The principle the determination applies.</td>
+</tr>
+<tr>
+<td>held to prevail over</td>
+<td><code>ODP006_0001109</code></td>
+<td>legal content</td>
+<td>legal content</td>
+<td>Some determination, with or without legal force, states that the first governs (inferred).</td>
+</tr>
+<tr>
+<td>stated in</td>
+<td><code>ODP006_0001110</code></td>
+<td>precedence determination</td>
+<td>generically dependent continuant</td>
+<td>The content or other information in which the determination is stated.</td>
+</tr>
+<tr>
+<td>authoritatively favours</td>
+<td><code>ODP006_0001111</code></td>
+<td>authoritative precedence determination</td>
+<td>legal content</td>
+<td><em>favours</em>, restricted to authoritative determinations (inferred).</td>
+</tr>
+<tr>
+<td>authoritatively disfavours</td>
+<td><code>ODP006_0001112</code></td>
+<td>authoritative precedence determination</td>
+<td>legal content</td>
+<td><em>disfavours</em>, restricted to authoritative determinations (inferred).</td>
+</tr>
+<tr>
+<td>prevails over</td>
+<td><code>ODP006_0001113</code></td>
+<td>legal content</td>
+<td>legal content</td>
+<td>A determination with legal force states that the first governs (inferred).</td>
+</tr>
+<tr>
+<td>authoritative self-link</td>
+<td><code>ODP006_0001114</code></td>
+<td>authoritative precedence determination</td>
+<td>authoritative precedence determination</td>
+<td>Technical: relates an authoritative determination to itself (rolification).</td>
+</tr>
+</tbody>
+</table>
+<p><em>Particularizes</em> was called <em>specifies</em> in an earlier draft; it was renamed to
+avoid confusion with LOF-ODP-002 <em>specified by</em>, which relates a role to the
+content saying what it consists in.</p>
+<h3 id="axioms-manchester-syntax">Axioms (Manchester syntax)<a class="headerlink" href="#axioms-manchester-syntax" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>precedence determination SubClassOf generically dependent continuant
+    and (favours some legal content) and (disfavours some legal content)
+authoritative precedence determination
+    EquivalentTo precedence determination and legal content
+    EquivalentTo authoritative self-link Self
+priority principle       SubClassOf generically dependent continuant
+
+substitutes for, creates exception to  SubPropertyOf  derogates from
+prevails over                           SubPropertyOf  held to prevail over
+conflicts with, content conflicts with: Symmetric
+
+inverse (grounded in) o conflicts with o grounded in   SubPropertyOf  content conflicts with
+inverse (favours) o disfavours                         SubPropertyOf  held to prevail over
+authoritative self-link o favours                      SubPropertyOf  authoritatively favours
+authoritative self-link o disfavours                   SubPropertyOf  authoritatively disfavours
+inverse (authoritatively favours) o authoritatively disfavours
+                                                       SubPropertyOf  prevails over
+</code></pre></div>
+<p>The first chain lifts conflict from positions to the content that grounds
+them. The second makes <em>held to prevail over</em> the shadow of every
+determination. The last three do the same for <em>prevails over</em>, but only for
+determinations asserted to be legal content: the self-link, which holds of an
+individual exactly when it is an authoritative determination, carries the
+class into the property chain. <em>Authoritatively favours</em> is not declared a
+subproperty of <em>favours</em>, because a chain-defined property cannot be a
+subproperty of a property in its own chain without making the hierarchy
+irregular, which OWL 2 DL forbids.</p>
+<p><strong>Derogation does not imply precedence.</strong> An earlier draft made <em>derogates
+from</em> a subproperty of <em>prevails over</em>. That made BDSG section 27(2) prevail
+over the GDPR, which is wrong: the German provision restricts the right of
+access only because GDPR Article 89(2) permits it, and if the two truly
+conflicted, the GDPR would prevail. The authorization is now recorded with
+ODP-001: the enactment of the derogating content is <em>performed under</em> the
+content that permits it.</p>
+<h3 id="grounding-rationale-lof-p-004">Grounding rationale (LOF-P-004)<a class="headerlink" href="#grounding-rationale-lof-p-004" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Conflict lies between positions.</strong> Two texts are not incompatible as
+  texts; they are incompatible because no one can comply with both, or
+  because one permits what the other forbids. That is a fact about the
+  positions they ground (ODP-003), held by particular parties. Locating
+  conflict there makes it precise (whose positions, held by whom) and makes
+  the content-level relation derivable rather than stipulated.</li>
+<li><strong>Determinations are information content.</strong> That one provision prevails
+  over another is stated somewhere and can be stated differently elsewhere.
+  It is therefore a generically dependent continuant, for the reason legal
+  content is (ODP-001): the same determination is borne by a judgment, a
+  commentary, and a database record. The act of determining is a process; the
+  determination is what it yields. It is asserted to be legal content as well
+  when its source makes it so (a conflict rule in a statute, a court's
+  holding), and is then classified as authoritative.</li>
+<li><strong>Force is a property of the determination, not of the relation.</strong> Whether
+  A prevails over B in law depends on who said so. Deriving <em>prevails over</em>
+  from authoritative determinations only, and <em>held to prevail over</em> from all
+  of them, lets guidance, scholarship, and annotation be recorded without
+  being mistaken for law.</li>
+<li><strong>Priority principles are not declared legal content.</strong> Lex specialis and
+  lex posterior are codified in some systems (for example the Italian
+  <em>preleggi</em>) and doctrinal in others. Declaring them legal content would
+  build one tradition into the pattern (LOF-P-010).</li>
+<li><strong>No new primitives for derogation.</strong> Derogation and specification are
+  relations between items of ODP-001 legal content. Their scope (which cases)
+  is type-level and is left to the rule layer.</li>
+</ul>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<p>From the GDPR's neighbourhood, with real provisions and a hypothetical shop,
+municipality, and court. Excerpt:</p>
+<div class="highlight"><pre><span></span><code><span class="nn">ex</span><span class="p">:</span><span class="nt">bdsgEnactment</span> <span class="kt">a</span> <span class="nn">odp1</span><span class="p">:</span><span class="nt">0001003</span> <span class="p">;</span>               <span class="c"># enactment of the BDSG 2018</span>
+    <span class="nn">odp1</span><span class="p">:</span><span class="nt">0001100</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">bdsg26_2</span> <span class="p">,</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">bdsg27_2</span> <span class="p">;</span>    <span class="c"># establishes</span>
+    <span class="nn">odp1</span><span class="p">:</span><span class="nt">0001102</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">gdprArt88</span> <span class="p">,</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">gdprArt89_2</span> <span class="p">.</span>  <span class="c"># performed under</span>
+<span class="nn">ex</span><span class="p">:</span><span class="nt">bdsg26_2</span> <span class="nn">odp6</span><span class="p">:</span><span class="nt">0001100</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">gdprArt7</span> <span class="p">.</span>           <span class="c"># s. 26(2) particularizes Art. 7 (consent in employment)</span>
+<span class="nn">ex</span><span class="p">:</span><span class="nt">bdsg27_2</span> <span class="nn">odp6</span><span class="p">:</span><span class="nt">0001103</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">gdprArt15</span> <span class="p">.</span>          <span class="c"># s. 27(2) creates exception to Art. 15</span>
+
+<span class="nn">ex</span><span class="p">:</span><span class="nt">consentDuty</span> <span class="kt">a</span> <span class="nn">odp3</span><span class="p">:</span><span class="nt">0001002</span> <span class="p">;</span>                  <span class="c"># duty, grounded in TDDDG s. 25 and ePrivacy Art. 5(3)</span>
+    <span class="nn">odp3</span><span class="p">:</span><span class="nt">0001101</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">tdddg25</span> <span class="p">,</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">eprivacy5_3</span> <span class="p">.</span>
+<span class="nn">ex</span><span class="p">:</span><span class="nt">interestLiberty</span> <span class="kt">a</span> <span class="nn">odp3</span><span class="p">:</span><span class="nt">0001003</span> <span class="p">;</span>              <span class="c"># liberty (GDPR Art. 6(1)(f))</span>
+    <span class="nn">odp3</span><span class="p">:</span><span class="nt">0001101</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">gdprArt6_1f</span> <span class="p">;</span>
+    <span class="nn">odp6</span><span class="p">:</span><span class="nt">0001104</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">consentDuty</span> <span class="p">.</span>                <span class="c"># conflicts with</span>
+
+<span class="nn">ex</span><span class="p">:</span><span class="nt">recitalDetermination</span> <span class="kt">a</span> <span class="nn">odp6</span><span class="p">:</span><span class="nt">0001001</span> <span class="p">;</span>         <span class="c"># not legal content: recitals do not bind (C-162/97 Nilsson)</span>
+    <span class="nn">odp6</span><span class="p">:</span><span class="nt">0001106</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">eprivacy5_3</span> <span class="p">;</span> <span class="nn">odp6</span><span class="p">:</span><span class="nt">0001107</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">gdprArt6_1f</span> <span class="p">;</span>
+    <span class="nn">odp6</span><span class="p">:</span><span class="nt">0001108</span> <span class="nn">odp6</span><span class="p">:</span><span class="nt">0001501</span> <span class="p">;</span>                  <span class="c"># lex specialis</span>
+    <span class="nn">odp6</span><span class="p">:</span><span class="nt">0001110</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">gdprRecital173</span> <span class="p">.</span>
+
+<span class="nn">ex</span><span class="p">:</span><span class="nt">courtDetermination</span> <span class="kt">a</span> <span class="nn">odp6</span><span class="p">:</span><span class="nt">0001001</span> <span class="p">,</span> <span class="nn">odp1</span><span class="p">:</span><span class="nt">0001001</span> <span class="p">;</span>   <span class="c"># a holding: legal content</span>
+    <span class="nn">odp6</span><span class="p">:</span><span class="nt">0001106</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">gdprArt9_1</span> <span class="p">;</span> <span class="nn">odp6</span><span class="p">:</span><span class="nt">0001107</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">ordinance</span> <span class="p">;</span>
+    <span class="nn">odp6</span><span class="p">:</span><span class="nt">0001108</span> <span class="nn">odp6</span><span class="p">:</span><span class="nt">0001503</span> <span class="p">;</span>                  <span class="c"># primacy of an overriding legal order (EU law)</span>
+    <span class="nn">odp6</span><span class="p">:</span><span class="nt">0001110</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">judgment</span> <span class="p">.</span>
+</code></pre></div>
+<p>Inferred by HermiT, under both ODP-003 options:</p>
+<table>
+<thead>
+<tr>
+<th>Content</th>
+<th>Inferred relation</th>
+<th>Content</th>
+<th>From</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ePrivacy Art. 5(3); TDDDG s. 25</td>
+<td>content conflicts with, held to prevail over</td>
+<td>GDPR Art. 6(1)(f)</td>
+<td>the conflicting positions; Recital 173 and EDPB Opinion 5/2019, lex specialis, neither with legal force</td>
+</tr>
+<tr>
+<td>GDPR Art. 9(1)</td>
+<td>content conflicts with, held to prevail over, <strong>prevails over</strong></td>
+<td>municipal ordinance (hypothetical)</td>
+<td>the conflicting duties; an annotator's reading and a court's holding (hypothetical), primacy of an overriding legal order (EU law)</td>
+</tr>
+<tr>
+<td>BDSG s. 27(2)</td>
+<td>creates exception to, and nothing more</td>
+<td>GDPR Art. 15</td>
+<td>the derogation; the BDSG enactment is performed under Art. 89(2)</td>
+</tr>
+</tbody>
+</table>
+<p>The court's determination is classified as an <em>authoritative precedence
+determination</em> because it is asserted to be legal content; the annotator's,
+Recital 173's, and the EDPB's are not.</p>
+<p>Section 26(2) is used rather than section 26(1) because the validity of 26(1)
+as an Article 88 rule is doubtful after Case C-34/21 (<em>Hauptpersonalrat</em>, 30
+March 2023), which held that a national rule merely restating the GDPR is not
+one.</p>
+<p>The example also contains two deliberate defects. Provisions A and B ground
+conflicting duties and nothing resolves them: the shapes report an
+<strong>unresolved conflict</strong> (a warning). Two readings disagree on whether C or D
+prevails: the shapes report <strong>contested precedence</strong> (a warning), and CQ4
+reports the conflict as <em>contested</em>. The cookie conflict is reported as
+resolved only by determinations without legal force (information). The full
+example is <code>src/examples/gdpr-norm-relations.ttl</code>.</p>
+<h2 id="alignment-with-legal-standards-lof-p-015">Alignment with legal standards (LOF-P-015)<a class="headerlink" href="#alignment-with-legal-standards-lof-p-015" title="Permanent link">&para;</a></h2>
+<p>LOMO is the Legal Ontology for Modelling Obligations of the EU Publications
+Office.</p>
+<table>
+<thead>
+<tr>
+<th>This pattern</th>
+<th>LOMO</th>
+<th>LegalRuleML</th>
+<th>Akoma Ntoso</th>
+<th>LKIF-Core</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>particularizes</td>
+<td><code>lomo:specifies</code>, close match</td>
+<td>none</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>derogates from</td>
+<td><code>lomo:derogatesFrom</code>, close match</td>
+<td><code>lrml:Override</code>, partial</td>
+<td><code>scopeMod</code>, related</td>
+<td>none</td>
+</tr>
+<tr>
+<td>substitutes for / creates exception to</td>
+<td>substitutive and blocking derogation, described in LOMO's documentation only (no properties)</td>
+<td>defeaters, partial</td>
+<td><code>exceptionOfScope</code>, close match for exception</td>
+<td>none</td>
+</tr>
+<tr>
+<td>conflicts with</td>
+<td>none (conflict represented only once resolved)</td>
+<td>none at the instance level</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>held to prevail over</td>
+<td>none</td>
+<td><code>lrml:Override</code>, related</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>prevails over</td>
+<td>none</td>
+<td><code>lrml:Override</code> (over, under), close match</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>precedence determination, priority principle</td>
+<td>none</td>
+<td>none</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<p>The mappings are also published as SSSOM in
+<code>src/mappings/odp-006-standards.sssom.tsv</code>.</p>
+<p>LegalRuleML expresses defeasible priority among rules for a reasoner, at the
+type level. This pattern records, at the instance level, that a particular
+conflict exists and how and by whom it was resolved. A LegalRuleML rule base
+can be generated from the determinations, and its conclusions recorded back
+as determinations.</p>
+<h2 id="consequences-and-limitations">Consequences and limitations<a class="headerlink" href="#consequences-and-limitations" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Conflict is asserted.</strong> Whether two positions conflict depends on the
+  conduct they concern, which is the action-type problem of ODP-003 open
+  question 2. Until that is solved, conflict between positions is asserted by
+  the annotator, and only conflict between content is inferred.</li>
+<li><strong>No scope.</strong> Derogation and specification hold "for the cases within its
+  scope". The scope is not represented, so the pattern cannot say for which
+  facts the derogating content governs. That belongs to the rule layer.</li>
+<li><strong>Open world.</strong> OWL can infer that a conflict is resolved but not that it
+  is unresolved, since a determination may simply be unrecorded. Unresolved
+  conflicts are reported by SHACL on a reasoned graph.</li>
+<li><strong>No asymmetry axiom, and cycles are not errors.</strong> OWL 2 DL forbids
+  declaring a property defined by a chain asymmetric, so mutual precedence is
+  not an inconsistency. It is reported by SHACL as <em>contested</em> (a warning),
+  because it can be the law's real state: courts of two legal orders can each
+  hold, with authority in their own order, that their law prevails (compare
+  the Court of Justice and the German Federal Constitutional Court in the
+  PSPP case, 2 BvR 859/15, 5 May 2020).</li>
+<li><strong>Not transitive.</strong> Precedence is not transitive across different scopes
+  (A over B for employees, B over C for contractors says nothing of A and C),
+  so neither precedence relation is declared transitive.</li>
+<li><strong>Other precedence regimes.</strong> Federal preemption (including field
+  preemption), UN Charter Article 103, Article 30 of the Vienna Convention on
+  the Law of Treaties, and precedence clauses in contracts all have the shape
+  of a priority principle; they are not provided as individuals, and can be
+  added with their own coverage.</li>
+<li><strong>Lex posterior needs dates.</strong> The pattern does not compare dates. With
+  LOF-ODP-001 enactments placed in time by LOF-ODP-005, a SPARQL check can
+  confirm that content favoured on the ground of lex posterior was enacted
+  after the content it displaces.</li>
+</ul>
+<h2 id="relation-to-a-structural-ontology-of-the-law">Relation to <em>A Structural Ontology of the Law</em><a class="headerlink" href="#relation-to-a-structural-ontology-of-the-law" title="Permanent link">&para;</a></h2>
+<p>The typology of legal contradictions in Koepsell, <em>A Structural Ontology of
+the Law</em> (Palgrave Macmillan, forthcoming) classifies conflicts by the link of
+the Minimum Legal Chain at which they arise. This pattern supplies only what
+such a typology needs from the Foundry: conflicts located at legal positions,
+with their content, holders, and resolution status. The typology itself is
+theory-specific and is left out, consistent with LOF-P-008 and LOF-P-009, as
+in ODP-004.</p>
+<p><strong>Declaration of interest.</strong> The drafter is the author of that book.</p>
+<h2 id="open-questions-for-the-founding-coordinators">Open questions for the founding coordinators<a class="headerlink" href="#open-questions-for-the-founding-coordinators" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>What "prevails" means.</strong> The yielding content may be invalid (lex superior
+   within one order), set aside or inoperative in the case (primacy of an
+   overriding legal order, as with EU law), or merely
+   displaced for the cases in scope (lex specialis). Should <em>prevails over</em>
+   carry the effect, for example by subproperties, or should the effect be
+   read from the priority principle?</li>
+<li><strong>Conflict between positions of different holders.</strong> A duty of A to do X
+   and a claim of B that A not do X are a conflict, though held by different
+   parties. Should the pattern define the kinds of conflict (same holder,
+   correlative pairs) or leave <em>conflicts with</em> general, as now?</li>
+<li><strong>Who makes a determination authoritative.</strong> The pattern treats a
+   determination as authoritative when it is asserted to be legal content.
+   Should authority instead be relative to a legal order, so that the PSPP
+   case is two authoritative holdings each with force in its own order?</li>
+<li><strong>Priority among principles.</strong> Lex specialis and lex posterior can point in
+   opposite directions (a later general rule against an earlier special
+   one). Should the pattern represent second-order priority between
+   principles, or leave that to the rule layer?</li>
+<li><strong>Particularization and validity.</strong> The line between making content more
+   determinate and displacing it is contested in EU law (Article 88 after
+   C-34/21). Should <em>particularizes</em> carry a note that it does not certify
+   the particularizing content's validity?</li>
+</ol>
+<h2 id="related-patterns">Related patterns<a class="headerlink" href="#related-patterns" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../odp-001/">LOF-ODP-001</a> supplies <em>legal content</em>, between which all
+  norm relations hold, and <em>performed under</em>, which records the content that
+  authorizes a derogation.</li>
+<li><a href="../odp-003/">LOF-ODP-003</a> supplies the <em>legal positions</em> between which
+  conflict holds, and <em>grounded in</em>, through which it is lifted to content.</li>
+<li><a href="../odp-004/">LOF-ODP-004</a> supplies the chain whose links a contradiction
+  typology indexes; unresolved conflicts are its natural input.</li>
+<li><a href="../odp-005/">LOF-ODP-005</a> places enactments in time for lex posterior and
+  gives the periods during which a derogation is in force.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="__comments">Discussion</h2>
+  <script src="https://giscus.app/client.js"
+    data-repo="legal-ontologies-foundry/legal-ontologies-foundry.github.io"
+    data-repo-id="R_kgDOUnqvEw"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOUnqvE84DGcVQ"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      giscus.setAttribute("data-theme",
+        palette.color.scheme === "slate" ? "transparent_dark" : "light")
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function () {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate" ? "transparent_dark" : "light"
+          var frame = document.querySelector(".giscus-frame")
+          if (frame) frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } }, "https://giscus.app")
+        }
+      })
+    })
+  </script>
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "content.action.edit", "content.code.copy"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+        <script src="../../javascripts/lof-members.js"></script>
+      
+    
+  </body>
+</html>
