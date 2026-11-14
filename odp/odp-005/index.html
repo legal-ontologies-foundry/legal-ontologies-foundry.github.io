@@ -1,0 +1,3599 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A collaborative foundry of interoperable, BFO-grounded legal ontologies.">
+      
+      
+      
+        <link rel="canonical" href="https://legal-ontologies-foundry.github.io/odp/odp-005/">
+      
+      
+        <link rel="prev" href="../odp-004/">
+      
+      
+        <link rel="next" href="../odp-006/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>LOF-ODP-005 - Legal Ontologies Foundry</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/lof-members.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lof-odp-005-legal-time-and-versions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Legal Ontologies Foundry" class="md-header__button md-logo" aria-label="Legal Ontologies Foundry" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Legal Ontologies Foundry
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              LOF-ODP-005
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/legal-ontologies-foundry/legal-ontologies-foundry.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    legal-ontologies-foundry
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../activity/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Activity
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../principles/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Principles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../registry/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Registry
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Design Patterns
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../policy/identifiers/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Policies
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../sop/new-ontology-request/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Procedures
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../literature/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Literature
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../about/governance/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  About
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../contributing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Legal Ontologies Foundry" class="md-nav__button md-logo" aria-label="Legal Ontologies Foundry" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Legal Ontologies Foundry
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/legal-ontologies-foundry/legal-ontologies-foundry.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    legal-ontologies-foundry
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../activity/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Activity
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Activity
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../activity/participate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Take part without GitHub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../activity/signin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sign in (voting members)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../activity/proposals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Open proposals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../activity/discussions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Discussions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../activity/decisions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decision log
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../activity/members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../principles/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Principles
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Principles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-001-open/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-001: Open
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-002-format/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-002: Common format
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-003-bfo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-003: Common upper ontology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-004-grounding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-004: Explicit grounding of legal entities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-005-identifiers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-005: Persistent identifiers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-006-versioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-006: Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-007-definitions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-007: Textual definitions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-008-scope/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-008: Clearly delineated scope
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-009-orthogonality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-009: Orthogonality
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-010-jurisdiction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-010: Jurisdictional transparency
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-011-consistency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-011: Logical well-formedness
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-012-naming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-012: Naming conventions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-013-documentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-013: Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-014-maintenance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-014: Responsiveness and maintenance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-015-standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-015: Alignment with existing legal standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-016-users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-016: Documented use
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-017-authority/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-017: Locus of authority
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../principles/lof-p-018-attribution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-P-018: Attribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../registry/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registry
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Registry
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design Patterns
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design Patterns
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../odp-001/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-ODP-001
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../odp-002/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-ODP-002
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../odp-003/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-ODP-003
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../odp-004/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-ODP-004
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-ODP-005
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-ODP-005
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#intent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#competency-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Competency questions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solution
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data property
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#axioms-manchester-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Axioms (Manchester syntax)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grounding-rationale-lof-p-004" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grounding rationale (LOF-P-004)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alignment-with-legal-standards-lof-p-015" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alignment with legal standards (LOF-P-015)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences-and-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences and limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-questions-for-the-founding-coordinators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open questions for the founding coordinators
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related patterns
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../odp-006/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LOF-ODP-006
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pattern template
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Policies
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Policies
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../policy/identifiers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identifiers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../policy/deprecation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deprecation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../policy/id-ranges/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ID ranges
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../policy/metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registry metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../policy/automated-checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automated checks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Procedures
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Procedures
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sop/new-ontology-request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New ontology request
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sop/review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Review
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sop/release/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sop/term-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Term requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sop/tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Literature
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Literature
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/reinach/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adolf Reinach
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/governance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/working-groups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working groups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/code-of-conduct/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code of conduct
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/citation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Citation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/related-initiatives/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Related initiatives
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#intent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#competency-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Competency questions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solution
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data property
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#axioms-manchester-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Axioms (Manchester syntax)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grounding-rationale-lof-p-004" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grounding rationale (LOF-P-004)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alignment-with-legal-standards-lof-p-015" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alignment with legal standards (LOF-P-015)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences-and-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences and limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-questions-for-the-founding-coordinators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open questions for the founding coordinators
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related patterns
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/legal-ontologies-foundry/legal-ontologies-foundry.github.io/edit/main/docs/odp/odp-005.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="lof-odp-005-legal-time-and-versions">LOF-ODP-005: Legal Time and Versions<a class="headerlink" href="#lof-odp-005-legal-time-and-versions" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Identifier</strong></td>
+<td>LOF-ODP-005</td>
+</tr>
+<tr>
+<td><strong>IRI</strong></td>
+<td><a href="https://w3id.org/lof/odp-005.owl">https://w3id.org/lof/odp-005.owl</a></td>
+</tr>
+<tr>
+<td><strong>Repository</strong></td>
+<td><a href="https://github.com/legal-ontologies-foundry/lof-odp-005">https://github.com/legal-ontologies-foundry/lof-odp-005</a></td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>draft</td>
+</tr>
+<tr>
+<td><strong>Version</strong></td>
+<td>0.1.0</td>
+</tr>
+<tr>
+<td><strong>Depends on</strong></td>
+<td><a href="../odp-001/">LOF-ODP-001</a>, <a href="../odp-002/">LOF-ODP-002</a>, <a href="../odp-003/">LOF-ODP-003</a>, <a href="../odp-004/">LOF-ODP-004</a></td>
+</tr>
+<tr>
+<td><strong>Drafted by</strong></td>
+<td>David R. Koepsell</td>
+</tr>
+<tr>
+<td><strong>For review by</strong></td>
+<td>William Mandrick, Barry Smith</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Draft for review</p>
+<p>First draft, prepared for discussion by the founding coordinators.
+Open questions are listed at the end.</p>
+</div>
+<h2 id="intent">Intent<a class="headerlink" href="#intent" title="Permanent link">&para;</a></h2>
+<p>ODP-001 to 004 say what legal content is and how a position comes to exist,
+but not when. A legal question is almost always a question at a time: was the
+Directive or the Regulation the law on 15 March 2017; did the controller
+notify within seventy-two hours; which text was in force when the contract was
+signed. This pattern gives legal content its periods, records the acts that
+change it, distinguishes the consolidated texts people actually read from the
+law they consolidate, and gives positions the periods within which they must
+be discharged.</p>
+<p>Three distinctions carry most of the weight.</p>
+<ul>
+<li><strong>In force is not applies.</strong> The General Data Protection Regulation entered
+  into force on 24 May 2016 and applied from 25 May 2018. Retroactive content
+  applies to a period before it is in force. Repealed content goes on
+  governing facts that occurred while it applied.</li>
+<li><strong>Content is succeeded, not changed.</strong> An amending act establishes content
+  of its own, which <em>succeeds</em> the amended content in whole or in part. The
+  amended content is unchanged; what changes is which content is in force.</li>
+<li><strong>A consolidation is not, by default, law.</strong> EU consolidated texts have no
+  legal force. A United States Code title enacted as positive law does.</li>
+</ul>
+<h2 id="competency-questions">Competency questions<a class="headerlink" href="#competency-questions" title="Permanent link">&para;</a></h2>
+<ol>
+<li>What legal content was in force at a given time?</li>
+<li>What legal content applies to a given occurrence, and what was in force but
+   did not apply to it?</li>
+<li>What amended or repealed this content, in what act, and when did its force
+   end?</li>
+<li>Which consolidated version states the law during a given period, and what
+   content does it combine?</li>
+<li>Which positions were not discharged within the period they were due
+   within, computed from what occurrence, and what positions does the end of
+   that period trigger?</li>
+</ol>
+<p>All five are answered by SPARQL (<code>src/sparql/</code>).</p>
+<h2 id="solution">Solution<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h2>
+<h3 id="diagram">Diagram<a class="headerlink" href="#diagram" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>flowchart BT
+  n0["amending act"]
+  n1["repeal"]
+  n2["consolidated version"]
+  n3["compliance period"]
+  n4("legal act")
+  n0 --&gt;|is a| n4
+  n1 --&gt;|is a| n4
+  n5("generically dependent continuant")
+  n2 --&gt;|is a| n5
+  n6("temporal region")
+  n3 --&gt;|is a| n6
+  n7("legal content")
+  n4 -. amends .-&gt; n7
+  n4 -. repeals .-&gt; n7
+  n7 -. succeeds .-&gt; n7
+  n7 -. in force during .-&gt; n6
+  n7 -. applies during .-&gt; n6
+  n2 -. consolidates .-&gt; n7
+  n2 -. states the law during .-&gt; n6
+  n8("first-order legal position")
+  n8 -. due within .-&gt; n6
+  n9("occurrent")
+  n6 -. computed from .-&gt; n9
+  classDef ext stroke-dasharray: 4 3,opacity:0.8
+  class n4,n5,n6,n7,n8,n9 ext</code></pre>
+<p><em>Solid boxes are this pattern's classes; dashed boxes are classes from BFO or other patterns. Solid arrows mean <strong>is a</strong>; dotted arrows are relations, from domain to range. Drawn automatically from the tables below, so it always matches them.</em></p>
+<h3 id="classes">Classes<a class="headerlink" href="#classes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>IRI</th>
+<th>BFO parent</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>amending act</td>
+<td><code>ODP005_0001000</code></td>
+<td>legal act (defined)</td>
+<td>A legal act that establishes legal content succeeding some legal content established earlier, or that ends, suspends, or alters the force or scope of such content.</td>
+</tr>
+<tr>
+<td>repeal</td>
+<td><code>ODP005_0001001</code></td>
+<td>legal act (defined)</td>
+<td>A legal act that establishes that some legal content established earlier ceases to be in force.</td>
+</tr>
+<tr>
+<td>consolidated version</td>
+<td><code>ODP005_0001002</code></td>
+<td>generically dependent continuant</td>
+<td>A generically dependent continuant that combines some legal content with the content succeeding it in part, as they stand during some temporal region.</td>
+</tr>
+<tr>
+<td>compliance period</td>
+<td><code>ODP005_0001003</code></td>
+<td>temporal region (defined)</td>
+<td>A temporal region within which some first-order legal position is to be discharged.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="relations">Relations<a class="headerlink" href="#relations" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>IRI</th>
+<th>Domain</th>
+<th>Range</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>amends</td>
+<td><code>ODP005_0001100</code></td>
+<td>legal act</td>
+<td>legal content</td>
+<td>The act establishes content succeeding the content, or ends, suspends, or alters its force or scope.</td>
+</tr>
+<tr>
+<td>repeals</td>
+<td><code>ODP005_0001101</code></td>
+<td>legal act</td>
+<td>legal content</td>
+<td>Subproperty of <em>amends</em>: the act establishes that the content ceases to be in force.</td>
+</tr>
+<tr>
+<td>succeeds</td>
+<td><code>ODP005_0001108</code></td>
+<td>legal content</td>
+<td>legal content</td>
+<td>The first replaces the second, in whole or in part, from the time the first is in force.</td>
+</tr>
+<tr>
+<td>in force during</td>
+<td><code>ODP005_0001102</code></td>
+<td>legal content</td>
+<td>temporal region</td>
+<td>The maximal region throughout which the content is part of the law in force.</td>
+</tr>
+<tr>
+<td>applies during</td>
+<td><code>ODP005_0001103</code></td>
+<td>legal content</td>
+<td>temporal region</td>
+<td>The maximal region during which the content directly governs what occurs. Asserted only of directly applicable content.</td>
+</tr>
+<tr>
+<td>consolidates</td>
+<td><code>ODP005_0001104</code></td>
+<td>consolidated version</td>
+<td>legal content</td>
+<td>The version combines the content (base or succeeding).</td>
+</tr>
+<tr>
+<td>states the law during</td>
+<td><code>ODP005_0001105</code></td>
+<td>consolidated version</td>
+<td>temporal region</td>
+<td>The version's own region, during which it correctly combines the content in force.</td>
+</tr>
+<tr>
+<td>due within</td>
+<td><code>ODP005_0001106</code></td>
+<td>first-order legal position</td>
+<td>temporal region</td>
+<td>The position is to be discharged within the region.</td>
+</tr>
+<tr>
+<td>computed from</td>
+<td><code>ODP005_0001107</code></td>
+<td>temporal region</td>
+<td>occurrent</td>
+<td>According to legal content, the region is computed from the occurrent (it need not begin there).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="data-property">Data property<a class="headerlink" href="#data-property" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>IRI</th>
+<th>Domain</th>
+<th>Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>has date-time value</td>
+<td><code>ODP005_0001200</code></td>
+<td>temporal instant</td>
+<td><code>xsd:dateTimeStamp</code> (functional)</td>
+</tr>
+</tbody>
+</table>
+<p>A region's bounds are its BFO instants, related by <em>has first instant</em>
+(<code>BFO_0000222</code>) and <em>has last instant</em> (<code>BFO_0000224</code>); the date and time sit on
+the instant. <code>xsd:dateTimeStamp</code> is in the OWL 2 datatype map and requires a
+time zone; <code>xsd:date</code>, <code>xsd:duration</code> and the <code>xsd:g*</code> types are not in the map.</p>
+<p><strong>Conventions.</strong> Regions are closed and recorded to the second, so the GDPR's
+Directive predecessor is in force until 23:59:59 on 24 May 2018 and the GDPR
+applies from 00:00:00 on 25 May. Where the law gives a date and no time, the
+time zone is a stated convention, not a rule of the source: for EU acts the
+example uses midnight Brussels time. Values are compared in SPARQL after
+casting to <code>xsd:dateTime</code>.</p>
+<h3 id="axioms-manchester-syntax">Axioms (Manchester syntax)<a class="headerlink" href="#axioms-manchester-syntax" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>amending act         EquivalentTo  legal act and (amends some legal content)
+repeal               EquivalentTo  legal act and (repeals some legal content)
+repeals              SubPropertyOf amends
+has date-time value  Domain temporal instant, Range xsd:dateTimeStamp, Functional
+consolidated version SubClassOf    generically dependent continuant
+    and (consolidates some legal content)
+    and (states the law during some temporal region)
+compliance period    EquivalentTo  temporal region
+    and (inverse (due within) some first-order legal position)
+</code></pre></div>
+<h3 id="grounding-rationale-lof-p-004">Grounding rationale (LOF-P-004)<a class="headerlink" href="#grounding-rationale-lof-p-004" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Periods are temporal regions, not processes.</strong> Being in force is not
+  something that happens; it is a standing condition that holds through a
+  region of time. The pattern therefore relates content to BFO temporal
+  regions instead of reifying a "force" entity. Entry into force is the first
+  instant of such a region, a BFO temporal instant.</li>
+<li><strong>Calendar values on instants, not regions.</strong> BFO already relates a region
+  to its first and last instants. Putting the date-time on the instant keeps
+  one value per entity, makes an instant reusable as the bound of several
+  regions (the last instant of a compliance period is also what triggers the
+  power to fine), and matches OWL-Time, where <code>time:inXSDDateTimeStamp</code> sits
+  on <code>time:Instant</code>.</li>
+<li><strong>Amendment as succession of content.</strong> Legal content is a generically
+  dependent continuant (ODP-001). Treating amendment as the establishment of
+  new content that <em>succeeds</em> the old, rather than as a change in old content,
+  keeps every version citable as it stood and avoids ascribing change to an
+  abstract pattern.</li>
+<li><strong>Consolidated version as generically dependent continuant.</strong> A
+  consolidation is information content about the law. It is not declared
+  disjoint from legal content, so that an enacted consolidation can be
+  asserted to be both (LOF-P-010). It has its own period, because it stops
+  stating the law at the next amendment while the base content stays in force.</li>
+<li><strong>Compliance period as a defined temporal region.</strong> No new primitive: a
+  region is a compliance period by being the period some position is due
+  within.</li>
+</ul>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<p>The GDPR, the Directive it repealed, and the United Kingdom Act that
+transposed the Directive, with real dates; and a hypothetical controller that
+notifies one breach late and one in time. Excerpt:</p>
+<div class="highlight"><pre><span></span><code><span class="nn">ex</span><span class="p">:</span><span class="nt">gdprEnactment</span> <span class="kt">a</span> <span class="nn">odp1</span><span class="p">:</span><span class="nt">0001003</span> <span class="p">;</span>            <span class="c"># enactment</span>
+    <span class="nn">odp1</span><span class="p">:</span><span class="nt">0001100</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">gdpr</span> <span class="p">;</span>                   <span class="c"># establishes</span>
+    <span class="nn">odp5</span><span class="p">:</span><span class="nt">0001101</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">directive9546</span> <span class="p">.</span>          <span class="c"># repeals (Art. 94(1)), with effect from 25 May 2018</span>
+<span class="nn">ex</span><span class="p">:</span><span class="nt">dpa1998Enactment</span> <span class="kt">a</span> <span class="nn">odp1</span><span class="p">:</span><span class="nt">0001003</span> <span class="p">;</span>
+    <span class="nn">odp1</span><span class="p">:</span><span class="nt">0001100</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">dpa1998</span> <span class="p">;</span>
+    <span class="nn">odp1</span><span class="p">:</span><span class="nt">0001102</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">directive9546</span> <span class="p">.</span>          <span class="c"># performed under: transposition</span>
+
+<span class="nn">ex</span><span class="p">:</span><span class="nt">gdpr</span> <span class="nn">odp5</span><span class="p">:</span><span class="nt">0001102</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">gdprInForce</span> <span class="p">;</span>        <span class="c"># in force during (Art. 99(1))</span>
+        <span class="nn">odp5</span><span class="p">:</span><span class="nt">0001103</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">gdprApplies</span> <span class="p">;</span>        <span class="c"># applies during (Art. 99(2))</span>
+        <span class="nn">odp5</span><span class="p">:</span><span class="nt">0001108</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">directive9546</span> <span class="p">.</span>      <span class="c"># succeeds</span>
+<span class="nn">ex</span><span class="p">:</span><span class="nt">directive9546</span> <span class="nn">odp5</span><span class="p">:</span><span class="nt">0001102</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">directiveInForce</span> <span class="p">.</span>   <span class="c"># in force, never applying to private processing</span>
+<span class="nn">ex</span><span class="p">:</span><span class="nt">dpa1998</span> <span class="nn">odp5</span><span class="p">:</span><span class="nt">0001102</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">dpaInForce</span> <span class="p">;</span> <span class="nn">odp5</span><span class="p">:</span><span class="nt">0001103</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">dpaInForce</span> <span class="p">.</span>
+
+<span class="nn">ex</span><span class="p">:</span><span class="nt">gdprApplies</span> <span class="nn">obo</span><span class="p">:</span><span class="nt">BFO_0000222</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">t20180525</span> <span class="p">.</span>          <span class="c"># has first instant</span>
+<span class="nn">ex</span><span class="p">:</span><span class="nt">t20180525</span> <span class="nn">odp5</span><span class="p">:</span><span class="nt">0001200</span> <span class="s">"2018-05-24T22:00:00Z"</span><span class="p">^^</span><span class="nn">xsd</span><span class="p">:</span><span class="nt">dateTimeStamp</span> <span class="p">.</span>   <span class="c"># 25 May 2018, 00:00 Brussels</span>
+
+<span class="nn">ex</span><span class="p">:</span><span class="nt">window1</span> <span class="nn">odp5</span><span class="p">:</span><span class="nt">0001107</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">awareness1</span> <span class="p">;</span>      <span class="c"># computed from (aware at 08:40)</span>
+    <span class="nn">obo</span><span class="p">:</span><span class="nt">BFO_0000222</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">window1Start</span> <span class="p">;</span>        <span class="c"># 09:00: Reg. 1182/71 Art. 3 excludes the starting hour</span>
+    <span class="nn">obo</span><span class="p">:</span><span class="nt">BFO_0000224</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">window1End</span> <span class="p">.</span>          <span class="c"># 5 March 2026, 08:59:59 UTC</span>
+<span class="nn">ex</span><span class="p">:</span><span class="nt">notifyDuty1</span> <span class="kt">a</span> <span class="nn">odp3</span><span class="p">:</span><span class="nt">0001002</span> <span class="p">;</span>              <span class="c"># duty (Art. 33(1))</span>
+    <span class="nn">odp5</span><span class="p">:</span><span class="nt">0001106</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">window1</span> <span class="p">;</span>                <span class="c"># due within</span>
+    <span class="nn">odp4</span><span class="p">:</span><span class="nt">0001106</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">window1</span> <span class="p">.</span>                <span class="c"># undischarged during</span>
+<span class="nn">ex</span><span class="p">:</span><span class="nt">finePower1</span> <span class="kt">a</span> <span class="nn">odp3</span><span class="p">:</span><span class="nt">0001005</span> <span class="p">;</span>               <span class="c"># power (Art. 83(4)(a))</span>
+    <span class="nn">odp4</span><span class="p">:</span><span class="nt">0001102</span> <span class="nn">ex</span><span class="p">:</span><span class="nt">window1End</span> <span class="p">.</span>             <span class="c"># triggered by the end of the period</span>
+</code></pre></div>
+<p>Inferred by HermiT, under both ODP-003 options: the adoption of the GDPR is a
+<em>repeal</em> and so an <em>amending act</em>; both seventy-two-hour windows are
+<em>compliance periods</em>.</p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Answer from the example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>In force on 15 March 2017</td>
+<td>Directive 95/46/EC, the Data Protection Act 1998, and the GDPR</td>
+</tr>
+<tr>
+<td>Applies to processing in March 2017</td>
+<td>the Data Protection Act 1998; the Directive and the GDPR are in force but do not apply to it</td>
+</tr>
+<tr>
+<td>Repealed, succeeded, force ended</td>
+<td>Directive 95/46/EC, by the adoption of the GDPR, succeeded by the GDPR, end of 24 May 2018</td>
+</tr>
+<tr>
+<td>Consolidation</td>
+<td>text 02016R0679-20160504 combines the GDPR and states the law from 24 May 2016</td>
+</tr>
+<tr>
+<td>Overdue</td>
+<td>Acme's duty to notify breach 1, due by 5 March 2026 08:59:59 UTC, computed from its awareness of the breach; the end of the period triggers the authority's power to fine</td>
+</tr>
+</tbody>
+</table>
+<p>Two points the example makes explicit. Article 33(1) requires notification
+"without undue delay and, where feasible, not later than 72 hours"; the
+compliance period records the fixed limit, and whether a later notification
+with reasons was lawful is for the rule layer. And the fine of Article 83 is a
+sanction, not a remedy in the ODP-004 sense of making good the failure, so the
+power is linked by what triggers it, not by <em>remedies</em> (open question 5).</p>
+<p>The example also contains a period that ends before it begins, which the
+shapes report as a violation. The full example is
+<code>src/examples/gdpr-timeline.ttl</code>.</p>
+<h2 id="alignment-with-legal-standards-lof-p-015">Alignment with legal standards (LOF-P-015)<a class="headerlink" href="#alignment-with-legal-standards-lof-p-015" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>This pattern</th>
+<th>ELI</th>
+<th>Akoma Ntoso</th>
+<th>OWL-Time</th>
+<th>LOMO (Legal Ontology for Modelling Obligations)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>amends, repeals</td>
+<td><code>eli:amends</code>, <code>eli:repeals</code> (between legal resources), close match</td>
+<td>active and passive modifications, close match</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>succeeds</td>
+<td>none</td>
+<td>textual modifications (<code>substitution</code>, <code>insertion</code>), related</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>in force during</td>
+<td><code>eli:first_date_entry_in_force</code>, <code>eli:date_no_longer_in_force</code>, close match</td>
+<td><code>forceMod</code> (<code>entryIntoForce</code>, <code>endOfEnactment</code>, <code>postponementOfEntryIntoForce</code>), close match</td>
+<td>interval, via its instants</td>
+<td>none</td>
+</tr>
+<tr>
+<td>applies during</td>
+<td><code>eli:date_applicability</code>, close match</td>
+<td><code>efficacyMod</code>, related</td>
+<td>interval</td>
+<td><code>lomo:TemporalSpecification</code> with function <em>validity</em>, related</td>
+</tr>
+<tr>
+<td>consolidated version</td>
+<td><code>eli:consolidates</code>, <code>eli:LegalExpression</code> versions, close match</td>
+<td><code>FRBRExpression</code> with a version date, close match</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>due within, computed from</td>
+<td>none</td>
+<td>none</td>
+<td>none</td>
+<td><code>lomo:TemporalSpecification</code> with function <em>deadline</em>, <code>lomo:trigger</code>, related</td>
+</tr>
+<tr>
+<td>has date-time value</td>
+<td>dates as <code>xsd:date</code></td>
+<td>dates in <code>FRBRdate</code></td>
+<td><code>time:inXSDDateTimeStamp</code>, exact</td>
+<td><code>lomo:instant</code> (non-OWL-2 datatypes), related</td>
+</tr>
+</tbody>
+</table>
+<p>The mappings are also published as SSSOM in
+<code>src/mappings/odp-005-standards.sssom.tsv</code>.</p>
+<p>ELI and Akoma Ntoso record these facts about documents and their expressions.
+This pattern records them about legal content, so that a period of force can
+be related to the positions grounded in that content and to the chain of
+ODP-004.</p>
+<h2 id="consequences-and-limitations">Consequences and limitations<a class="headerlink" href="#consequences-and-limitations" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Instance level only.</strong> The pattern records that a particular period was
+  computed from a particular occurrence. The rule "seventy-two hours after
+  becoming aware" is type-level and belongs to a rule layer, as in ODP-004.</li>
+<li><strong>No interval reasoning in OWL.</strong> OWL cannot compare date-time values
+  within class definitions, so "in force at <em>t</em>" and "overdue" are answered by
+  SPARQL, and period well-formedness by SHACL. The pattern deliberately does
+  not import OWL-Time's interval algebra, which would add Allen relations the
+  queries do not need.</li>
+<li><strong>Suspension and revival</strong> are represented as several <em>in force during</em>
+  regions for the same content; the gap between them is the suspension.</li>
+<li><strong>No discharge relation.</strong> The pattern says a position is due within a
+  period and, with ODP-004, that it went undischarged during it. It does not
+  link a position to the process that discharged it (open question 3).</li>
+<li><strong>Repeal is not the only end of force.</strong> A sunset clause, implied repeal,
+  desuetude, or annulment ends force with no repealing act; the pattern
+  records them by the last instant of the region in force alone, so CQ3 sees
+  only repeals made by acts.</li>
+<li><strong>One time line.</strong> The pattern records the periods as now understood. When
+  a court annuls content <em>ex tunc</em>, the content was in force as people then
+  believed and is treated as never in force afterwards. Recording both
+  requires a second, transaction-time dimension (open question 6).</li>
+<li><strong>Jurisdiction.</strong> Nothing in the pattern assumes the European Union. It has
+  been checked against the forms below, all of which it can express
+  (LOF-P-010):</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>How it is expressed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Delayed application (GDPR)</td>
+<td><em>in force during</em> and <em>applies during</em> with different first instants</td>
+</tr>
+<tr>
+<td>Retroactivity</td>
+<td><em>applies during</em> a region that begins before the <em>in force during</em> region</td>
+</tr>
+<tr>
+<td>Sunset clause</td>
+<td>an <em>in force during</em> region whose last instant is set by the enacting content</td>
+</tr>
+<tr>
+<td>Repeal with saving provision</td>
+<td><em>in force during</em> ends; <em>applies during</em> continues for facts before the repeal</td>
+</tr>
+<tr>
+<td>Suspension, revival</td>
+<td>two <em>in force during</em> regions</td>
+</tr>
+<tr>
+<td>Directive and transposition</td>
+<td>the directive <em>in force during</em> only; the transposing content <em>applies during</em>, its enactment <em>performed under</em> the directive (ODP-001)</td>
+</tr>
+<tr>
+<td>Positive-law codification (US Code)</td>
+<td>a consolidated version asserted also to be legal content established by an enactment</td>
+</tr>
+<tr>
+<td>Annulment by a court</td>
+<td>the last instant of the region in force, with no repealing act</td>
+</tr>
+</tbody>
+</table>
+<h2 id="open-questions-for-the-founding-coordinators">Open questions for the founding coordinators<a class="headerlink" href="#open-questions-for-the-founding-coordinators" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Amendment target.</strong> <em>Amends</em> relates an act to the content it amends,
+   following ODP-001, and <em>succeeds</em> relates the texts. Should <em>amended by</em>
+   (content to act) also be provided, or is the inverse enough?</li>
+<li><strong>Limitation periods and other periods for second-order positions.</strong> A
+   limitation period, or a time to appeal, is a period within which a power
+   may be exercised, not one within which a position must be discharged.
+   <em>Due within</em> does not cover it. Should there be a parallel <em>exercisable
+   within</em> for powers, here or in ODP-004?</li>
+<li><strong>Discharge.</strong> Should a relation from a position to the process that
+   discharged it (<em>discharged by</em>) be added here, in ODP-004, or in a
+   compliance pattern of its own?</li>
+<li><strong>Versions of positions.</strong> When content is succeeded, are the positions it
+   grounds ended and replaced, or do they persist? Under ODP-003 Option A
+   they are replaced; under Option B they may persist. The pattern takes no
+   position, and the example does not depend on it.</li>
+<li><strong>Sanctions.</strong> A fine is not a remedy in the ODP-004 sense. Should ODP-004
+   distinguish <em>sanctions</em> (powers whose exercise penalizes the failure) from
+   <em>remedies</em> (positions that make it good), with sanctioning positions linked
+   to the failure they penalize?</li>
+<li><strong>Bitemporality.</strong> Annulment <em>ex tunc</em> (and the Akoma Ntoso treatment of
+   unconstitutionality) needs a record of what was believed in force at a
+   time as well as what is now held to have been in force. Should the
+   Foundry add a transaction-time layer, or leave it to the data store?</li>
+<li><strong>Instants as triggers.</strong> The end of a compliance period triggers the power
+   to fine. ODP-004 <em>triggered by</em> has the range occurrent, and a BFO instant
+   is a temporal region, an occurrent, so this is valid; should ODP-004 say so
+   explicitly?</li>
+</ol>
+<h2 id="related-patterns">Related patterns<a class="headerlink" href="#related-patterns" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../odp-001/">LOF-ODP-001</a> supplies <em>legal act</em>, <em>legal content</em>,
+  <em>enactment</em>, and <em>performed under</em>; amending acts and repeals are legal acts.</li>
+<li><a href="../odp-002/">LOF-ODP-002</a> is imported with the other base patterns. The
+  pattern uses none of its terms directly, but content that confers a role
+  (an office with a fixed term) is given its periods like any other.</li>
+<li><a href="../odp-003/">LOF-ODP-003</a> supplies <em>first-order legal position</em>, the domain
+  of <em>due within</em>.</li>
+<li><a href="../odp-004/">LOF-ODP-004</a> supplies <em>triggered by</em> and <em>undischarged
+  during</em>; entry into force and the end of a compliance period are typical
+  triggers.</li>
+<li><a href="../odp-006/">LOF-ODP-006</a> uses these periods for the scope in time of a
+  derogation; lex posterior compares enactments (ODP-001).</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="__comments">Discussion</h2>
+  <script src="https://giscus.app/client.js"
+    data-repo="legal-ontologies-foundry/legal-ontologies-foundry.github.io"
+    data-repo-id="R_kgDOUnqvEw"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOUnqvE84DGcVQ"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      giscus.setAttribute("data-theme",
+        palette.color.scheme === "slate" ? "transparent_dark" : "light")
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function () {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate" ? "transparent_dark" : "light"
+          var frame = document.querySelector(".giscus-frame")
+          if (frame) frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } }, "https://giscus.app")
+        }
+      })
+    })
+  </script>
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "content.action.edit", "content.code.copy"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+        <script src="../../javascripts/lof-members.js"></script>
+      
+    
+  </body>
+</html>
