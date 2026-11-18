@@ -44,13 +44,13 @@
   // ---------------------------------------------------------------- the bar at the top of Activity pages
   document.querySelectorAll('.lof-userbar').forEach(function (bar) {
     if (!get(KEY)) {
-      bar.innerHTML = 'Voting member? <a href="' + signinUrl + '">Sign in</a> to read and vote on proposals here.';
+      bar.innerHTML = 'Foundry member? <a href="' + signinUrl + '">Sign in</a> to read and vote on proposals here.';
       return;
     }
     bar.textContent = 'Checking sign-in...';
     me().then(function (m) {
       if (!m.signedIn) { bar.innerHTML = 'Your sign-in has expired. <a href="' + signinUrl + '">Sign in again</a>.'; return; }
-      var open = m.decisions.filter(function (d) { return !d.myVote; }).length;
+      var open = m.decisions.filter(function (d) { return d.eligible !== false && !d.myVote; }).length;
       bar.innerHTML = 'Signed in as <b>' + esc(m.name) + '</b>' + (m.committee ? ' (Operations Committee)' : '') +
         (m.decisions.length ? ' · ' + (open ? open + ' proposal' + (open === 1 ? '' : 's') + ' awaiting your vote' : 'you have voted on every open proposal') +
           ' (<a href="' + SITE + 'activity/proposals/#open-for-decision">open for decision</a>)' : '') +
@@ -131,7 +131,7 @@
   if (!panels.length) return;
   if (!get(KEY)) {
     panels.forEach(function (p) {
-      p.innerHTML = '<b>Voting members:</b> <a href="' + signinUrl + '">sign in</a> to vote here, or use the ballot link in your email.';
+      p.innerHTML = '<b>Members:</b> <a href="' + signinUrl + '">sign in</a> to vote here, or use the ballot link in your email. Anyone can comment.';
     });
     return;
   }
@@ -141,9 +141,9 @@
   function render(p, m) {
     var n = Number(p.getAttribute('data-pr'));
     if (!m.signedIn) { p.innerHTML = 'Your sign-in has expired. <a href="' + signinUrl + '">Sign in again</a> to vote.'; return; }
-    if (!m.voting) { p.textContent = 'Signed in as ' + m.name + '. Only voting members vote on proposals.'; return; }
     var d = m.decisions.filter(function (x) { return x.pr === n; })[0];
     if (!d) { p.textContent = 'This proposal is no longer open for decision.'; return; }
+    if (d.eligible === false) { p.textContent = 'Signed in as ' + m.name + '. Only voting members vote on this proposal; you can still comment on it.'; return; }
     p.innerHTML = '<p><b>Your vote, ' + esc(m.name) + ':</b> ' +
       (d.myVote ? '<b>' + LABEL[d.myVote] + '</b> (cast on ' + esc(d.via) + '). You can change it until the decision is made.' : 'not yet cast.') + '</p>' +
       '<p class="lof-status">' + esc(d.status) + '</p>' +
