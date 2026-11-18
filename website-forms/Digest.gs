@@ -201,7 +201,7 @@ function digestHtml_(d, s) {
   };
   var who = function (it) { return esc_((it.user || {}).login || ''); };
   var voterName = nameForEmail_(s.email);
-  var isVoter = voterName && ctxMembersVoting_(voterName);
+  var canVote = function (x) { return !!voterName && x.t.electorate.indexOf(voterName) >= 0; };
 
   var h = '<div style="font-family:system-ui,-apple-system,Segoe UI,sans-serif;max-width:640px;margin:0 auto;color:#222;line-height:1.5;font-size:15px">' +
     '<p style="color:#3f51b5;font-weight:600;margin:0">Legal Ontologies Foundry</p>' +
@@ -209,8 +209,8 @@ function digestHtml_(d, s) {
     '<p style="color:#666;margin:0 0 8px">Hello ' + esc_(s.name || 'there') + '. Everything below links to the full record; ' +
     'you can comment on any of it without a GitHub account.</p>';
 
-  if (isVoter) {
-    var waiting = d.decisions.filter(function (x) { return !x.t.byVoter[voterName]; });
+  if (voterName) {
+    var waiting = d.decisions.filter(function (x) { return canVote(x) && !x.t.byVoter[voterName]; });
     if (waiting.length) {
       h += '<div style="background:#eef0fb;border-left:4px solid #3f51b5;padding:10px 14px;margin:16px 0">' +
         '<b>Awaiting your vote:</b> ' + waiting.map(function (x) { return esc_(x.pr.title) + ' (#' + x.pr.number + ')'; }).join('; ') +
@@ -219,9 +219,9 @@ function digestHtml_(d, s) {
   }
 
   h += section('Open for decision', d.decisions.map(function (x) {
-    var mine = isVoter && x.t.byVoter[voterName];
+    var mine = canVote(x) && x.t.byVoter[voterName];
     return '<b>' + link(x.pr.html_url, x.pr.title) + '</b> (#' + x.pr.number + ', ' + x.kind + ')<br>' +
-      '<span style="color:#555">' + esc_(x.t.status) + (x.t.daysLeft ? ' Comment period ends ' + fmtDate_(x.closes) + '.' : '') + '</span>' +
+      '<span style="color:#555">' + esc_(x.t.status) + (x.t.daysLeft && x.t.phase !== 'member vote' ? ' Comment period ends ' + fmtDate_(x.closes) + '.' : '') + '</span>' +
       (mine ? '<br><span style="color:#555">Your vote: ' + VOTE_LABELS[mine.vote] + '.</span>' : '') +
       '<br>' + link(SITE + 'activity/proposals/#decision-' + x.pr.number, 'read and vote') + reply(x.pr.html_url);
   }));
@@ -266,7 +266,7 @@ function ctxMembersVoting_(name) {
 }
 
 function nameForEmail_(email) {
-  var emails = voterEmails_(), out = null;
+  var emails = memberEmails_(), out = null;
   Object.keys(emails).forEach(function (n) { if (emails[n].toLowerCase() === String(email).toLowerCase()) out = n; });
   return out;
 }

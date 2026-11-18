@@ -5,7 +5,7 @@
 
 ## Summary
 
-Classes specific to a legal system or jurisdiction are marked as such and are not presented as universal.
+Classes specific to a legal system or jurisdiction carry a `dcterms:coverage` annotation naming it, and are not presented as universal.
 
 ## Purpose
 
@@ -19,7 +19,16 @@ Legal categories vary across systems. A class that silently generalizes from one
 
 ## Implementation
 
-Use jurisdiction identifiers in the form `ISO 3166` country codes or named traditions (for example, `common-law`, `civil-law`), and be consistent within the ontology.
+Mark each such class with one `dcterms:coverage` annotation per jurisdiction or tradition, using these values:
+
+| Scope | Value | Example |
+|---|---|---|
+| A country | ISO 3166-1 alpha-2 code | `"BR"` (Brazil) |
+| A subdivision (state, province) | ISO 3166-2 code | `"US-TX"` (Texas) |
+| The European Union | `"EU"` | `"EU"` |
+| A legal tradition | one of `common-law`, `civil-law`, `religious-law`, `customary-law`, `international-law` | `"common-law"` |
+
+A class with no `dcterms:coverage` annotation is presented as general, so the annotation is required, not optional, for every class whose definition depends on a particular legal system.
 
 ## Examples
 
@@ -29,7 +38,7 @@ A class *consideration* annotated with `dcterms:coverage "common-law"`.
 
 Jurisdiction-specific classes are annotated. The ontology's generality claims are plausible given its sources.
 
-**Automated check:** None. Manual review.
+**Automated check:** none yet; a check of `dcterms:coverage` values against the table above is planned. Whether a class *needs* the annotation remains a matter for manual review.
 
 ## Feedback and discussion
 

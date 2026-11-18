@@ -27,7 +27,7 @@ Foundry move its hosting without breaking any identifier. See
 
 ## Can I use Foundry ontologies commercially?
 
-Yes. All Foundry ontologies are released under CC BY 4.0 or CC0 (LOF-P-001).
+Yes. All Foundry ontologies are released under CC BY 4.0 (LOF-P-001): anyone may use them, including commercially, provided they give attribution.
 
 ## How do I propose a new ontology?
 

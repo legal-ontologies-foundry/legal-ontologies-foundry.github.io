@@ -6,6 +6,9 @@
     and adapted to the legal domain. They take effect when ratified by the
     founding coordinators under the rules in [Governance](../about/governance.md).
 
+New principles, and changes to these, are adopted by the members after public comment: see
+[Adopting principles](../about/adopting-principles.md).
+
 Every member ontology commits to the following principles. Each has its own
 page setting out its purpose, requirements, implementation, and the criteria
 reviewers apply. Principle numbers are permanent and never reused, so reviews
