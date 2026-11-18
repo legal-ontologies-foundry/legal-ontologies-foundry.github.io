@@ -1,0 +1,36 @@
+name: registry status
+# Checks pull requests that change an ontology's status against the review procedure
+# (docs/sop/review.md), opens them for decision when the requirements are met, and opens a
+# review tracking issue when an ontology becomes a candidate. See scripts/registry_status.py.
+on:
+  pull_request_target:          # runs this workflow from main; the pull request's code is never run
+    types: [opened, synchronize, reopened, edited, ready_for_review, converted_to_draft]
+    paths: ['ontology/**']
+  issues:
+    types: [opened, edited, closed, reopened, labeled]
+  push:
+    branches: [main]
+    paths: ['ontology/**']
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+concurrency:
+  group: registry-status-${{ github.event.pull_request.number || github.event.issue.number || github.ref }}
+  cancel-in-progress: false
+jobs:
+  status:
+    if: github.event_name != 'issues' || contains(github.event.issue.labels.*.name, 'review')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+      - run: pip install pyyaml
+      - run: python scripts/registry_status.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
