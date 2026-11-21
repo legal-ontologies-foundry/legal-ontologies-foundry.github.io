@@ -131,9 +131,11 @@ def htaccess(entries, site_url):
         L += [
             f"# ---- {i} ({pfx}) ----",
             f"RewriteRule ^{q}\\.owl$ {raw}/{br}/lof-{i}.owl [R=302,L]",
-            f"RewriteRule ^{q}/{q}-base\\.owl$ {raw}/{br}/lof-{i}-base.owl [R=302,L]",
-            f"RewriteRule ^{q}/releases/([^/]+)/{q}\\.owl$ {raw}/v$1/lof-{i}.owl [R=302,L]",
-            f"RewriteRule ^{q}/releases/([^/]+)/{q}-base\\.owl$ {raw}/v$1/lof-{i}-base.owl [R=302,L]",
+            # The ontologies' own IRIs use the file names (lof-{id}-base.owl,
+            # releases/x.y.z/lof-{id}.owl); the shorter forms are accepted too.
+            f"RewriteRule ^{q}/(?:lof-)?{q}-base\\.owl$ {raw}/{br}/lof-{i}-base.owl [R=302,L]",
+            f"RewriteRule ^{q}/releases/([^/]+)/(?:lof-)?{q}\\.owl$ {raw}/v$1/lof-{i}.owl [R=302,L]",
+            f"RewriteRule ^{q}/releases/([^/]+)/(?:lof-)?{q}-base\\.owl$ {raw}/v$1/lof-{i}-base.owl [R=302,L]",
             f"RewriteRule ^{q}/imports/(.+)$ {raw}/{br}/src/ontology/imports/$1 [R=302,L]",
             f"RewriteRule ^{q}/tracker$ {e['tracker']} [R=302,L]",
             f"RewriteRule ^{q}/home$ {e.get('homepage', e['repository'])} [R=302,L]",
