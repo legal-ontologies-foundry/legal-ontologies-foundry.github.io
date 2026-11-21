@@ -16,8 +16,11 @@ The patterns build on one another:
 | [LOF-ODP-004](odp-004.md) | Minimum Legal Chain | ODP-001, 002, 003 | accepted 0.2.0 |
 | [LOF-ODP-005](odp-005.md) | Legal Time and Versions | ODP-001, 003, 004 | draft, placement-neutral |
 | [LOF-ODP-006](odp-006.md) | Relations between Norms | ODP-001, 003 | draft, placement-neutral |
+| [LOF-ODP-007](odp-007.md) | Legal Order and Membership | ODP-001 | draft |
+| [LOF-ODP-008](odp-008.md) | Adjudication and Legal Fact | ODP-001, 002, 003, 005 | draft |
+| [LOF-ODP-009](odp-009.md) | Legal Personhood and Capacity | ODP-001, 002, 003, 007 | draft |
 
-A worked example, a residential lease, runs through the first four. ODP-005 and 006 are worked on the General Data Protection Regulation and the legislation around it.
+A worked example, a residential lease, runs through the first four. ODP-005 and 006 are worked on the General Data Protection Regulation and the legislation around it. ODP-007 to 009 continue the lease into the legal orders it belongs to, an eviction suit and its appeal, and the persons involved. The [regime test suite](regime-tests.md) applies all nine patterns to fourteen legal regimes.
 
 The patterns are aligned with the Document Act Ontology and the Common Core
 Ontologies through [two bridge modules](alignment.md). See
