@@ -88,6 +88,10 @@ nav:
       - LOF-ODP-004: odp/odp-004.md
       - LOF-ODP-005: odp/odp-005.md
       - LOF-ODP-006: odp/odp-006.md
+      - LOF-ODP-007: odp/odp-007.md
+      - LOF-ODP-008: odp/odp-008.md
+      - LOF-ODP-009: odp/odp-009.md
+      - Regime test suite: odp/regime-tests.md
       - Alignment: odp/alignment.md
       - Changes in 0.2.0: odp/changes-0.2.0.md
       - Pattern template: odp/template.md
